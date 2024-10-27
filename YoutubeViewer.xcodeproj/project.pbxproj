@@ -16,6 +16,12 @@
 		BC0558422CCB94A70002ABDD /* YoutubeViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558412CCB94A70002ABDD /* YoutubeViewerTests.swift */; };
 		BC05584C2CCB94A70002ABDD /* YoutubeViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05584B2CCB94A70002ABDD /* YoutubeViewerUITests.swift */; };
 		BC05584E2CCB94A70002ABDD /* YoutubeViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05584D2CCB94A70002ABDD /* YoutubeViewerUITestsLaunchTests.swift */; };
+		BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05585A2CCBD8C00002ABDD /* TabBarController.swift */; };
+		BC05585F2CCDD8A50002ABDD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05585E2CCDD8A50002ABDD /* HomeViewController.swift */; };
+		BC0558612CCDD8AC0002ABDD /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC0558602CCDD8AC0002ABDD /* HomeViewController.storyboard */; };
+		BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558622CCDD8D20002ABDD /* MyPageViewController.swift */; };
+		BC0558652CCDD8DB0002ABDD /* MyPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */; };
+		BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		BC0558472CCB94A70002ABDD /* YoutubeViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoutubeViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC05584B2CCB94A70002ABDD /* YoutubeViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeViewerUITests.swift; sourceTree = "<group>"; };
 		BC05584D2CCB94A70002ABDD /* YoutubeViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BC05585A2CCBD8C00002ABDD /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BC05585E2CCDD8A50002ABDD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BC0558602CCDD8AC0002ABDD /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
+		BC0558622CCDD8D20002ABDD /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPageViewController.storyboard; sourceTree = "<group>"; };
+		BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +115,12 @@
 				BC05582C2CCB94A50002ABDD /* SceneDelegate.swift */,
 				BC05582E2CCB94A50002ABDD /* ViewController.swift */,
 				BC0558302CCB94A50002ABDD /* Main.storyboard */,
+				BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */,
+				BC05585A2CCBD8C00002ABDD /* TabBarController.swift */,
+				BC05585E2CCDD8A50002ABDD /* HomeViewController.swift */,
+				BC0558602CCDD8AC0002ABDD /* HomeViewController.storyboard */,
+				BC0558622CCDD8D20002ABDD /* MyPageViewController.swift */,
+				BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */,
 				BC0558332CCB94A70002ABDD /* Assets.xcassets */,
 				BC0558352CCB94A70002ABDD /* LaunchScreen.storyboard */,
 				BC0558382CCB94A70002ABDD /* Info.plist */,
@@ -231,6 +249,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC0558652CCDD8DB0002ABDD /* MyPageViewController.storyboard in Resources */,
+				BC0558612CCDD8AC0002ABDD /* HomeViewController.storyboard in Resources */,
 				BC0558342CCB94A70002ABDD /* Assets.xcassets in Resources */,
 				BC0558372CCB94A70002ABDD /* Base in Resources */,
 				BC0558322CCB94A50002ABDD /* Base in Resources */,
@@ -258,9 +278,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC05585F2CCDD8A50002ABDD /* HomeViewController.swift in Sources */,
+				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05582F2CCB94A50002ABDD /* ViewController.swift in Sources */,
+				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
 				BC05582D2CCB94A50002ABDD /* SceneDelegate.swift in Sources */,
+				BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

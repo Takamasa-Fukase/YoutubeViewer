@@ -12,5 +12,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setNaviBarRightButton(systemImageName: "magnifyingglass") {
+            
+        }
     }
 }

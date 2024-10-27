@@ -20,6 +20,7 @@
 		BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558622CCDD8D20002ABDD /* MyPageViewController.swift */; };
 		BC0558652CCDD8DB0002ABDD /* MyPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */; };
 		BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */; };
+		BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		BC0558622CCDD8D20002ABDD /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPageViewController.storyboard; sourceTree = "<group>"; };
 		BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
+		BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +111,7 @@
 			children = (
 				BC05582A2CCB94A50002ABDD /* AppDelegate.swift */,
 				BC05582C2CCB94A50002ABDD /* SceneDelegate.swift */,
-				BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */,
+				BC05586C2CCEB2750002ABDD /* Extensions */,
 				BC05585A2CCBD8C00002ABDD /* TabBarController.swift */,
 				BC05585E2CCDD8A50002ABDD /* HomeViewController.swift */,
 				BC0558602CCDD8AC0002ABDD /* HomeViewController.storyboard */,
@@ -137,6 +139,15 @@
 				BC05584D2CCB94A70002ABDD /* YoutubeViewerUITestsLaunchTests.swift */,
 			);
 			path = YoutubeViewerUITests;
+			sourceTree = "<group>";
+		};
+		BC05586C2CCEB2750002ABDD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */,
+				BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +286,7 @@
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
+				BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */,
 				BC05582D2CCB94A50002ABDD /* SceneDelegate.swift in Sources */,
 				BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */,
 			);

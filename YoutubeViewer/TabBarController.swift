@@ -25,9 +25,13 @@ class TabBarController: UITabBarController {
         
         homeVC.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         myPageVC.tabBarItem = .init(title: "You", image: UIImage(systemName: "person"), tag: 1)
-        
+
         vcs.append(contentsOf: [homeVC, myPageVC])
-        viewControllers = vcs
-        setViewControllers(vcs, animated: false)
+        viewControllers = vcs.map({ vc in
+            vc.navigationItem.backButtonDisplayMode = .minimal
+            let navi = UINavigationController(rootViewController: vc)
+            return navi
+        })
+        setViewControllers(viewControllers, animated: false)
     }
 }

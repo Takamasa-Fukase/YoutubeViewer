@@ -12,5 +12,11 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setNaviBarRightButton(systemImageName: "gearshape") {
+            
+        }
+        setNaviBarRightButton(systemImageName: "magnifyingglass") {
+            
+        }
     }
 }

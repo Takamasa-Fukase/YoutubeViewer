@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import KingFisher
+import Kingfisher
 
 class HomeViewController: UIViewController {
     
@@ -38,9 +38,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeVideoListCell.className, for: indexPath) as! HomeVideoListCell
-        cell.thumbnailImageView.kfIma =
-        // https://www.google.com/url?sa=i&url=https%3A%2F%2Fdiamond.jp%2Farticles%2F-%2F342871&psig=AOvVaw2sRmMeZboLSPE6lTtJv51d&ust=1730141798057000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDMg9Cer4kDFQAAAAAdAAAAABAE
-//        cell.titleLabel =
+        let url = URL(string: "https://dol.ismcdn.jp/mwimgs/2/7/650/img_2753004f183b1b28893cb3dc0dc4412a263663.jpg")
+        cell.thumbnailImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(systemName: "photo")
+        )
+        cell.titleLabel.text = "鉄道で行くスイス】アルプス山脈のふもと超絶景山岳リゾートへの車窓の旅“3つのルート” | 地球の歩き方ニュース＆レポート | ダイヤモンド・オンライン"
         return cell
     }
     

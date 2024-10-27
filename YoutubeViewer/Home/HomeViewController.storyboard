@@ -34,6 +34,9 @@
                             <constraint firstAttribute="bottom" secondItem="1MG-n1-qdb" secondAttribute="bottom" id="phd-7q-rDK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="1MG-n1-qdb" id="DaT-jF-iZl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

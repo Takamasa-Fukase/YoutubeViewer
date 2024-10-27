@@ -21,6 +21,9 @@
 		BC0558652CCDD8DB0002ABDD /* MyPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */; };
 		BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */; };
 		BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */; };
+		BC0558722CCEBF7C0002ABDD /* HomeVideoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558702CCEBF7C0002ABDD /* HomeVideoListCell.swift */; };
+		BC0558732CCEBF7C0002ABDD /* HomeVideoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */; };
+		BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCB293692CCEC51300A18ED0 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,8 @@
 		BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPageViewController.storyboard; sourceTree = "<group>"; };
 		BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		BC0558702CCEBF7C0002ABDD /* HomeVideoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoListCell.swift; sourceTree = "<group>"; };
+		BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVideoListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +167,8 @@
 			children = (
 				BC05585E2CCDD8A50002ABDD /* HomeViewController.swift */,
 				BC0558602CCDD8AC0002ABDD /* HomeViewController.storyboard */,
+				BC0558702CCEBF7C0002ABDD /* HomeVideoListCell.swift */,
+				BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -190,6 +198,9 @@
 			dependencies = (
 			);
 			name = YoutubeViewer;
+			packageProductDependencies = (
+				BCB293692CCEC51300A18ED0 /* Kingfisher */,
+			);
 			productName = YoutubeViewer;
 			productReference = BC0558272CCB94A50002ABDD /* YoutubeViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -262,6 +273,9 @@
 				Base,
 			);
 			mainGroup = BC05581E2CCB94A50002ABDD;
+			packageReferences = (
+				BCD93DDB2CCEC42500363395 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = BC0558282CCB94A50002ABDD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -279,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC0558652CCDD8DB0002ABDD /* MyPageViewController.storyboard in Resources */,
+				BC0558732CCEBF7C0002ABDD /* HomeVideoListCell.xib in Resources */,
 				BC0558612CCDD8AC0002ABDD /* HomeViewController.storyboard in Resources */,
 				BC0558342CCB94A70002ABDD /* Assets.xcassets in Resources */,
 				BC0558372CCB94A70002ABDD /* Base in Resources */,
@@ -312,6 +327,7 @@
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
 				BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */,
 				BC05582D2CCB94A50002ABDD /* SceneDelegate.swift in Sources */,
+				BC0558722CCEBF7C0002ABDD /* HomeVideoListCell.swift in Sources */,
 				BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +665,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BCD93DDB2CCEC42500363395 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BCB293692CCEC51300A18ED0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCD93DDB2CCEC42500363395 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BC05581F2CCB94A50002ABDD /* Project object */;
 }

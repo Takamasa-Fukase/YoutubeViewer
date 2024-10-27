@@ -112,11 +112,9 @@
 				BC05582A2CCB94A50002ABDD /* AppDelegate.swift */,
 				BC05582C2CCB94A50002ABDD /* SceneDelegate.swift */,
 				BC05586C2CCEB2750002ABDD /* Extensions */,
-				BC05585A2CCBD8C00002ABDD /* TabBarController.swift */,
-				BC05585E2CCDD8A50002ABDD /* HomeViewController.swift */,
-				BC0558602CCDD8AC0002ABDD /* HomeViewController.storyboard */,
-				BC0558622CCDD8D20002ABDD /* MyPageViewController.swift */,
-				BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */,
+				BC05586D2CCEBEFA0002ABDD /* TabBarController */,
+				BC05586E2CCEBF090002ABDD /* Home */,
+				BC05586F2CCEBF130002ABDD /* MyPage */,
 				BC0558332CCB94A70002ABDD /* Assets.xcassets */,
 				BC0558352CCB94A70002ABDD /* LaunchScreen.storyboard */,
 				BC0558382CCB94A70002ABDD /* Info.plist */,
@@ -148,6 +146,32 @@
 				BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BC05586D2CCEBEFA0002ABDD /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				BC05585A2CCBD8C00002ABDD /* TabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		BC05586E2CCEBF090002ABDD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BC05585E2CCDD8A50002ABDD /* HomeViewController.swift */,
+				BC0558602CCDD8AC0002ABDD /* HomeViewController.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BC05586F2CCEBF130002ABDD /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				BC0558622CCDD8D20002ABDD /* MyPageViewController.swift */,
+				BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -33,22 +33,6 @@ extension UIViewController {
         }), for: .touchUpInside)
     }
     
-    // ViewDidLoadで呼び出す
-    func setSwipeBack() {
-        let target = self.navigationController?.value(forKey: "_cachedInteractionController")
-        let recognizer = UIPanGestureRecognizer(target: target, action: Selector(("handleNavigationTransition:")))
-        self.view.addGestureRecognizer(recognizer)
-    }
-
-    // 画面内に複数のGestureが存在して「setSwipeBack」だと干渉してしまう場合に使う（ViewDidLoadで呼び出す）
-    func setEdgeSwipeBack(vc: UIGestureRecognizerDelegate) {
-        let target = self.navigationController?.value(forKey: "_cachedInteractionController")
-        let recognizer = UIScreenEdgePanGestureRecognizer(target: target, action: Selector(("handleNavigationTransition:")))
-        recognizer.edges = .left
-        recognizer.delegate = vc
-        self.view.addGestureRecognizer(recognizer)
-    }
-
     // tableViewCellタップで遷移する画面のViewWillAppearで呼び出す（戻ってきた時にどのセルを見ていたかユーザーがわかりやすい様に）
     func dismissCellHighlight(tableView: UITableView) {
         if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {

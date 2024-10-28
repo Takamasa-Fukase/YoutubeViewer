@@ -34,6 +34,10 @@ class VideoDetailViewController: UIViewController {
         // dismissの進行度合いの割合値を通知
         videoDetailDelegate?.viewDismissalProgressUpdated(progress: dismissalProgress())
         
+        // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
+        let viewAlpha = 1.0 - (dismissalProgress() * 3.33)
+        view.alpha = CGFloat(viewAlpha)
+        
         let location = gesture.location(in: view)
         if gesture.state == .began {
             // ジェスチャー開始時点の座標を変数に格納
@@ -61,6 +65,9 @@ class VideoDetailViewController: UIViewController {
                     // ImageViewと別WindowのFloatingImageViewをすり替える
                     self.replaceImageViewWithFloatingImage(isViewBeingClosed: false)
                     self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 0)
+                    // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
+                    let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
+                    self.view.alpha = CGFloat(viewAlpha)
                 }
             }
         }
@@ -83,7 +90,6 @@ class VideoDetailViewController: UIViewController {
         let viewPositionY = view.frame.origin.y
         let screenHeight = windowScene.screen.bounds.height
         let progress = min(viewPositionY / screenHeight, 1.0)
-        print("progress: \(progress)")
         return Float(progress)
     }
 }

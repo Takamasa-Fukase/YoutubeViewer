@@ -49,6 +49,7 @@ extension TabBarController: VideoDetailDelegate {
     }
     
     func viewDismissalProgressUpdated(progress: Float) {
-        
+        print("TabBarController viewDismissalProgressUpdated progress: \(progress)")
+        floatingImageWindow?.updateImageViewFrame(dismissalProgress: progress)
     }
 }

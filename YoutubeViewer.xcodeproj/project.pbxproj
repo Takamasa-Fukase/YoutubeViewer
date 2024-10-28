@@ -134,9 +134,7 @@
 				BC05586E2CCEBF090002ABDD /* Home */,
 				BCB2936B2CCF1B2900A18ED0 /* VideoDetail */,
 				BC05586F2CCEBF130002ABDD /* MyPage */,
-				BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */,
-				BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */,
-				BC3368612CCF5CC5008A1526 /* FloatingImageViewController.storyboard */,
+				BC3368652CCF99AD008A1526 /* FloatingImage */,
 				BC0558332CCB94A70002ABDD /* Assets.xcassets */,
 				BC0558352CCB94A70002ABDD /* LaunchScreen.storyboard */,
 				BC0558382CCB94A70002ABDD /* Info.plist */,
@@ -196,6 +194,16 @@
 				BC0558642CCDD8DB0002ABDD /* MyPageViewController.storyboard */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		BC3368652CCF99AD008A1526 /* FloatingImage */ = {
+			isa = PBXGroup;
+			children = (
+				BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */,
+				BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */,
+				BC3368612CCF5CC5008A1526 /* FloatingImageViewController.storyboard */,
+			);
+			path = FloatingImage;
 			sourceTree = "<group>";
 		};
 		BCB2936B2CCF1B2900A18ED0 /* VideoDetail */ = {

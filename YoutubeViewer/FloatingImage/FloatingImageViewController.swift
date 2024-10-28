@@ -42,7 +42,7 @@ class FloatingImageViewController: UIViewController {
         // 画面の横幅から(余白, ImageViewの高さ)を差し引く
         let minX = windowScene.screen.bounds.width - 8 - newWidth
         // 画面の高さから(TabBarの高さ, 余白, ImageViewの高さ)を差し引く
-        let minY = windowScene.screen.bounds.height - tabBarHeight - 4 - newHeight
+        let minY = windowScene.screen.bounds.height - tabBarHeight - 8 - newHeight
         
         let newFrame = CGRect(x: minX,           //   0.0 ~ 184.6
                               y: minY,           //  59.0 ~ 653.0

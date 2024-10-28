@@ -61,36 +61,12 @@ class FloatingImageViewController: UIViewController {
                                        destinationValue: destinationHeight,
                                        progress: dismissalProgress,
                                        isDestinationValueGreaterThanInitialValue: false)
-        
-        print("currentMinX: \(currentMinX)")
-        print("currentMinY: \(currentMinY)")
-//        print("currentWidth: \(currentWidth)")
-//        print("currentHeight: \(currentHeight)")
 
-        let newFrame = CGRect(x: currentMinX,
-                              y: currentMinY,
-                              width: currentWidth,
-                              height: currentHeight)
+        let currentPoint = CGPoint(x: (currentMinX - (currentWidth / 2)), y: (currentMinY - (currentHeight / 2)))
+        videoImageView.center = currentPoint
+        let currentSize = CGSize(width: currentWidth, height: currentHeight)
         videoImageView.contentMode = .redraw
-        videoImageView.frame = newFrame
-//        videoImageView.bounds = newFrame
-        let size = CGSize(width: currentWidth, height: currentHeight)
-        let pointPlus = CGPoint(x: (currentMinX + (currentWidth / 2)), y: (currentMinY + (currentHeight / 2)))
-        let point = CGPoint(x: (currentMinX - (currentWidth / 2)), y: (currentMinY - (currentHeight / 2)))
-//        print("size: \(size)")
-        print("point正しいやつ: \(point)")
-        print("point違うやつ: \(pointPlus)\n")
-        
-        videoImageView.bounds.size = size
-        videoImageView.center = point
-
-        /*
-         let newFrame = CGRect(x: scaledMinX,        //   0.0 ~ 184.6
-                               y: scaledMinY,        //  59.0 ~ 653.0
-                               width: scaledWidth,   // 393.0 ~ 200.3
-                               height: scaledHeight) // 221.0 ~ 107.0
-
-         */
+        videoImageView.bounds.size = currentSize
     }
     
     private func currentValue(

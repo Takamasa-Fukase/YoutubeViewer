@@ -27,7 +27,6 @@
 		BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCB293692CCEC51300A18ED0 /* Kingfisher */; };
 		BCB2936D2CCF1B6600A18ED0 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */; };
 		BCB2936F2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB2936E2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard */; };
-		BCB293722CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB293712CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +69,6 @@
 		BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVideoListCell.xib; sourceTree = "<group>"; };
 		BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		BCB2936E2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
-		BCB293712CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PanModalPresentable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +157,6 @@
 			children = (
 				BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */,
 				BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */,
-				BCB293712CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,7 +344,6 @@
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
-				BCB293722CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift in Sources */,
 				BCB2936D2CCF1B6600A18ED0 /* VideoDetailViewController.swift in Sources */,
 				BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */,
 				BC05582D2CCB94A50002ABDD /* SceneDelegate.swift in Sources */,

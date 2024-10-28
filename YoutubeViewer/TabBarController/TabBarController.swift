@@ -8,6 +8,7 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    private var floatingImageWindow: FloatingImageWindow?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,12 +18,10 @@ class TabBarController: UITabBarController {
     
     private func setVCs() {
         var vcs: [UIViewController] = []
-        let homeVC = UIStoryboard(name: HomeViewController.className, bundle: nil).instantiateInitialViewController()
-        let myPageVC = UIStoryboard(name: MyPageViewController.className, bundle: nil).instantiateInitialViewController()
+        let homeVC = UIStoryboard(name: HomeViewController.className, bundle: nil).instantiateInitialViewController() as! HomeViewController
+        let myPageVC = UIStoryboard(name: MyPageViewController.className, bundle: nil).instantiateInitialViewController() as! MyPageViewController
         
-        guard let homeVC = homeVC,
-              let myPageVC = myPageVC else { return }
-        
+        homeVC.videoDetailDelegate = self
         homeVC.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         myPageVC.tabBarItem = .init(title: "You", image: UIImage(systemName: "person"), tag: 1)
 
@@ -33,5 +32,19 @@ class TabBarController: UITabBarController {
             return navi
         })
         setViewControllers(viewControllers, animated: false)
+    }
+}
+
+extension TabBarController: VideoDetailDelegate {
+    func showFloatingImageWindow() {
+        if floatingImageWindow == nil {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            floatingImageWindow = FloatingImageWindow(windowScene: windowScene)
+        }
+    }
+    
+    func hideFloatingImageWindow() {
+        floatingImageWindow?.close()
+        floatingImageWindow = nil
     }
 }

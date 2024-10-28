@@ -8,7 +8,13 @@
 import UIKit
 import Kingfisher
 
+protocol VideoDetailDelegate: AnyObject {
+    func showFloatingImageWindow()
+    func hideFloatingImageWindow()
+}
+
 class VideoDetailViewController: UIViewController {
+    weak var videoDetailDelegate: VideoDetailDelegate?
     private var initialDragPositionY: CGFloat = 0.0
     
     @IBOutlet weak var videoImageView: UIImageView!
@@ -27,6 +33,9 @@ class VideoDetailViewController: UIViewController {
         if gesture.state == .began {
             // ジェスチャー開始時点の座標を変数に格納
             initialDragPositionY = location.y
+            
+            // ImageViewと別WindowのFloatingImageViewをすり替える
+            replaceImageViewWithFloatingImage(isViewBeingClosed: true)
         }
         let movedDistanceY = location.y - initialDragPositionY
         let targetPositionY = max(view.frame.origin.y + movedDistanceY, 0.0)
@@ -42,8 +51,20 @@ class VideoDetailViewController: UIViewController {
             }else {
                 UIView.animate(withDuration: 0.4, delay: 0) {
                     self.view.frame.origin.y = 0.0
+                } completion: { _ in
+                    // ImageViewと別WindowのFloatingImageViewをすり替える
+                    self.replaceImageViewWithFloatingImage(isViewBeingClosed: false)
                 }
             }
+        }
+    }
+    
+    private func replaceImageViewWithFloatingImage(isViewBeingClosed: Bool) {
+        videoImageView.isHidden = isViewBeingClosed
+        if isViewBeingClosed {
+            videoDetailDelegate?.showFloatingImageWindow()
+        }else {
+            videoDetailDelegate?.hideFloatingImageWindow()
         }
     }
 }

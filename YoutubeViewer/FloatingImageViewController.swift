@@ -16,5 +16,6 @@ class FloatingImageViewController: UIViewController {
         super.viewDidLoad()
 
         videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
+        videoImageView.layer.cornerRadius = 6
     }
 }

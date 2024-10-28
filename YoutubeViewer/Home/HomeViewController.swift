@@ -9,8 +9,8 @@ import UIKit
 import Kingfisher
 
 class HomeViewController: UIViewController {
-    private var floatingImageWindow: FloatingImageWindow?
-    
+    weak var videoDetailDelegate: VideoDetailDelegate?
+
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -18,12 +18,8 @@ class HomeViewController: UIViewController {
         
         setupTableView()
 
-        setNaviBarRightButton(systemImageName: "magnifyingglass") { [weak self] in
-            guard let self = self else { return }
-            if self.floatingImageWindow == nil {
-                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                self.floatingImageWindow = FloatingImageWindow(windowScene: windowScene)
-            }
+        setNaviBarRightButton(systemImageName: "magnifyingglass") {
+            
         }
     }
     
@@ -55,6 +51,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
         vc.modalPresentationStyle = .overFullScreen
+        vc.videoDetailDelegate = videoDetailDelegate
         present(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

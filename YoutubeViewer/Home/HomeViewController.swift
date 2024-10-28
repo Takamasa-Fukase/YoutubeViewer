@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import PanModal
 
 class HomeViewController: UIViewController {
     
@@ -48,6 +49,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
+        presentPanModal(vc)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -23,7 +23,11 @@
 		BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */; };
 		BC0558722CCEBF7C0002ABDD /* HomeVideoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558702CCEBF7C0002ABDD /* HomeVideoListCell.swift */; };
 		BC0558732CCEBF7C0002ABDD /* HomeVideoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */; };
+		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
 		BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCB293692CCEC51300A18ED0 /* Kingfisher */; };
+		BCB2936D2CCF1B6600A18ED0 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */; };
+		BCB2936F2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB2936E2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard */; };
+		BCB293722CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB293712CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,9 @@
 		BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		BC0558702CCEBF7C0002ABDD /* HomeVideoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoListCell.swift; sourceTree = "<group>"; };
 		BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVideoListCell.xib; sourceTree = "<group>"; };
+		BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
+		BCB2936E2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
+		BCB293712CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PanModalPresentable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC33685B2CCF209A008A1526 /* PanModal in Frameworks */,
 				BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +128,7 @@
 				BC05586C2CCEB2750002ABDD /* Extensions */,
 				BC05586D2CCEBEFA0002ABDD /* TabBarController */,
 				BC05586E2CCEBF090002ABDD /* Home */,
+				BCB2936B2CCF1B2900A18ED0 /* VideoDetail */,
 				BC05586F2CCEBF130002ABDD /* MyPage */,
 				BC0558332CCB94A70002ABDD /* Assets.xcassets */,
 				BC0558352CCB94A70002ABDD /* LaunchScreen.storyboard */,
@@ -150,6 +159,7 @@
 			children = (
 				BC0558662CCDE27F0002ABDD /* NSObject+Extension.swift */,
 				BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */,
+				BCB293712CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -182,6 +192,15 @@
 			path = MyPage;
 			sourceTree = "<group>";
 		};
+		BCB2936B2CCF1B2900A18ED0 /* VideoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */,
+				BCB2936E2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard */,
+			);
+			path = VideoDetail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,6 +219,7 @@
 			name = YoutubeViewer;
 			packageProductDependencies = (
 				BCB293692CCEC51300A18ED0 /* Kingfisher */,
+				BC33685A2CCF209A008A1526 /* PanModal */,
 			);
 			productName = YoutubeViewer;
 			productReference = BC0558272CCB94A50002ABDD /* YoutubeViewer.app */;
@@ -275,6 +295,7 @@
 			mainGroup = BC05581E2CCB94A50002ABDD;
 			packageReferences = (
 				BCD93DDB2CCEC42500363395 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				BCB293702CCF1F8C00A18ED0 /* XCRemoteSwiftPackageReference "PanModal" */,
 			);
 			productRefGroup = BC0558282CCB94A50002ABDD /* Products */;
 			projectDirPath = "";
@@ -292,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB2936F2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard in Resources */,
 				BC0558652CCDD8DB0002ABDD /* MyPageViewController.storyboard in Resources */,
 				BC0558732CCEBF7C0002ABDD /* HomeVideoListCell.xib in Resources */,
 				BC0558612CCDD8AC0002ABDD /* HomeViewController.storyboard in Resources */,
@@ -325,6 +347,8 @@
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
+				BCB293722CCF1FDB00A18ED0 /* UIViewController+PanModalPresentable.swift in Sources */,
+				BCB2936D2CCF1B6600A18ED0 /* VideoDetailViewController.swift in Sources */,
 				BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */,
 				BC05582D2CCB94A50002ABDD /* SceneDelegate.swift in Sources */,
 				BC0558722CCEBF7C0002ABDD /* HomeVideoListCell.swift in Sources */,
@@ -667,6 +691,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BCB293702CCF1F8C00A18ED0 /* XCRemoteSwiftPackageReference "PanModal" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/slackhq/PanModal";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.7;
+			};
+		};
 		BCD93DDB2CCEC42500363395 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -678,6 +710,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BC33685A2CCF209A008A1526 /* PanModal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCB293702CCF1F8C00A18ED0 /* XCRemoteSwiftPackageReference "PanModal" */;
+			productName = PanModal;
+		};
 		BCB293692CCEC51300A18ED0 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BCD93DDB2CCEC42500363395 /* XCRemoteSwiftPackageReference "Kingfisher" */;

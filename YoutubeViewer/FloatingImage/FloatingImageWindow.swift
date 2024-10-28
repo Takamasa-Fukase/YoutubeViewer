@@ -11,7 +11,7 @@ class FloatingImageWindow: UIWindow {
     override init(windowScene: UIWindowScene) {
         super.init(windowScene: windowScene)
         
-        rootViewController = UIStoryboard(name: FloatingImageViewController.className, bundle: nil).instantiateInitialViewController()
+        rootViewController = FloatingImageViewController()
         isUserInteractionEnabled = false
         windowLevel = .alert + 1
         makeKeyAndVisible()

@@ -26,7 +26,6 @@
 		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
 		BC33685E2CCF5BCF008A1526 /* FloatingImageWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */; };
 		BC3368602CCF5CA7008A1526 /* FloatingImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */; };
-		BC3368622CCF5CC5008A1526 /* FloatingImageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC3368612CCF5CC5008A1526 /* FloatingImageViewController.storyboard */; };
 		BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCB293692CCEC51300A18ED0 /* Kingfisher */; };
 		BCB2936D2CCF1B6600A18ED0 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */; };
 		BCB2936F2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB2936E2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard */; };
@@ -72,7 +71,6 @@
 		BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVideoListCell.xib; sourceTree = "<group>"; };
 		BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingImageWindow.swift; sourceTree = "<group>"; };
 		BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingImageViewController.swift; sourceTree = "<group>"; };
-		BC3368612CCF5CC5008A1526 /* FloatingImageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FloatingImageViewController.storyboard; sourceTree = "<group>"; };
 		BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		BCB2936E2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,7 +199,6 @@
 			children = (
 				BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */,
 				BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */,
-				BC3368612CCF5CC5008A1526 /* FloatingImageViewController.storyboard */,
 			);
 			path = FloatingImage;
 			sourceTree = "<group>";
@@ -328,7 +325,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCB2936F2CCF1B7600A18ED0 /* VideoDetailViewController.storyboard in Resources */,
-				BC3368622CCF5CC5008A1526 /* FloatingImageViewController.storyboard in Resources */,
 				BC0558652CCDD8DB0002ABDD /* MyPageViewController.storyboard in Resources */,
 				BC0558732CCEBF7C0002ABDD /* HomeVideoListCell.xib in Resources */,
 				BC0558612CCDD8AC0002ABDD /* HomeViewController.storyboard in Resources */,

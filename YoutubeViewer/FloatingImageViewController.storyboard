@@ -21,15 +21,25 @@
                                     <constraint firstAttribute="width" secondItem="QPj-tA-crp" secondAttribute="height" multiplier="16:9" id="aTi-1j-lSV"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ac3-Zn-1Ug">
+                                <rect key="frame" x="184.66666666666663" y="653" width="200.33333333333337" height="107"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ac3-Zn-1Ug" secondAttribute="height" multiplier="15:8" id="wtE-nd-eiz"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ac3-Zn-1Ug" secondAttribute="trailing" constant="8" id="Qy0-eY-zvZ"/>
+                            <constraint firstAttribute="bottom" secondItem="ac3-Zn-1Ug" secondAttribute="bottom" constant="92" id="TgH-fE-35s"/>
                             <constraint firstItem="QPj-tA-crp" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="jjT-ay-8d6"/>
                             <constraint firstItem="QPj-tA-crp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="mh2-gp-Hbd"/>
                             <constraint firstItem="QPj-tA-crp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="nkM-2b-Vef"/>
+                            <constraint firstItem="ac3-Zn-1Ug" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.51" id="rNf-tj-beG"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dummyImageView" destination="ac3-Zn-1Ug" id="9TM-xS-FbS"/>
                         <outlet property="videoImageView" destination="QPj-tA-crp" id="2AW-7h-Sk5"/>
                     </connections>
                 </viewController>

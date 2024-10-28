@@ -26,7 +26,7 @@ class FloatingImageWindow: UIWindow {
         removeFromSuperview()
     }
     
-    func updateImageViewFrame(dismissalProgress: Float, tabBarHeight: CGFloat) {
+    func updateImageViewFrame(dismissalProgress: CGFloat, tabBarHeight: CGFloat) {
         if let floatingImageVC = rootViewController as? FloatingImageViewController {
             floatingImageVC.updateImageViewFrame(dismissalProgress: dismissalProgress, tabBarHeight: tabBarHeight)
         }

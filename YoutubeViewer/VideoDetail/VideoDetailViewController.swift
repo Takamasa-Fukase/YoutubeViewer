@@ -11,7 +11,7 @@ import Kingfisher
 protocol VideoDetailDelegate: AnyObject {
     func showFloatingImageWindow()
     func hideFloatingImageWindow()
-    func viewDismissalProgressUpdated(progress: Float)
+    func viewDismissalProgressUpdated(progress: CGFloat)
 }
 
 class VideoDetailViewController: UIViewController {
@@ -80,7 +80,7 @@ class VideoDetailViewController: UIViewController {
         }
     }
     
-    private func dismissalProgress() -> Float {
+    private func dismissalProgress() -> CGFloat {
         // 0.0 ~ 1.0の範囲で返却
         //  - 0.0: フルスクリーン状態
         //  - 1.0: 完全にdismissされた状態
@@ -88,6 +88,6 @@ class VideoDetailViewController: UIViewController {
         let viewPositionY = view.frame.origin.y
         let screenHeight = windowScene.screen.bounds.height
         let progress = min(viewPositionY / screenHeight, 1.0)
-        return Float(progress)
+        return CGFloat(progress)
     }
 }

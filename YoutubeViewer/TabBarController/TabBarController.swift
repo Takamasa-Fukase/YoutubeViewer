@@ -48,7 +48,7 @@ extension TabBarController: VideoDetailDelegate {
         floatingImageWindow = nil
     }
     
-    func viewDismissalProgressUpdated(progress: Float) {
+    func viewDismissalProgressUpdated(progress: CGFloat) {
         floatingImageWindow?.updateImageViewFrame(dismissalProgress: progress, tabBarHeight: tabBar.frame.height)
     }
 }

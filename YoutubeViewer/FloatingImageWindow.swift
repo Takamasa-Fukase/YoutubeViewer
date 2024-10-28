@@ -8,19 +8,13 @@
 import UIKit
 
 class FloatingImageWindow: UIWindow {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-//        super.init(frame: UIScreen.main.bounds)
-        print("FloatingImageWindow init")
-//        rootViewController = UIStoryboard(name: FloatingImageViewController.className, bundle: nil).instantiateInitialViewController()
-//        windowLevel = .alert + 1
-//        backgroundColor = .systemPink
-//        tintColor = .blue
-//        makeKeyAndVisible()
-    }
-    
     override init(windowScene: UIWindowScene) {
         super.init(windowScene: windowScene)
+        
+        rootViewController = UIStoryboard(name: FloatingImageViewController.className, bundle: nil).instantiateInitialViewController()
+        isUserInteractionEnabled = false
+        windowLevel = .alert + 1
+        makeKeyAndVisible()
     }
     
     required init?(coder: NSCoder) {

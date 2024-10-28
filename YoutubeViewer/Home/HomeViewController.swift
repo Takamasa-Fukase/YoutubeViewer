@@ -20,15 +20,10 @@ class HomeViewController: UIViewController {
         setupTableView()
 
         setNaviBarRightButton(systemImageName: "magnifyingglass") { [weak self] in
-            print(0)
             guard let self = self else { return }
-            print(1)
             if self.floatingImageWindow == nil {
-                print(2)
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                print(3)
-                self.floatingImageWindow = FloatingImageWindow(frame: windowScene.screen.bounds)
-//                self.floatingImageWindow?.makeKeyAndVisible()
+                self.floatingImageWindow = FloatingImageWindow(windowScene: windowScene)
             }
         }
     }

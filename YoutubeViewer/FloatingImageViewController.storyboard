@@ -16,17 +16,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QPj-tA-crp">
-                                <rect key="frame" x="180.66666666666663" y="373.66666666666669" width="196.33333333333337" height="104.66666666666669"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="221"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="QPj-tA-crp" secondAttribute="height" multiplier="15:8" id="cFs-fR-6dz"/>
+                                    <constraint firstAttribute="width" secondItem="QPj-tA-crp" secondAttribute="height" multiplier="16:9" id="aTi-1j-lSV"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QPj-tA-crp" secondAttribute="trailing" constant="16" id="QcB-a6-EgM"/>
-                            <constraint firstItem="QPj-tA-crp" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.5" id="W2P-aq-EMD"/>
-                            <constraint firstItem="QPj-tA-crp" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="YxH-dj-olt"/>
+                            <constraint firstItem="QPj-tA-crp" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="jjT-ay-8d6"/>
+                            <constraint firstItem="QPj-tA-crp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="mh2-gp-Hbd"/>
+                            <constraint firstItem="QPj-tA-crp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="nkM-2b-Vef"/>
                         </constraints>
                     </view>
                     <connections>

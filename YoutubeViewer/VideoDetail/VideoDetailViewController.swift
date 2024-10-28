@@ -7,11 +7,9 @@
 
 import UIKit
 import Kingfisher
-import PanModal
 
 class VideoDetailViewController: UIViewController {
-    var isViewAppeared = false
-    var isLongForm = false
+    private var initialDragPositionY: CGFloat = 0.0
     
     @IBOutlet weak var videoImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -20,70 +18,32 @@ class VideoDetailViewController: UIViewController {
         super.viewDidLoad()
         
         videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        isViewAppeared = true
-        panModalSetNeedsLayoutUpdate()
-    }
-}
-
-extension VideoDetailViewController: PanModalPresentable {
-    var panScrollable: UIScrollView? {
-        nil
+        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
     }
     
-    var topOffset: CGFloat {
-        return 0.0
-    }
-
-    var springDamping: CGFloat {
-        return 1.0
-    }
-
-    var transitionDuration: Double {
-        return 0.4
-    }
-
-    var transitionAnimationOptions: UIView.AnimationOptions {
-        return [.allowUserInteraction, .beginFromCurrentState]
-    }
-
-    var shouldRoundTopCorners: Bool {
-        return false
-    }
-
-    var showDragIndicator: Bool {
-        return false
-    }
-    
-    var longFormHeight: PanModalHeight {
-        return .maxHeight
-    }
-    
-    var shortFormHeight: PanModalHeight {
-        if isViewAppeared {
-            return .contentHeight(200)
-        }else {
-            return .maxHeight
+    @objc private func handlePanGesture(gesture: UIPanGestureRecognizer) {
+        let location = gesture.location(in: view)
+        if gesture.state == .began {
+            // ジェスチャー開始時点の座標を変数に格納
+            initialDragPositionY = location.y
         }
-    }
-    
-    var allowsTapToDismiss: Bool {
-        return false
-    }
-    
-    var allowsDragToDismiss: Bool {
-        return !isLongForm
-    }
-    
-    func willTransition(to state: PanModalPresentationController.PresentationState) {
-        if state == .longForm {
-            isLongForm = true
-        }else {
-            isLongForm = false
+        let movedDistanceY = location.y - initialDragPositionY
+        let targetPositionY = max(view.frame.origin.y + movedDistanceY, 0.0)
+        // 0よりは下回らないようにしつつ、ドラッグの移動距離分Viewも移動させる
+        view.frame.origin.y = targetPositionY
+        
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        
+        if gesture.state == .ended {
+            // ジェスチャー終了時（指が離れた時）に画面の半分より下ならdismiss、上なら元に戻す
+            if view.frame.origin.y > windowScene.screen.bounds.midY {
+                dismiss(animated: true)
+            }else {
+                UIView.animate(withDuration: 0.4, delay: 0) {
+                    self.view.frame.origin.y = 0.0
+                }
+            }
         }
     }
 }

@@ -7,7 +7,6 @@
 
 import UIKit
 import Kingfisher
-import PanModal
 
 class HomeViewController: UIViewController {
     private var floatingImageWindow: FloatingImageWindow?
@@ -55,7 +54,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
-        presentPanModal(vc)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

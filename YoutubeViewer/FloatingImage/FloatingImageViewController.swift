@@ -30,8 +30,6 @@ class FloatingImageViewController: UIViewController {
 //    }
     
     func updateImageViewFrame(dismissalProgress: Float) {
-        print("FloatingImageViewController updateImageViewFrame dismissalProgress: \(dismissalProgress)")
-
         // まずTabBarの高さを取得とそれに加える余白を元に、maxYを決める（screenHeight - TabBarHeight + 余白）
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0.0
         print("tabBarHeight: \(tabBarHeight)")

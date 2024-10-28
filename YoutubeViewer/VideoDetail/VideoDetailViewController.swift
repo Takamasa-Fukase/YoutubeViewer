@@ -30,7 +30,6 @@ class VideoDetailViewController: UIViewController {
     }
     
     @objc private func handlePanGesture(gesture: UIPanGestureRecognizer) {
-        
         // dismissの進行度合いの割合値を通知
         videoDetailDelegate?.viewDismissalProgressUpdated(progress: dismissalProgress())
         
@@ -53,7 +52,6 @@ class VideoDetailViewController: UIViewController {
                 
         if gesture.state == .ended {
             // ジェスチャー終了時（指が離れた時）に画面高さの30％以上下がっていたらdismiss、30%未満なら元に戻す
-//            if view.frame.origin.y > windowScene.screen.bounds.midY {
             if dismissalProgress() >= 0.3 {
                 dismiss(animated: true) {
                     self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 1)

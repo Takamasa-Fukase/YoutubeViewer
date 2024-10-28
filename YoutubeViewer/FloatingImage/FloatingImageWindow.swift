@@ -27,9 +27,7 @@ class FloatingImageWindow: UIWindow {
     }
     
     func updateImageViewFrame(dismissalProgress: Float) {
-        print("FloatingImageWindow updateImageViewFrame dismissalProgress: \(dismissalProgress)")
         if let floatingImageVC = rootViewController as? FloatingImageViewController {
-            print("floatingImageVCのアンラップに成功")
             floatingImageVC.updateImageViewFrame(dismissalProgress: dismissalProgress)
         }
     }

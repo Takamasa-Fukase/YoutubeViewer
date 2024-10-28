@@ -37,6 +37,17 @@ class FloatingImageViewController: UIViewController {
     func updateImageViewFrame(dismissalProgress: Float, tabBarHeight: CGFloat) {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         
+        /*
+         TODO: 後で下記の命名に直したい
+         「途中の進行状況に応じた位置」と「遷移の目標値」の区別がしやすくなる命名
+
+         let initialMinX: CGFloat = 0 // 初期位置
+         let destinationMinX: CGFloat = 300 // 遷移が完了した際の最終目的地
+         let progress: CGFloat = 0.5 // 遷移進行度 (50%)
+
+         let currentMinX = initialMinX + (destinationMinX - initialMinX) * progress
+         */
+        
         let targetWidth = windowScene.screen.bounds.width * 0.51
         // 高さは16:9の割合の計算で求める(width * 0.5625)
         let targetHeight = targetWidth * 0.5625

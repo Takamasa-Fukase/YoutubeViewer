@@ -33,6 +33,8 @@ class MyPageHorizontalListCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: MyPageHorizontalListItemCell.className, bundle: nil), forCellWithReuseIdentifier: MyPageHorizontalListItemCell.className)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        collectionView.showsHorizontalScrollIndicator = false
     }
 }
 

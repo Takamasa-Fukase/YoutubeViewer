@@ -15,5 +15,8 @@ class MyPageHorizontalListItemCell: UICollectionViewCell {
         super.awakeFromNib()
                 
         thumbnailImageView.layer.cornerRadius = 8
+        let backgroundView = UIView(frame: contentView.frame)
+        backgroundView.backgroundColor = .secondarySystemBackground
+        selectedBackgroundView = backgroundView
     }
 }

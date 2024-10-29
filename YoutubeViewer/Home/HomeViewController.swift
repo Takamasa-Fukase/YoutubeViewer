@@ -24,14 +24,13 @@ class HomeViewController: UIViewController {
     }
     
     func restoreMiniPlayerToFullScreen() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-            let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
-            vc.modalPresentationStyle = .overFullScreen
-            vc.videoDetailDelegate = self.videoDetailDelegate
-            self.present(vc, animated: false)
-            // FloatingImageWindowを閉じる
-            (self.tabBarController as? TabBarController)?.hideFloatingImageWindow()
-        })
+        let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
+        vc.modalPresentationStyle = .overFullScreen
+        vc.videoDetailDelegate = self.videoDetailDelegate
+        vc.isContentsHidden = true
+        self.present(vc, animated: false) {
+            vc.showContentRestorationAnimation()
+        }
     }
     
     private func setupTableView() {

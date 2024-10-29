@@ -17,6 +17,7 @@ protocol VideoDetailDelegate: AnyObject {
 class VideoDetailViewController: UIViewController {
     weak var videoDetailDelegate: VideoDetailDelegate?
     private var initialDragPositionY: CGFloat = 0.0
+    var isContentsHidden = false
     
     @IBOutlet weak var videoImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -24,9 +25,29 @@ class VideoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        videoImageView.isHidden = isContentsHidden
+        view.alpha = (isContentsHidden ? 0 : 1)
         videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
         
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
+    }
+    
+    func showContentRestorationAnimation() {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        let screenHeight = windowScene.screen.bounds.height
+        view.frame.origin.y = screenHeight * 0.3
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.frame.origin.y = 0.0
+            
+            // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
+            let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
+            self.view.alpha = CGFloat(viewAlpha)
+            
+        } completion: { _ in
+            // この画面内のImageViewと別WindowのFloatingImageViewの表示を切り替える
+            self.replaceImageViewWithFloatingImage(isViewBeingClosed: false)
+        }
     }
     
     @objc private func handlePanGesture(gesture: UIPanGestureRecognizer) {

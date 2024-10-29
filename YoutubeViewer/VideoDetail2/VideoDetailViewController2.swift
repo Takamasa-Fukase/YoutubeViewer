@@ -69,12 +69,9 @@ contact@tarosac.com
     }
     
     @objc private func handlePanGesture(gesture: UIPanGestureRecognizer) {
-        print("handlePanGesture: \(gesture.state)")
         if screenMode == .small {
-            print("screenModeがsmallなので終了")
             return
         }
-        print("screenModeがsmall以外なので通す chagingに変えます")
         screenMode = .changing
         
         let location = gesture.location(in: view)

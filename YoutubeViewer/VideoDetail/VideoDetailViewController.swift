@@ -54,7 +54,9 @@ class VideoDetailViewController: UIViewController {
         if gesture.state == .ended {
             if dismissalProgress() >= 0.3 {
                 // 移動量が画面高さの30％以上ならdismissさせる
-                dismiss(animated: true) {
+                dismiss(animated: true)
+                
+                UIView.animate(withDuration: 0.3, delay: 0) {
                     self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 1)
                 }
                 

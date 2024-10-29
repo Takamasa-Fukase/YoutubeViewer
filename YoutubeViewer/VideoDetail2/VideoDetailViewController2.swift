@@ -10,11 +10,20 @@ import Kingfisher
 
 enum VideoDetailScreenMode {
     case fullScreen
+    case changing
     case small
 }
 
 class VideoDetailViewController2: UIViewController {
-    var screenMode: VideoDetailScreenMode = .fullScreen
+    var screenMode: VideoDetailScreenMode = .fullScreen {
+        didSet {
+            if screenMode == .fullScreen {
+                videoImageView.layer.cornerRadius = 0
+            }else {
+                videoImageView.layer.cornerRadius = 8
+            }
+        }
+    }
     var videoImageView: UIImageView!
     var tabBarHeight: CGFloat = 0.0
     private var initialDragPositionY: CGFloat = 0.0
@@ -27,6 +36,20 @@ class VideoDetailViewController2: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        titleLabel.text = "【やる気が出ない人必見】モチベーションが上がらない｜辞めてしまいたいを変える動画"
+        descriptionLabel.text = """
+【タロサックってこんな人】
+1990年生まれ　新潟県出身
+18歳の時、Be動詞すら何なのかも知らない状態で偏差値38の学部を2つ受験し両方とも滑り一時露頭に迷う。
+1年の浪人生活を経て外国語系の大学に無事進学しその後大手不動産会社の営業マンとして働くも幼い頃からの夢であった海外移住を叶える為に2015年に渡豪。英語力全くのゼロ、偏差値38以下から現在英語を流暢に喋れるまでになり、現在オーストラリアのシドニーにて楽しい日常を送る傍ら、主にYouTuber、英会話コーチとして活動している。
+2023年1月17日、本人初の著書となる【バカでも英語がペラペラ! 超★勉強法】をダイヤモンド社より出版。【大反響！Amazonベストセラー第１位!!（2023/1/24 英語の学習法）】
+TOEIC L&R Test 985点
+
+■お仕事のご連絡はこちらまで
+contact@tarosac.com
+
+#見るだけで頭の中がグローバル化
+"""
         setupImageView()
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
     }
@@ -46,7 +69,13 @@ class VideoDetailViewController2: UIViewController {
     }
     
     @objc private func handlePanGesture(gesture: UIPanGestureRecognizer) {
-        guard screenMode == .fullScreen else { return }
+        print("handlePanGesture: \(gesture.state)")
+        if screenMode == .small {
+            print("screenModeがsmallなので終了")
+            return
+        }
+        print("screenModeがsmall以外なので通す chagingに変えます")
+        screenMode = .changing
         
         let location = gesture.location(in: view)
         // ジェスチャー開始時の処理
@@ -72,6 +101,8 @@ class VideoDetailViewController2: UIViewController {
             if dismissalProgress() >= 0.3 {
                 UIView.animate(withDuration: 0.2, delay: 0) {
                     self.updateImageViewFrame(dismissalProgress: 1, tabBarHeight: self.tabBarHeight)
+                } completion: { _ in
+                    self.screenMode = .small
                 }
             }
             // Viewの上端が画面の上から30％よりも上の位置にあればフルスクリーン状態に戻す
@@ -84,6 +115,8 @@ class VideoDetailViewController2: UIViewController {
                     self.contentBaseView.alpha = CGFloat(viewAlpha)
                     
                     self.updateImageViewFrame(dismissalProgress: 0, tabBarHeight: self.tabBarHeight)
+                } completion: { _ in
+                    self.screenMode = .fullScreen
                 }
             }
         }
@@ -112,7 +145,6 @@ class VideoDetailViewController2: UIViewController {
         videoImageView.isUserInteractionEnabled = true
         videoImageView.contentMode = .scaleAspectFill
         videoImageView.clipsToBounds = true
-        videoImageView.layer.cornerRadius = 8
         videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
         videoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
         view.addSubview(videoImageView)
@@ -125,6 +157,8 @@ class VideoDetailViewController2: UIViewController {
         
         UIView.animate(withDuration: 0.2) {
             self.updateImageViewFrame(dismissalProgress: 0, tabBarHeight: self.tabBarHeight)
+        } completion: { _ in
+            self.screenMode = .fullScreen
         }
     }
 

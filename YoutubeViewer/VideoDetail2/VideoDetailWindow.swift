@@ -8,16 +8,6 @@
 import UIKit
 
 class VideoDetailWindow: UIWindow {
-//    override init(windowScene: UIWindowScene) {
-//        super.init(windowScene: windowScene)
-//        
-//        let videoDetailVC = UIStoryboard(name: VideoDetailViewController2.className, bundle: nil).instantiateInitialViewController()
-//        rootViewController = videoDetailVC
-//        // TODO: これだとアラートが見えないかもなので、normal+1とかにするか？
-//        windowLevel = .alert + 1
-//        makeKeyAndVisible()
-//    }
-    
     init(windowScene: UIWindowScene, tabBarHeight: CGFloat) {
         super.init(windowScene: windowScene)
         let videoDetailVC = UIStoryboard(name: VideoDetailViewController2.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController2
@@ -36,7 +26,7 @@ class VideoDetailWindow: UIWindow {
         let view = super.hitTest(point, with: event)
         guard let videoDetailVC = rootViewController as? VideoDetailViewController2 else { return nil }
         switch videoDetailVC.screenMode {
-        case .fullScreen:
+        case .fullScreen, .changing:
             return view
         case .small:
             if view == videoDetailVC.videoImageView {

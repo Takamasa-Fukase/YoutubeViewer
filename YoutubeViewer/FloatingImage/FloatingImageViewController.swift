@@ -10,7 +10,7 @@ import Kingfisher
 
 class FloatingImageViewController: UIViewController {
     private var initialImageViewFrame: CGRect!
-    private var videoImageView: UIImageView!
+    var videoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,7 @@ class FloatingImageViewController: UIViewController {
             height: view.frame.width * 0.5625
         )
         videoImageView = UIImageView(frame: initialImageViewFrame)
+        videoImageView.isUserInteractionEnabled = true
         videoImageView.contentMode = .scaleAspectFill
         videoImageView.clipsToBounds = true
         videoImageView.layer.cornerRadius = 6

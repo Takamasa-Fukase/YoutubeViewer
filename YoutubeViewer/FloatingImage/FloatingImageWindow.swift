@@ -12,13 +12,23 @@ class FloatingImageWindow: UIWindow {
         super.init(windowScene: windowScene)
         
         rootViewController = FloatingImageViewController()
-        isUserInteractionEnabled = false
         windowLevel = .alert + 1
         makeKeyAndVisible()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let view = super.hitTest(point, with: event)
+        if let floatingImageVC = rootViewController as? FloatingImageViewController,
+           view == floatingImageVC.videoImageView {
+            return view
+        }
+        else {
+            return nil
+        }
     }
     
     func close() {

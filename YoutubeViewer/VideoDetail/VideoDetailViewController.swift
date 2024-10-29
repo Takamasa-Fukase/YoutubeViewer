@@ -30,48 +30,54 @@ class VideoDetailViewController: UIViewController {
     }
     
     @objc private func handlePanGesture(gesture: UIPanGestureRecognizer) {
+        let location = gesture.location(in: view)
+        // ジェスチャー開始時の処理
+        if gesture.state == .began {
+            // 開始時点の座標を変数に格納
+            initialDragPositionY = location.y
+            
+            // この画面内のImageViewと別WindowのFloatingImageViewの表示を切り替える
+            replaceImageViewWithFloatingImage(isViewBeingClosed: true)
+        }
+        
         // dismissの進行度合いの割合値を通知
         videoDetailDelegate?.viewDismissalProgressUpdated(progress: dismissalProgress())
         
         // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
         let viewAlpha = 1.0 - (dismissalProgress() * 3.33)
         view.alpha = CGFloat(viewAlpha)
-        
-        let location = gesture.location(in: view)
-        if gesture.state == .began {
-            // ジェスチャー開始時点の座標を変数に格納
-            initialDragPositionY = location.y
-            
-            // ImageViewと別WindowのFloatingImageViewをすり替える
-            replaceImageViewWithFloatingImage(isViewBeingClosed: true)
-        }
+
+        // 0よりは下回らないようにしつつ、Viewをドラッグの移動距離分移動させる
         let movedDistanceY = location.y - initialDragPositionY
         let targetPositionY = max(view.frame.origin.y + movedDistanceY, 0.0)
-        // 0よりは下回らないようにしつつ、ドラッグの移動距離分Viewも移動させる
         view.frame.origin.y = targetPositionY
 
         // ジェスチャー終了時（指が離れた時）の処理
         if gesture.state == .ended {
+            // Viewの上端が画面の上から30％以上下がった位置にあればdismissさせる
             if dismissalProgress() >= 0.3 {
-                // 移動量が画面高さの30％以上ならdismissさせる
                 dismiss(animated: true)
                 
+                // dismissに合わせてアニメーション
                 UIView.animate(withDuration: 0.3, delay: 0) {
+                    // dismissの進行度合いの割合値を通知
                     self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 1)
                 }
-                
-            }else {
-                // 移動量が画面高さの30%未満なら元に戻す
+            }
+            // Viewの上端が画面の上から30％よりも上の位置にあればフルスクリーン状態に戻す
+            else {
                 UIView.animate(withDuration: 0.4, delay: 0) {
                     self.view.frame.origin.y = 0.0
                     
-                    self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 0)
                     // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
                     let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
                     self.view.alpha = CGFloat(viewAlpha)
                     
+                    // dismissの進行度合いの割合値を通知
+                    self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 0)
+                    
                 } completion: { _ in
-                    // ImageViewと別WindowのFloatingImageViewをすり替える
+                    // この画面内のImageViewと別WindowのFloatingImageViewの表示を切り替える
                     self.replaceImageViewWithFloatingImage(isViewBeingClosed: false)
                 }
             }

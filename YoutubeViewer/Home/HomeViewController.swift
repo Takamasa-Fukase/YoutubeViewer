@@ -35,6 +35,7 @@ class HomeViewController: UIViewController {
     
     private func setupTableView() {
         tableView.register(UINib(nibName: HomeVideoListCell.className, bundle: nil), forCellReuseIdentifier: HomeVideoListCell.className)
+        tableView.contentInset.top = -8
     }
 }
 

@@ -28,13 +28,30 @@ class VideoDetailViewController2: UIViewController {
     var tabBarHeight: CGFloat = 0.0
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
+    var contentBaseView: UIView!
+    var titleLabel: UILabel!
+    var descriptionLabel: UILabel!
     
-    @IBOutlet weak var contentBaseView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+//    @IBOutlet weak var contentBaseView: UIView!
+//    @IBOutlet weak var titleLabel: UILabel!
+//    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupImageView()
+        contentBaseView = UIView(frame: view.frame)
+        contentBaseView.backgroundColor = .clear
+        view.addSubview(contentBaseView)
+        let descriptionAreaBaseView = UIView(frame: CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height))
+        descriptionAreaBaseView.backgroundColor = .systemBackground
+        contentBaseView.addSubview(descriptionAreaBaseView)
+        titleLabel = UILabel(frame: CGRect(x: 16, y: descriptionAreaBaseView.frame.minY + 12, width: view.frame.width - 32, height: 60))
+        titleLabel.numberOfLines = 2
+        descriptionAreaBaseView.addSubview(titleLabel)
+        descriptionLabel = UILabel(frame: CGRect(x: 16, y: titleLabel.frame.minY + 16, width: view.frame.width - 32, height: 60))
+        descriptionLabel.numberOfLines = 0
+        descriptionAreaBaseView.addSubview(descriptionLabel)
 
         titleLabel.text = "【やる気が出ない人必見】モチベーションが上がらない｜辞めてしまいたいを変える動画"
         descriptionLabel.text = """
@@ -50,7 +67,6 @@ contact@tarosac.com
 
 #見るだけで頭の中がグローバル化
 """
-        setupImageView()
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
     }
     
@@ -89,7 +105,9 @@ contact@tarosac.com
 
         // 0よりは下回らないようにしつつ、Viewをドラッグの移動距離分移動させる
         let movedDistanceY = location.y - initialDragPositionY
-        let targetPositionY = max(contentBaseView.frame.origin.y + movedDistanceY, 0.0)
+//        let targetPositionY = max(contentBaseView.frame.origin.y + movedDistanceY, 0.0)
+        let targetPositionY = max(0 + movedDistanceY, 0.0)
+
         contentBaseView.frame.origin.y = targetPositionY
 
         // ジェスチャー終了時（指が離れた時）の処理

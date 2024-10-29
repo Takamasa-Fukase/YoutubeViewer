@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
     }
     
     func restoreMiniPlayerToFullScreen() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
             vc.modalPresentationStyle = .overFullScreen
             vc.videoDetailDelegate = self.videoDetailDelegate

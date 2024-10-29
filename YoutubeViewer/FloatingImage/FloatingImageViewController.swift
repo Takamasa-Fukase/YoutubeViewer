@@ -43,6 +43,10 @@ class FloatingImageViewController: UIViewController {
     
     @objc private func handleImageViewTap() {
         floatingImageVCDelegate?.imageViewTapped()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.updateImageViewFrame(dismissalProgress: 0, tabBarHeight: 83)
+        }
     }
 
     func updateImageViewFrame(dismissalProgress: CGFloat, tabBarHeight: CGFloat) {

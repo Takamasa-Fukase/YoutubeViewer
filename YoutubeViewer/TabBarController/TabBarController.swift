@@ -24,13 +24,15 @@ class TabBarController: UITabBarController {
         myPageVC = UIStoryboard(name: MyPageViewController.className, bundle: nil).instantiateInitialViewController() as? MyPageViewController
         
         homeVC.videoDetailDelegate = self
-        homeVC.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house"), tag: 0)
-        myPageVC.tabBarItem = .init(title: "You", image: UIImage(systemName: "person"), tag: 1)
+        homeVC.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        myPageVC.tabBarItem = .init(title: "You", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+        tabBar.tintColor = .label
 
         vcs.append(contentsOf: [homeVC, myPageVC])
         viewControllers = vcs.map({ vc in
             vc.navigationItem.backButtonDisplayMode = .minimal
             let navi = UINavigationController(rootViewController: vc)
+            navi.navigationBar.tintColor = .label
             return navi
         })
         setViewControllers(viewControllers, animated: false)

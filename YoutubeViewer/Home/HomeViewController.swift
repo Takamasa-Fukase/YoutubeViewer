@@ -23,6 +23,17 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func restoreMiniPlayerToFullScreen() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
+            vc.modalPresentationStyle = .overFullScreen
+            vc.videoDetailDelegate = self.videoDetailDelegate
+            self.present(vc, animated: false)
+            // FloatingImageWindowを閉じる
+            (self.tabBarController as? TabBarController)?.hideFloatingImageWindow()
+        })
+    }
+    
     private func setupTableView() {
         tableView.register(UINib(nibName: HomeVideoListCell.className, bundle: nil), forCellReuseIdentifier: HomeVideoListCell.className)
     }

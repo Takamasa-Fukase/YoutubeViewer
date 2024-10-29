@@ -8,14 +8,20 @@
 import UIKit
 import Kingfisher
 
+protocol FloatingImageVCDelegate: AnyObject {
+    func imageViewTapped()
+}
+
 class FloatingImageViewController: UIViewController {
     private var initialImageViewFrame: CGRect!
     var videoImageView: UIImageView!
+    weak var floatingImageVCDelegate: FloatingImageVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupImageView()
+        videoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
     }
     
     private func setupImageView() {
@@ -33,6 +39,10 @@ class FloatingImageViewController: UIViewController {
         videoImageView.layer.cornerRadius = 6
         videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
         view.addSubview(videoImageView)
+    }
+    
+    @objc private func handleImageViewTap() {
+        floatingImageVCDelegate?.imageViewTapped()
     }
 
     func updateImageViewFrame(dismissalProgress: CGFloat, tabBarHeight: CGFloat) {

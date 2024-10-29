@@ -9,6 +9,8 @@ import UIKit
 
 class TabBarController: UITabBarController {
     private var floatingImageWindow: FloatingImageWindow?
+    private var homeVC: HomeViewController!
+    private var myPageVC: MyPageViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,8 +20,8 @@ class TabBarController: UITabBarController {
     
     private func setVCs() {
         var vcs: [UIViewController] = []
-        let homeVC = UIStoryboard(name: HomeViewController.className, bundle: nil).instantiateInitialViewController() as! HomeViewController
-        let myPageVC = UIStoryboard(name: MyPageViewController.className, bundle: nil).instantiateInitialViewController() as! MyPageViewController
+        homeVC = UIStoryboard(name: HomeViewController.className, bundle: nil).instantiateInitialViewController() as? HomeViewController
+        myPageVC = UIStoryboard(name: MyPageViewController.className, bundle: nil).instantiateInitialViewController() as? MyPageViewController
         
         homeVC.videoDetailDelegate = self
         homeVC.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house"), tag: 0)
@@ -40,6 +42,7 @@ extension TabBarController: VideoDetailDelegate {
         if floatingImageWindow == nil {
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
             floatingImageWindow = FloatingImageWindow(windowScene: windowScene)
+            floatingImageWindow?.setDelegate(self)
         }
     }
     
@@ -50,5 +53,11 @@ extension TabBarController: VideoDetailDelegate {
     
     func viewDismissalProgressUpdated(progress: CGFloat) {
         floatingImageWindow?.updateImageViewFrame(dismissalProgress: progress, tabBarHeight: tabBar.frame.height)
+    }
+}
+
+extension TabBarController: FloatingImageVCDelegate {
+    func imageViewTapped() {
+        homeVC.restoreMiniPlayerToFullScreen()
     }
 }

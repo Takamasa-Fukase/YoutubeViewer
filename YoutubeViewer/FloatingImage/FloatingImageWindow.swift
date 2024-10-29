@@ -31,6 +31,12 @@ class FloatingImageWindow: UIWindow {
         }
     }
     
+    func setDelegate(_ delegate: FloatingImageVCDelegate) {
+        if let floatingImageVC = rootViewController as? FloatingImageViewController {
+            floatingImageVC.floatingImageVCDelegate = delegate
+        }
+    }
+    
     func close() {
         isHidden = true
         removeFromSuperview()

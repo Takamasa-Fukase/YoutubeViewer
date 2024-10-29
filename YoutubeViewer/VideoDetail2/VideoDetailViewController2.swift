@@ -29,9 +29,9 @@ class VideoDetailViewController2: UIViewController {
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
     var contentBaseView: UIView!
-//    var titleLabel: UILabel!
-//    var descriptionLabel: UILabel!
-    var descriptionView: VideoDetailDescriptionView!
+    var titleLabel: UILabel!
+    var descriptionLabel: UILabel!
+//    var descriptionView: VideoDetailDescriptionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,19 +40,23 @@ class VideoDetailViewController2: UIViewController {
         contentBaseView = UIView(frame: view.frame)
         contentBaseView.backgroundColor = .clear
         view.addSubview(contentBaseView)
-        setDescriptionView()
-//        let descriptionAreaBaseView = UIView(frame: CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height))
-//        descriptionAreaBaseView.backgroundColor = .systemBackground
-//        contentBaseView.addSubview(descriptionAreaBaseView)
-//        titleLabel = UILabel(frame: CGRect(x: 16, y: descriptionAreaBaseView.frame.minY + 12, width: view.frame.width - 32, height: 60))
-//        titleLabel.numberOfLines = 2
-//        descriptionAreaBaseView.addSubview(titleLabel)
-//        descriptionLabel = UILabel(frame: CGRect(x: 16, y: titleLabel.frame.minY + 16, width: view.frame.width - 32, height: 60))
-//        descriptionLabel.numberOfLines = 0
-//        descriptionAreaBaseView.addSubview(descriptionLabel)
 
-        descriptionView.titleLabel.text = "【やる気が出ない人必見】モチベーションが上がらない｜辞めてしまいたいを変える動画"
-        descriptionView.descriptionLabel.text = """
+        let descriptionAreaBaseView = UIView(frame: CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height))
+        descriptionAreaBaseView.backgroundColor = .systemBackground
+        contentBaseView.addSubview(descriptionAreaBaseView)
+        
+        titleLabel = UILabel(frame: CGRect(x: 16, y: 12, width: view.frame.width - 32, height: 60))
+        titleLabel.font = .systemFont(ofSize: 22, weight: .bold)
+        titleLabel.numberOfLines = 2
+        descriptionAreaBaseView.addSubview(titleLabel)
+        
+        descriptionLabel = UILabel(frame: CGRect(x: 16, y: titleLabel.frame.maxY + 16, width: view.frame.width - 32, height: 60))
+        descriptionLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        descriptionLabel.numberOfLines = 0
+        descriptionAreaBaseView.addSubview(descriptionLabel)
+
+        titleLabel.text = "【やる気が出ない人必見】モチベーションが上がらない｜辞めてしまいたいを変える動画"
+        descriptionLabel.text = """
 【タロサックってこんな人】
 1990年生まれ　新潟県出身
 18歳の時、Be動詞すら何なのかも知らない状態で偏差値38の学部を2つ受験し両方とも滑り一時露頭に迷う。
@@ -68,12 +72,12 @@ contact@tarosac.com
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
     }
     
-    private func setDescriptionView() {
-        descriptionView = VideoDetailDescriptionView(frame: contentBaseView.frame)
-        contentBaseView.addSubview(descriptionView)
-        contentBaseView.addConstraints(for: descriptionView)
-        contentBaseView.backgroundColor = .clear
-    }
+//    private func setDescriptionView() {
+//        descriptionView = VideoDetailDescriptionView(frame: contentBaseView.frame)
+//        contentBaseView.addSubview(descriptionView)
+//        contentBaseView.addConstraints(for: descriptionView)
+//        contentBaseView.backgroundColor = .clear
+//    }
     
     func showContentRestorationAnimation() {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }

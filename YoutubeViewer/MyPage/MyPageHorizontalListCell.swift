@@ -16,7 +16,7 @@ class MyPageHorizontalListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewAllButton.layer.borderColor = UIColor.secondaryLabel.cgColor
+        viewAllButton.layer.borderColor = UIColor.label.cgColor
         viewAllButton.layer.borderWidth = 1
         viewAllButton.layer.cornerRadius = 16
     }

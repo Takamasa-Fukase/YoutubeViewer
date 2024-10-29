@@ -49,14 +49,17 @@ class VideoDetailViewController: UIViewController {
         let targetPositionY = max(view.frame.origin.y + movedDistanceY, 0.0)
         // 0よりは下回らないようにしつつ、ドラッグの移動距離分Viewも移動させる
         view.frame.origin.y = targetPositionY
-                
+
+        // ジェスチャー終了時（指が離れた時）の処理
         if gesture.state == .ended {
-            // ジェスチャー終了時（指が離れた時）に画面高さの30％以上下がっていたらdismiss、30%未満なら元に戻す
             if dismissalProgress() >= 0.3 {
+                // 移動量が画面高さの30％以上ならdismissさせる
                 dismiss(animated: true) {
                     self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 1)
                 }
+                
             }else {
+                // 移動量が画面高さの30%未満なら元に戻す
                 UIView.animate(withDuration: 0.4, delay: 0) {
                     self.view.frame.origin.y = 0.0
                 } completion: { _ in

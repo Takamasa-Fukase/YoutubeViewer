@@ -37,7 +37,7 @@ class VideoDetailViewController: UIViewController {
         let screenHeight = windowScene.screen.bounds.height
         view.frame.origin.y = screenHeight * 0.3
         
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2) {
             self.view.frame.origin.y = 0.0
             
             // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
@@ -80,14 +80,14 @@ class VideoDetailViewController: UIViewController {
                 dismiss(animated: true)
                 
                 // dismissに合わせてアニメーション
-                UIView.animate(withDuration: 0.3, delay: 0) {
+                UIView.animate(withDuration: 0.2, delay: 0) {
                     // dismissの進行度合いの割合値を通知
                     self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 1)
                 }
             }
             // Viewの上端が画面の上から30％よりも上の位置にあればフルスクリーン状態に戻す
             else {
-                UIView.animate(withDuration: 0.4, delay: 0) {
+                UIView.animate(withDuration: 0.2, delay: 0) {
                     self.view.frame.origin.y = 0.0
                     
                     // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）

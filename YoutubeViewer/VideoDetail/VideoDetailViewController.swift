@@ -62,13 +62,15 @@ class VideoDetailViewController: UIViewController {
                 // 移動量が画面高さの30%未満なら元に戻す
                 UIView.animate(withDuration: 0.4, delay: 0) {
                     self.view.frame.origin.y = 0.0
-                } completion: { _ in
-                    // ImageViewと別WindowのFloatingImageViewをすり替える
-                    self.replaceImageViewWithFloatingImage(isViewBeingClosed: false)
+                    
                     self.videoDetailDelegate?.viewDismissalProgressUpdated(progress: 0)
                     // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
                     let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
                     self.view.alpha = CGFloat(viewAlpha)
+                    
+                } completion: { _ in
+                    // ImageViewと別WindowのFloatingImageViewをすり替える
+                    self.replaceImageViewWithFloatingImage(isViewBeingClosed: false)
                 }
             }
         }

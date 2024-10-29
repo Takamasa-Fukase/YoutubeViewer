@@ -27,6 +27,8 @@
 		BC25CC412CD0A5C900951696 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC3E2CD0A5C900951696 /* MyPageProfileCell.swift */; };
 		BC25CC442CD0A8DC00951696 /* MyPageHorizontalListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC25CC432CD0A8DC00951696 /* MyPageHorizontalListCell.xib */; };
 		BC25CC452CD0A8DC00951696 /* MyPageHorizontalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC422CD0A8DC00951696 /* MyPageHorizontalListCell.swift */; };
+		BC25CC482CD0CA4300951696 /* MyPageHorizontalListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC25CC472CD0CA4300951696 /* MyPageHorizontalListItemCell.xib */; };
+		BC25CC492CD0CA4300951696 /* MyPageHorizontalListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC462CD0CA4300951696 /* MyPageHorizontalListItemCell.swift */; };
 		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
 		BC33685E2CCF5BCF008A1526 /* FloatingImageWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */; };
 		BC3368602CCF5CA7008A1526 /* FloatingImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */; };
@@ -77,6 +79,8 @@
 		BC25CC3F2CD0A5C900951696 /* MyPageProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageProfileCell.xib; sourceTree = "<group>"; };
 		BC25CC422CD0A8DC00951696 /* MyPageHorizontalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHorizontalListCell.swift; sourceTree = "<group>"; };
 		BC25CC432CD0A8DC00951696 /* MyPageHorizontalListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageHorizontalListCell.xib; sourceTree = "<group>"; };
+		BC25CC462CD0CA4300951696 /* MyPageHorizontalListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHorizontalListItemCell.swift; sourceTree = "<group>"; };
+		BC25CC472CD0CA4300951696 /* MyPageHorizontalListItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageHorizontalListItemCell.xib; sourceTree = "<group>"; };
 		BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingImageWindow.swift; sourceTree = "<group>"; };
 		BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingImageViewController.swift; sourceTree = "<group>"; };
 		BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 				BC25CC3F2CD0A5C900951696 /* MyPageProfileCell.xib */,
 				BC25CC422CD0A8DC00951696 /* MyPageHorizontalListCell.swift */,
 				BC25CC432CD0A8DC00951696 /* MyPageHorizontalListCell.xib */,
+				BC25CC462CD0CA4300951696 /* MyPageHorizontalListItemCell.swift */,
+				BC25CC472CD0CA4300951696 /* MyPageHorizontalListItemCell.xib */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -341,6 +347,7 @@
 				BC0558732CCEBF7C0002ABDD /* HomeVideoListCell.xib in Resources */,
 				BC0558612CCDD8AC0002ABDD /* HomeViewController.storyboard in Resources */,
 				BC0558342CCB94A70002ABDD /* Assets.xcassets in Resources */,
+				BC25CC482CD0CA4300951696 /* MyPageHorizontalListItemCell.xib in Resources */,
 				BC25CC402CD0A5C900951696 /* MyPageProfileCell.xib in Resources */,
 				BC25CC442CD0A8DC00951696 /* MyPageHorizontalListCell.xib in Resources */,
 				BC0558372CCB94A70002ABDD /* Base in Resources */,
@@ -381,6 +388,7 @@
 				BC0558722CCEBF7C0002ABDD /* HomeVideoListCell.swift in Sources */,
 				BC25CC452CD0A8DC00951696 /* MyPageHorizontalListCell.swift in Sources */,
 				BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */,
+				BC25CC492CD0CA4300951696 /* MyPageHorizontalListItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

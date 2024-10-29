@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="rij-wS-Ah5">
-                        <rect key="frame" x="16" y="40.333333333333343" width="288" height="120"/>
+                        <rect key="frame" x="0.0" y="40.333333333333343" width="320" height="120"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="120" id="ew7-Zn-gsM"/>
@@ -59,8 +59,8 @@
                     <constraint firstItem="rij-wS-Ah5" firstAttribute="top" secondItem="mcM-zv-2yk" secondAttribute="bottom" id="JvO-VU-zQR"/>
                     <constraint firstItem="mcM-zv-2yk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Rjc-Yw-D0o"/>
                     <constraint firstItem="mcM-zv-2yk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="WLM-Fd-c7c"/>
-                    <constraint firstAttribute="trailing" secondItem="rij-wS-Ah5" secondAttribute="trailing" constant="16" id="bT6-EO-AIW"/>
-                    <constraint firstItem="rij-wS-Ah5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="lqh-fx-D85"/>
+                    <constraint firstAttribute="trailing" secondItem="rij-wS-Ah5" secondAttribute="trailing" id="bT6-EO-AIW"/>
+                    <constraint firstItem="rij-wS-Ah5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lqh-fx-D85"/>
                     <constraint firstAttribute="bottom" secondItem="rij-wS-Ah5" secondAttribute="bottom" constant="12" id="mJg-Ul-WAf"/>
                 </constraints>
             </tableViewCellContentView>

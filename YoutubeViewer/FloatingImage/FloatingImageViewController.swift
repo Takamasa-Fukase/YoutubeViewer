@@ -36,7 +36,7 @@ class FloatingImageViewController: UIViewController {
         videoImageView.isUserInteractionEnabled = true
         videoImageView.contentMode = .scaleAspectFill
         videoImageView.clipsToBounds = true
-        videoImageView.layer.cornerRadius = 6
+        videoImageView.layer.cornerRadius = 8
         videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
         view.addSubview(videoImageView)
     }

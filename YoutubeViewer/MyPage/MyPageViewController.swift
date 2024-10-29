@@ -8,6 +8,7 @@
 import UIKit
 
 class MyPageViewController: UIViewController {
+    weak var videoDetailDelegate: VideoDetailDelegate?
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,6 +25,16 @@ class MyPageViewController: UIViewController {
         }
     }
     
+    func restoreMiniPlayerToFullScreen() {
+        let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
+        vc.modalPresentationStyle = .overFullScreen
+        vc.videoDetailDelegate = self.videoDetailDelegate
+        vc.isContentsHidden = true
+        self.present(vc, animated: false) {
+            vc.showContentRestorationAnimation()
+        }
+    }
+    
     private func setupTableView() {
         tableView.register(UINib(nibName: MyPageProfileCell.className, bundle: nil), forCellReuseIdentifier: MyPageProfileCell.className)
         tableView.register(UINib(nibName: MyPageHorizontalListCell.className, bundle: nil), forCellReuseIdentifier: MyPageHorizontalListCell.className)
@@ -36,7 +47,7 @@ extension MyPageViewController: UITabBarDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,7 +60,20 @@ extension MyPageViewController: UITabBarDelegate, UITableViewDataSource {
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MyPageHorizontalListCell.className, for: indexPath) as! MyPageHorizontalListCell
             cell.titleLabel.text = "History"
+            cell.myPageHorizontalListDelegate = self
             return cell
         }
+    }
+}
+
+extension MyPageViewController: MyPageHorizontalListDelegate {
+    func itemSelected(at indexPath: IndexPath) {
+        // FloatingImageWindowを閉じる
+        (tabBarController as? TabBarController)?.hideFloatingImageWindow()
+        
+        let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
+        vc.modalPresentationStyle = .overFullScreen
+        vc.videoDetailDelegate = videoDetailDelegate
+        present(vc, animated: true)
     }
 }

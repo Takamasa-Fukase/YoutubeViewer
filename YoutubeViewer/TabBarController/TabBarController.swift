@@ -24,6 +24,8 @@ class TabBarController: UITabBarController {
         myPageVC = UIStoryboard(name: MyPageViewController.className, bundle: nil).instantiateInitialViewController() as? MyPageViewController
         
         homeVC.videoDetailDelegate = self
+        myPageVC.videoDetailDelegate = self
+
         homeVC.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         myPageVC.tabBarItem = .init(title: "You", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
         tabBar.tintColor = .label
@@ -60,6 +62,11 @@ extension TabBarController: VideoDetailDelegate {
 
 extension TabBarController: FloatingImageVCDelegate {
     func imageViewTapped() {
-        homeVC.restoreMiniPlayerToFullScreen()
+        if selectedIndex == 0 {
+            homeVC.restoreMiniPlayerToFullScreen()
+        }
+        else if selectedIndex == 1 {
+            myPageVC.restoreMiniPlayerToFullScreen()
+        }
     }
 }

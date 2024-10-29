@@ -30,8 +30,8 @@
 		BC25CC482CD0CA4300951696 /* MyPageHorizontalListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC25CC472CD0CA4300951696 /* MyPageHorizontalListItemCell.xib */; };
 		BC25CC492CD0CA4300951696 /* MyPageHorizontalListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC462CD0CA4300951696 /* MyPageHorizontalListItemCell.swift */; };
 		BC25CC4C2CD0E41600951696 /* VideoDetailWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC4B2CD0E41600951696 /* VideoDetailWindow.swift */; };
-		BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC4D2CD0E42B00951696 /* VideoDetailViewController.swift */; };
-		BC25CC502CD0E43100951696 /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC25CC4F2CD0E43100951696 /* VideoDetailViewController.storyboard */; };
+		BC25CC4E2CD0E42B00951696 /* VideoDetailViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC4D2CD0E42B00951696 /* VideoDetailViewController2.swift */; };
+		BC25CC502CD0E43100951696 /* VideoDetailViewController2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC25CC4F2CD0E43100951696 /* VideoDetailViewController2.storyboard */; };
 		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
 		BC33685E2CCF5BCF008A1526 /* FloatingImageWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */; };
 		BC3368602CCF5CA7008A1526 /* FloatingImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */; };
@@ -85,8 +85,8 @@
 		BC25CC462CD0CA4300951696 /* MyPageHorizontalListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHorizontalListItemCell.swift; sourceTree = "<group>"; };
 		BC25CC472CD0CA4300951696 /* MyPageHorizontalListItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageHorizontalListItemCell.xib; sourceTree = "<group>"; };
 		BC25CC4B2CD0E41600951696 /* VideoDetailWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailWindow.swift; sourceTree = "<group>"; };
-		BC25CC4D2CD0E42B00951696 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
-		BC25CC4F2CD0E43100951696 /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
+		BC25CC4D2CD0E42B00951696 /* VideoDetailViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController2.swift; sourceTree = "<group>"; };
+		BC25CC4F2CD0E43100951696 /* VideoDetailViewController2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController2.storyboard; sourceTree = "<group>"; };
 		BC33685D2CCF5BCF008A1526 /* FloatingImageWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingImageWindow.swift; sourceTree = "<group>"; };
 		BC33685F2CCF5CA7008A1526 /* FloatingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingImageViewController.swift; sourceTree = "<group>"; };
 		BCB2936C2CCF1B6600A18ED0 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -223,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				BC25CC4B2CD0E41600951696 /* VideoDetailWindow.swift */,
-				BC25CC4D2CD0E42B00951696 /* VideoDetailViewController.swift */,
-				BC25CC4F2CD0E43100951696 /* VideoDetailViewController.storyboard */,
+				BC25CC4D2CD0E42B00951696 /* VideoDetailViewController2.swift */,
+				BC25CC4F2CD0E43100951696 /* VideoDetailViewController2.storyboard */,
 			);
 			path = VideoDetail2;
 			sourceTree = "<group>";
@@ -367,7 +367,7 @@
 				BC25CC482CD0CA4300951696 /* MyPageHorizontalListItemCell.xib in Resources */,
 				BC25CC402CD0A5C900951696 /* MyPageProfileCell.xib in Resources */,
 				BC25CC442CD0A8DC00951696 /* MyPageHorizontalListCell.xib in Resources */,
-				BC25CC502CD0E43100951696 /* VideoDetailViewController.storyboard in Resources */,
+				BC25CC502CD0E43100951696 /* VideoDetailViewController2.storyboard in Resources */,
 				BC0558372CCB94A70002ABDD /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,7 +396,7 @@
 				BC05585F2CCDD8A50002ABDD /* HomeViewController.swift in Sources */,
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
-				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */,
+				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController2.swift in Sources */,
 				BC33685E2CCF5BCF008A1526 /* FloatingImageWindow.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
 				BC25CC4C2CD0E41600951696 /* VideoDetailWindow.swift in Sources */,

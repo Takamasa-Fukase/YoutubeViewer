@@ -60,13 +60,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // FloatingImageWindowを閉じる
-        (tabBarController as? TabBarController)?.hideFloatingImageWindow()
-        
-        let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
-        vc.modalPresentationStyle = .overFullScreen
-        vc.videoDetailDelegate = videoDetailDelegate
-        present(vc, animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
+        (tabBarController as? TabBarController)?.showVideoDetailWindow()
     }
 }

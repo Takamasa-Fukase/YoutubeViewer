@@ -68,12 +68,6 @@ extension MyPageViewController: UITabBarDelegate, UITableViewDataSource {
 
 extension MyPageViewController: MyPageHorizontalListDelegate {
     func itemSelected(at indexPath: IndexPath) {
-        // FloatingImageWindowを閉じる
-        (tabBarController as? TabBarController)?.hideFloatingImageWindow()
-        
-        let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
-        vc.modalPresentationStyle = .overFullScreen
-        vc.videoDetailDelegate = videoDetailDelegate
-        present(vc, animated: true)
+        (tabBarController as? TabBarController)?.showVideoDetailWindow()
     }
 }

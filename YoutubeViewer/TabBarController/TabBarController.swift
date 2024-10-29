@@ -8,9 +8,9 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    private var floatingImageWindow: FloatingImageWindow?
     private var homeVC: HomeViewController!
     private var myPageVC: MyPageViewController!
+    private var videoDetailWindow: VideoDetailWindow?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,14 +18,21 @@ class TabBarController: UITabBarController {
         setVCs()
     }
     
+    func showVideoDetailWindow() {
+        // 既に存在していたら一度閉じる
+        if videoDetailWindow != nil {
+            videoDetailWindow?.close()
+            videoDetailWindow = nil
+        }
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        videoDetailWindow = VideoDetailWindow(windowScene: windowScene, tabBarHeight: tabBar.frame.height)
+    }
+    
     private func setVCs() {
         var vcs: [UIViewController] = []
         homeVC = UIStoryboard(name: HomeViewController.className, bundle: nil).instantiateInitialViewController() as? HomeViewController
         myPageVC = UIStoryboard(name: MyPageViewController.className, bundle: nil).instantiateInitialViewController() as? MyPageViewController
         
-        homeVC.videoDetailDelegate = self
-        myPageVC.videoDetailDelegate = self
-
         homeVC.tabBarItem = .init(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         myPageVC.tabBarItem = .init(title: "You", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
         tabBar.tintColor = .label
@@ -38,35 +45,5 @@ class TabBarController: UITabBarController {
             return navi
         })
         setViewControllers(viewControllers, animated: false)
-    }
-}
-
-extension TabBarController: VideoDetailDelegate {
-    func showFloatingImageWindow() {
-        if floatingImageWindow == nil {
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-            floatingImageWindow = FloatingImageWindow(windowScene: windowScene)
-            floatingImageWindow?.setDelegate(self)
-        }
-    }
-    
-    func hideFloatingImageWindow() {
-        floatingImageWindow?.close()
-        floatingImageWindow = nil
-    }
-    
-    func viewDismissalProgressUpdated(progress: CGFloat) {
-        floatingImageWindow?.updateImageViewFrame(dismissalProgress: progress, tabBarHeight: tabBar.frame.height)
-    }
-}
-
-extension TabBarController: FloatingImageVCDelegate {
-    func imageViewTapped() {
-        if selectedIndex == 0 {
-            homeVC.restoreMiniPlayerToFullScreen()
-        }
-        else if selectedIndex == 1 {
-            myPageVC.restoreMiniPlayerToFullScreen()
-        }
     }
 }

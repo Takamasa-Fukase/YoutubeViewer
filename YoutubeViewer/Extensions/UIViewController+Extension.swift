@@ -33,26 +33,6 @@ extension UIViewController {
         }), for: .touchUpInside)
     }
     
-    // tableViewCellタップで遷移する画面のViewWillAppearで呼び出す（戻ってきた時にどのセルを見ていたかユーザーがわかりやすい様に）
-    func dismissCellHighlight(tableView: UITableView) {
-        if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
-            UIView.animate(withDuration: 0.4, animations: {
-                tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
-            })
-        }
-    }
-
-    // collectionViewCellタップで遷移する画面のViewWillAppearで呼び出す（戻ってきた時にどのセルを見ていたかユーザーがわかりやすい様に）
-    func dismissCellHighlight(collectonView: UICollectionView) {
-        if let indexPathsForSelectedItems = collectonView.indexPathsForSelectedItems {
-            UIView.animate(withDuration: 0.4, animations: {
-                indexPathsForSelectedItems.forEach({ indexPath in
-                    collectonView.deselectItem(at: indexPath, animated: true)
-                })
-            })
-        }
-    }
-
     func addKeyboardCloseGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         gesture.cancelsTouchesInView = false

@@ -14,7 +14,7 @@ class MyPageHorizontalListItemCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
                 
-        thumbnailImageView.layer.cornerRadius = 8
+        thumbnailImageView.layer.cornerRadius = 10
         let backgroundView = UIView(frame: contentView.frame)
         backgroundView.backgroundColor = .secondarySystemBackground
         selectedBackgroundView = backgroundView

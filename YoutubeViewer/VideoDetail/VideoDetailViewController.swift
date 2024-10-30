@@ -21,7 +21,7 @@ class VideoDetailViewController: UIViewController {
             if screenMode == .fullScreen {
                 videoImageView.layer.cornerRadius = 0
             }else {
-                videoImageView.layer.cornerRadius = 8
+                videoImageView.layer.cornerRadius = 10
             }
         }
     }

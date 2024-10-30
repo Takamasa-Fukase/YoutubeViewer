@@ -32,6 +32,13 @@ class VideoDetailViewController: UIViewController {
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
     private var isShownModalPresentationAnimation = false
+    private var minimizationProgress: CGFloat = 0.0 {
+        didSet {
+            descriptionAreaBaseView.alpha = 1.0 - (minimizationProgress * 3.33)
+            updateImageViewFrame(dismissalProgress: minimizationProgress, tabBarHeight: tabBarHeight)
+            contentBaseView.frame.origin.y = minimizationProgress * UIApplication.shared.screen.bounds.height
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,24 +81,29 @@ class VideoDetailViewController: UIViewController {
             initialDragPositionY = location.y
         }
         
-        updateImageViewFrame(dismissalProgress: dismissalProgress(), tabBarHeight: tabBarHeight)
+//        updateImageViewFrame(dismissalProgress: dismissalProgress(), tabBarHeight: tabBarHeight)
         
         // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
-        let viewAlpha = 1.0 - (dismissalProgress() * 3.33)
-        contentBaseView.alpha = CGFloat(viewAlpha)
+//        let viewAlpha = 1.0 - (dismissalProgress() * 3.33)
+//        contentBaseView.alpha = CGFloat(viewAlpha)
 
         // 0よりは下回らないようにしつつ、Viewをドラッグの移動距離分移動させる
         let movedDistanceY = location.y - initialDragPositionY
         let targetPositionY = max(0 + movedDistanceY, 0.0)
 
-        contentBaseView.frame.origin.y = targetPositionY
+//        contentBaseView.frame.origin.y = targetPositionY
+        
+        minimizationProgress = movedDistanceY / UIApplication.shared.screen.bounds.height
 
         // ジェスチャー終了時（指が離れた時）の処理
         if gesture.state == .ended {
             // Viewの上端が画面の上から30％以上下がった位置にあれば最小化する
-            if dismissalProgress() >= 0.3 {
+//            if dismissalProgress() >= 0.3 {
+            if minimizationProgress >= 0.3 {
+
                 UIView.animate(withDuration: 0.2, delay: 0) {
-                    self.updateImageViewFrame(dismissalProgress: 1, tabBarHeight: self.tabBarHeight)
+//                    self.updateImageViewFrame(dismissalProgress: 1, tabBarHeight: self.tabBarHeight)
+                    self.minimizationProgress = 1
                 } completion: { _ in
                     self.screenMode = .small
                 }
@@ -99,13 +111,15 @@ class VideoDetailViewController: UIViewController {
             // Viewの上端が画面の上から30％よりも上の位置にあればフルスクリーン状態に戻す
             else {
                 UIView.animate(withDuration: 0.2, delay: 0) {
-                    self.contentBaseView.frame.origin.y = 0.0
+//                    self.contentBaseView.frame.origin.y = 0.0
                     
                     // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
-                    let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
-                    self.contentBaseView.alpha = CGFloat(viewAlpha)
+//                    let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
+//                    self.contentBaseView.alpha = CGFloat(viewAlpha)
                     
-                    self.updateImageViewFrame(dismissalProgress: 0, tabBarHeight: self.tabBarHeight)
+//                    self.updateImageViewFrame(dismissalProgress: 0, tabBarHeight: self.tabBarHeight)
+                    self.minimizationProgress = 0
+                    
                 } completion: { _ in
                     self.screenMode = .fullScreen
                 }
@@ -120,15 +134,13 @@ class VideoDetailViewController: UIViewController {
         descriptionAreaBaseView.addConstraints(for: hc.view)
     }
     
-    private func dismissalProgress() -> CGFloat {
-        // 0.0 ~ 1.0の範囲で返却
-        //  - 0.0: フルスクリーン状態
-        //  - 1.0: 完全にdismissされた状態
-        let viewPositionY = contentBaseView.frame.origin.y
-        let screenHeight = UIApplication.shared.screen.bounds.height
-        let progress = min(viewPositionY / screenHeight, 1.0)
-        return CGFloat(progress)
-    }
+//    private func minimizationProgress() -> CGFloat {
+//        // 0.0 ~ 1.0の範囲で返却
+//        //  - 0.0: フルスクリーン状態
+//        //  - 1.0: 最小化された状態
+//        let progress = min(viewPositionY / UIApplication.shared.screen.bounds.height, 1.0)
+//        return CGFloat(progress)
+//    }
     
     private func setupImageView() {
         initialImageViewFrame = CGRect(
@@ -149,10 +161,11 @@ class VideoDetailViewController: UIViewController {
     @objc private func handleImageViewTap() {
         guard screenMode == .small else { return }
         
-        showContentRestorationAnimation()
+//        showContentRestorationAnimation()
         
         UIView.animate(withDuration: 0.2) {
-            self.updateImageViewFrame(dismissalProgress: 0, tabBarHeight: self.tabBarHeight)
+//            self.updateImageViewFrame(dismissalProgress: 0, tabBarHeight: self.tabBarHeight)
+            self.minimizationProgress = 0
         } completion: { _ in
             self.screenMode = .fullScreen
         }
@@ -214,16 +227,16 @@ class VideoDetailViewController: UIViewController {
         }
     }
     
-    private func showContentRestorationAnimation() {
-        guard screenMode == .small else { return }
-        contentBaseView.frame.origin.y = UIApplication.shared.screen.bounds.height * 0.3
-        
-        UIView.animate(withDuration: 0.2) {
-            self.contentBaseView.frame.origin.y = 0.0
-            
-            // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
-            let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
-            self.contentBaseView.alpha = CGFloat(viewAlpha)
-        }
-    }
+//    private func showContentRestorationAnimation() {
+//        guard screenMode == .small else { return }
+//        contentBaseView.frame.origin.y = UIApplication.shared.screen.bounds.height * 0.3
+//        
+//        UIView.animate(withDuration: 0.2) {
+//            self.contentBaseView.frame.origin.y = 0.0
+//            
+//            // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
+////            let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
+////            self.contentBaseView.alpha = CGFloat(viewAlpha)
+//        }
+//    }
 }

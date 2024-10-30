@@ -87,7 +87,6 @@ class VideoDetailViewController: UIViewController {
     private func setupDescriptionView() {
         let hc = UIHostingController(rootView: VideoDetailDescriptionView())
         descriptionViewContentView = hc.view
-        descriptionViewContentView.backgroundColor = .clear
         descriptionViewContentView.frame = CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height)
         view.addSubview(descriptionViewContentView)
     }

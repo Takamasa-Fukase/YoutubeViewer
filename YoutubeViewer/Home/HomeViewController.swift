@@ -50,5 +50,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         (tabBarController as? TabBarController)?.showVideoDetailWindow()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

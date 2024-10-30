@@ -1,5 +1,5 @@
 {
-  "originHash" : "7a3db394d32d981b439f8f9167860d119bbb6bcd21e7775d4d6b6226586d8c03",
+  "originHash" : "7b651946f4bd4e06e9ad69faf1bfc39e11e04129a9b32266bdcc82c84aeefa05",
   "pins" : [
     {
       "identity" : "kingfisher",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "b012aecb6b67a8e46369227f893c12544846613f",
         "version" : "1.2.7"
+      }
+    },
+    {
+      "identity" : "youtubeplayer-in-wkwebview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hmhv/YoutubePlayer-in-WKWebView",
+      "state" : {
+        "revision" : "3d24743643fd4460e40ca8f4cd844563d32bb05f",
+        "version" : "0.3.11"
       }
     }
   ],

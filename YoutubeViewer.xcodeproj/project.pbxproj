@@ -39,6 +39,7 @@
 		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
+		BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */; };
 		BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCB293692CCEC51300A18ED0 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */,
 				BC33685B2CCF209A008A1526 /* PanModal in Frameworks */,
 				BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */,
 			);
@@ -256,6 +258,7 @@
 			packageProductDependencies = (
 				BCB293692CCEC51300A18ED0 /* Kingfisher */,
 				BC33685A2CCF209A008A1526 /* PanModal */,
+				BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */,
 			);
 			productName = YoutubeViewer;
 			productReference = BC0558272CCB94A50002ABDD /* YoutubeViewer.app */;
@@ -332,6 +335,7 @@
 			packageReferences = (
 				BCD93DDB2CCEC42500363395 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				BCB293702CCF1F8C00A18ED0 /* XCRemoteSwiftPackageReference "PanModal" */,
+				BC7B68BD2CD253D300D5A203 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */,
 			);
 			productRefGroup = BC0558282CCB94A50002ABDD /* Products */;
 			projectDirPath = "";
@@ -739,6 +743,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BC7B68BD2CD253D300D5A203 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmhv/YoutubePlayer-in-WKWebView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.11;
+			};
+		};
 		BCB293702CCF1F8C00A18ED0 /* XCRemoteSwiftPackageReference "PanModal" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/slackhq/PanModal";
@@ -762,6 +774,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BCB293702CCF1F8C00A18ED0 /* XCRemoteSwiftPackageReference "PanModal" */;
 			productName = PanModal;
+		};
+		BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC7B68BD2CD253D300D5A203 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */;
+			productName = "YoutubePlayer-in-WKWebView";
 		};
 		BCB293692CCEC51300A18ED0 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

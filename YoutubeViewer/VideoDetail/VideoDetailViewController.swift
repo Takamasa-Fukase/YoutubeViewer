@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import YoutubePlayer_in_WKWebView
 
 enum VideoDetailScreenMode {
     case fullScreen
@@ -15,18 +16,18 @@ enum VideoDetailScreenMode {
 }
 
 class VideoDetailViewController: UIViewController {
-    var videoImageView: UIImageView!
+    var playerView: WKYTPlayerView!
     var screenMode: VideoDetailScreenMode = .fullScreen {
         didSet {
             switch screenMode {
             case .fullScreen:
-                videoImageView.layer.cornerRadius = 0
+                playerView.layer.cornerRadius = 0
                 imageViewCloseButton.isHidden = true
             case .changing:
-                videoImageView.layer.cornerRadius = 10
+                playerView.layer.cornerRadius = 10
                 imageViewCloseButton.isHidden = true
             case .small:
-                videoImageView.layer.cornerRadius = 10
+                playerView.layer.cornerRadius = 10
                 imageViewCloseButton.isHidden = false
             }
         }
@@ -52,7 +53,7 @@ class VideoDetailViewController: UIViewController {
             descriptionBaseView.alpha = 1.0 - (minimizationProgress * 3.33)
             
             // description部分のViewのY座標をImageViewの下端に合わせて更新
-            descriptionBaseView.frame.origin.y = videoImageView.frame.maxY
+            descriptionBaseView.frame.origin.y = playerView.frame.maxY
 
             // 背面を暗くしているViewの透明度を更新（最小化の進行度合いの0.0 ~ 0.3の範囲を0.5 ~ 0.0の割合に変換）
             if minimizationProgress >= 0.3 {
@@ -69,7 +70,7 @@ class VideoDetailViewController: UIViewController {
         // 初回表示時にはモーダル出現風アニメーションを行うため、viewがちらつかない様に予め非表示にしておく
         view.isHidden = true
         
-        setupImageView()
+        setupPlayerView()
         setupDescriptionView()
         setupBackgroundMaskingView()
 
@@ -84,31 +85,31 @@ class VideoDetailViewController: UIViewController {
         }
     }
     
-    private func setupImageView() {
+    private func setupPlayerView() {
         initialImageViewFrame = CGRect(
             x: 0,
             y: SceneDelegate.shared?.mainWindow?.safeAreaInsets.top ?? 0,
             width: view.frame.width,
             height: view.frame.width * 0.5625
         )
-        videoImageView = UIImageView(frame: initialImageViewFrame)
-        videoImageView.isUserInteractionEnabled = true
-        videoImageView.contentMode = .scaleAspectFill
-        videoImageView.clipsToBounds = true
-        videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
-        videoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
-        view.addSubview(videoImageView)
+        playerView = WKYTPlayerView(frame: initialImageViewFrame)
+        playerView.delegate = self
+        playerView.clipsToBounds = true
+        playerView.backgroundColor = .secondarySystemBackground
+        playerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
+        
+        view.addSubview(playerView)
         
         imageViewCloseButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageViewCloseButton.isHidden = true
         imageViewCloseButton.tintColor = .white
         imageViewCloseButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         imageViewCloseButton.addTarget(self, action: #selector(handleImageViewCloseButtonTap), for: .touchUpInside)
-        videoImageView.addSubview(imageViewCloseButton)
+        playerView.addSubview(imageViewCloseButton)
     }
     
     private func setupDescriptionView() {
-        descriptionBaseView = UIView(frame: CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height))
+        descriptionBaseView = UIView(frame: CGRect(x: 0, y: playerView.frame.maxY, width: view.frame.width, height: view.frame.height - playerView.frame.height))
         view.addSubview(descriptionBaseView)
         
         descriptionView = VideoDetailDescriptionView()
@@ -134,6 +135,8 @@ class VideoDetailViewController: UIViewController {
             self.view.frame.origin.y = 0.0
         } completion: { _ in
             self.screenMode = .fullScreen
+            self.playerView.load(withVideoId: "O5518678w8U",
+                            playerVars: ["playsinline": 1])
         }
     }
     
@@ -222,11 +225,11 @@ class VideoDetailViewController: UIViewController {
                                        isDestinationValueGreaterThanInitialValue: false)
 
         let currentPoint = CGPoint(x: (currentMinX - (currentWidth / 2)), y: (currentMinY - (currentHeight / 2)))
-        videoImageView.center = currentPoint
+        playerView.center = currentPoint
         
         // TODO: absで正の値に戻しているが、なぜ負の値になっているのか調査＆直したい
         let currentSize = CGSize(width: abs(currentWidth), height: abs(currentHeight))
-        videoImageView.bounds.size = currentSize
+        playerView.bounds.size = currentSize
     }
     
     private func currentValue(
@@ -240,5 +243,11 @@ class VideoDetailViewController: UIViewController {
         }else {
             return (progress * abs(initialValue - destinationValue)) - initialValue
         }
+    }
+}
+
+extension VideoDetailViewController: WKYTPlayerViewDelegate {
+    func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
+        playerView.playVideo()
     }
 }

@@ -21,15 +21,16 @@ class VideoDetailWindow: UIWindow {
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let view = super.hitTest(point, with: event)
-        guard let videoDetailVC = rootViewController as? VideoDetailViewController else { return nil }
+        guard let view = super.hitTest(point, with: event),
+              let videoDetailVC = rootViewController as? VideoDetailViewController else { return nil }
         switch videoDetailVC.screenMode {
         case .fullScreen, .changing:
             return view
         case .small:
-            if view == videoDetailVC.videoImageBaseView {
+            // ImageView関連のsubviewsだけタッチを有効にする
+            if videoDetailVC.videoImageBaseView.subviews.contains(view) {
                 return view
-            } else {
+            }else {
                 return nil
             }
         }

@@ -18,12 +18,18 @@ enum VideoDetailScreenMode {
 class VideoDetailViewController: UIViewController {
     var videoImageBaseView: UIView!
     var videoImageView : VideoImageView!
+    var videoImageViewState = VideoImageViewState()
     var screenMode: VideoDetailScreenMode = .fullScreen {
         didSet {
-            if screenMode == .fullScreen {
+            switch screenMode {
+            case .fullScreen:
                 videoImageBaseView.layer.cornerRadius = 0
-            }else {
+                videoImageViewState.isCloseButtonHidden = true
+            case .changing:
+                videoImageBaseView.layer.cornerRadius = 0
+            case .small:
                 videoImageBaseView.layer.cornerRadius = 10
+                videoImageViewState.isCloseButtonHidden = false
             }
         }
     }
@@ -78,22 +84,6 @@ class VideoDetailViewController: UIViewController {
         }
     }
     
-//    private func setupImageView() {
-//        initialImageViewFrame = CGRect(
-//            x: 0,
-//            y: SceneDelegate.shared?.mainWindow?.safeAreaInsets.top ?? 0,
-//            width: view.frame.width,
-//            height: view.frame.width * 0.5625
-//        )
-//        videoImageView = UIImageView(frame: initialImageViewFrame)
-//        videoImageView.isUserInteractionEnabled = true
-//        videoImageView.contentMode = .scaleAspectFill
-//        videoImageView.clipsToBounds = true
-//        videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
-//        videoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
-//        view.addSubview(videoImageView)
-//    }
-    
     private func setupImageView() {
         initialImageViewFrame = CGRect(
             x: 0,
@@ -102,6 +92,7 @@ class VideoDetailViewController: UIViewController {
             height: view.frame.width * 0.5625
         )
         videoImageView = VideoImageView(
+            state: videoImageViewState,
             imageTapped: {
                 self.handleImageViewTap()
             },
@@ -228,7 +219,6 @@ class VideoDetailViewController: UIViewController {
         let currentPoint = CGPoint(x: (currentMinX - (currentWidth / 2)), y: (currentMinY - (currentHeight / 2)))
         videoImageBaseView.center = currentPoint
         let currentSize = CGSize(width: abs(currentWidth), height: abs(currentHeight))
-//        videoImageBaseView.contentMode = .redraw
         videoImageBaseView.bounds.size = currentSize
     }
     

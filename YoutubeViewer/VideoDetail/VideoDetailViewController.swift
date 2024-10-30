@@ -25,9 +25,8 @@ class VideoDetailViewController: UIViewController {
             }
         }
     }
-    var videoImageView: UIImageView!
     var tabBarHeight: CGFloat = 0.0
-    var contentBaseView: UIView!
+    var videoImageView: UIImageView!
     var descriptionAreaBaseView: UIView!
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
@@ -38,9 +37,14 @@ class VideoDetailViewController: UIViewController {
     //  - 1.0: 最小化された状態
     private var minimizationProgress: CGFloat = 0.0 {
         didSet {
+            // description部分のViewの透明度を更新（最小化の進行度合いの0.0 ~ 0.3の範囲を1.0 ~ 0.0の割合に変換）
             descriptionAreaBaseView.alpha = 1.0 - (minimizationProgress * 3.33)
+            
+            // description部分のViewのY座標を更新
+            descriptionAreaBaseView.frame.origin.y = (minimizationProgress * UIApplication.shared.screen.bounds.height) + initialImageViewFrame.maxY
+            
+            // ImageViewのサイズと座標を更新
             updateImageViewFrame(dismissalProgress: minimizationProgress, tabBarHeight: tabBarHeight)
-            contentBaseView.frame.origin.y = minimizationProgress * UIApplication.shared.screen.bounds.height
         }
     }
 
@@ -51,15 +55,7 @@ class VideoDetailViewController: UIViewController {
         view.isHidden = true
         
         setupImageView()
-        contentBaseView = UIView(frame: view.frame)
-        contentBaseView.backgroundColor = .clear
-        view.addSubview(contentBaseView)
-
-        descriptionAreaBaseView = UIView(frame: CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height))
-        descriptionAreaBaseView.backgroundColor = .systemBackground
-        contentBaseView.addSubview(descriptionAreaBaseView)
-        
-        setDescriptionView()
+        setupDescriptionView()
 
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
     }
@@ -114,13 +110,6 @@ class VideoDetailViewController: UIViewController {
         }
     }
     
-    private func setDescriptionView() {
-        let hc = UIHostingController(rootView: VideoDetailDescriptionView())
-        hc.view.backgroundColor = .clear
-        descriptionAreaBaseView.addSubview(hc.view)
-        descriptionAreaBaseView.addConstraints(for: hc.view)
-    }
-    
     private func setupImageView() {
         initialImageViewFrame = CGRect(
             x: 0,
@@ -135,6 +124,17 @@ class VideoDetailViewController: UIViewController {
         videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
         videoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
         view.addSubview(videoImageView)
+    }
+    
+    private func setupDescriptionView() {
+        descriptionAreaBaseView = UIView(frame: CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height))
+        descriptionAreaBaseView.backgroundColor = .systemBackground
+        view.addSubview(descriptionAreaBaseView)
+        
+        let hc = UIHostingController(rootView: VideoDetailDescriptionView())
+        hc.view.backgroundColor = .clear
+        descriptionAreaBaseView.addSubview(hc.view)
+        descriptionAreaBaseView.addConstraints(for: hc.view)
     }
     
     @objc private func handleImageViewTap() {

@@ -16,23 +16,24 @@ enum VideoDetailScreenMode {
 }
 
 class VideoDetailViewController: UIViewController {
-    var playerView: WKYTPlayerView!
+    var playerBaseView: UIView!
     var screenMode: VideoDetailScreenMode = .fullScreen {
         didSet {
             switch screenMode {
             case .fullScreen:
-                playerView.layer.cornerRadius = 0
+                playerBaseView.layer.cornerRadius = 0
                 imageViewCloseButton.isHidden = true
             case .changing:
-                playerView.layer.cornerRadius = 10
+                playerBaseView.layer.cornerRadius = 10
                 imageViewCloseButton.isHidden = true
             case .small:
-                playerView.layer.cornerRadius = 10
+                playerBaseView.layer.cornerRadius = 10
                 imageViewCloseButton.isHidden = false
             }
         }
     }
     
+    private var playerView: WKYTPlayerView!
     private var imageViewCloseButton: UIButton!
     private var descriptionBaseView: UIView!
     private var descriptionView: VideoDetailDescriptionView!
@@ -53,7 +54,7 @@ class VideoDetailViewController: UIViewController {
             descriptionBaseView.alpha = 1.0 - (minimizationProgress * 3.33)
             
             // description部分のViewのY座標をImageViewの下端に合わせて更新
-            descriptionBaseView.frame.origin.y = playerView.frame.maxY
+            descriptionBaseView.frame.origin.y = playerBaseView.frame.maxY
 
             // 背面を暗くしているViewの透明度を更新（最小化の進行度合いの0.0 ~ 0.3の範囲を0.5 ~ 0.0の割合に変換）
             if minimizationProgress >= 0.3 {
@@ -92,24 +93,29 @@ class VideoDetailViewController: UIViewController {
             width: view.frame.width,
             height: view.frame.width * 0.5625
         )
-        playerView = WKYTPlayerView(frame: initialImageViewFrame)
-        playerView.delegate = self
-        playerView.clipsToBounds = true
-        playerView.backgroundColor = .secondarySystemBackground
-        playerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
+        playerBaseView = UIView(frame: initialImageViewFrame)
+        playerBaseView.backgroundColor = .black
+        playerBaseView.clipsToBounds = true
+        playerBaseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
+        view.addSubview(playerBaseView)
         
-        view.addSubview(playerView)
+        playerView = WKYTPlayerView(frame: playerBaseView.frame)
+        playerView.delegate = self
+        // タッチを透過させて下のplayerBaseViewを反応させる
+        playerView.isUserInteractionEnabled = false
+        playerBaseView.addSubview(playerView)
+        playerBaseView.addConstraints(for: playerView)
         
         imageViewCloseButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageViewCloseButton.isHidden = true
         imageViewCloseButton.tintColor = .white
         imageViewCloseButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         imageViewCloseButton.addTarget(self, action: #selector(handleImageViewCloseButtonTap), for: .touchUpInside)
-        playerView.addSubview(imageViewCloseButton)
+        playerBaseView.addSubview(imageViewCloseButton)
     }
     
     private func setupDescriptionView() {
-        descriptionBaseView = UIView(frame: CGRect(x: 0, y: playerView.frame.maxY, width: view.frame.width, height: view.frame.height - playerView.frame.height))
+        descriptionBaseView = UIView(frame: CGRect(x: 0, y: playerBaseView.frame.maxY, width: view.frame.width, height: view.frame.height - playerBaseView.frame.height))
         view.addSubview(descriptionBaseView)
         
         descriptionView = VideoDetailDescriptionView()
@@ -231,11 +237,11 @@ class VideoDetailViewController: UIViewController {
                                        isDestinationValueGreaterThanInitialValue: false)
 
         let currentPoint = CGPoint(x: (currentMinX - (currentWidth / 2)), y: (currentMinY - (currentHeight / 2)))
-        playerView.center = currentPoint
+        playerBaseView.center = currentPoint
         
         // TODO: absで正の値に戻しているが、なぜ負の値になっているのか調査＆直したい
         let currentSize = CGSize(width: abs(currentWidth), height: abs(currentHeight))
-        playerView.bounds.size = currentSize
+        playerBaseView.bounds.size = currentSize
     }
     
     private func currentValue(

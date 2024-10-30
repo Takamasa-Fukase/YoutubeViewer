@@ -28,15 +28,15 @@ class VideoDetailWindow: UIWindow {
             return view
         case .small:
             print("view: \(view)")
-            // 最小化状態ではVideoImageView自体もしくはそのsubviewsだけタッチを有効にする
-//            if view == videoDetailVC.playerView ||
-//                videoDetailVC.playerView.subviews.contains(view) {
+            // 最小化状態ではplayerBaseView自体もしくはそのsubviewsだけタッチを有効にする
+            if view == videoDetailVC.playerBaseView ||
+                videoDetailVC.playerBaseView.subviews.contains(view) {
                 print("return view")
                 return view
-//            }else {
-//                print("return nil")
-//                return nil
-//            }
+            }else {
+                print("return nil")
+                return nil
+            }
         }
     }
     

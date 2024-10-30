@@ -16,6 +16,7 @@ enum VideoDetailScreenMode {
 }
 
 class VideoDetailViewController: UIViewController {
+    var videoImageView: UIImageView!
     var screenMode: VideoDetailScreenMode = .fullScreen {
         didSet {
             if screenMode == .fullScreen {
@@ -25,8 +26,8 @@ class VideoDetailViewController: UIViewController {
             }
         }
     }
-    var videoImageView: UIImageView!
-    var descriptionViewContentView: UIView!
+    
+    private var descriptionViewContentView: UIView!
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
     private var isShownModalPresentationAnimation = false
@@ -64,6 +65,40 @@ class VideoDetailViewController: UIViewController {
         if !isShownModalPresentationAnimation {
             isShownModalPresentationAnimation = true
             showModalPresentationAnimation()
+        }
+    }
+    
+    private func setupImageView() {
+        initialImageViewFrame = CGRect(
+            x: 0,
+            y: SceneDelegate.shared?.mainWindow?.safeAreaInsets.top ?? 0,
+            width: view.frame.width,
+            height: view.frame.width * 0.5625
+        )
+        videoImageView = UIImageView(frame: initialImageViewFrame)
+        videoImageView.isUserInteractionEnabled = true
+        videoImageView.contentMode = .scaleAspectFill
+        videoImageView.clipsToBounds = true
+        videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
+        videoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
+        view.addSubview(videoImageView)
+    }
+    
+    private func setupDescriptionView() {
+        let hc = UIHostingController(rootView: VideoDetailDescriptionView())
+        descriptionViewContentView = hc.view
+        descriptionViewContentView.backgroundColor = .clear
+        descriptionViewContentView.frame = CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height)
+        view.addSubview(descriptionViewContentView)
+    }
+    
+    private func showModalPresentationAnimation() {
+        guard screenMode == .fullScreen else { return }
+        view.frame.origin.y = UIApplication.shared.screen.bounds.height
+        view.isHidden = false
+        
+        UIView.animate(withDuration: 0.2) {
+            self.view.frame.origin.y = 0.0
         }
     }
     
@@ -107,30 +142,6 @@ class VideoDetailViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    private func setupImageView() {
-        initialImageViewFrame = CGRect(
-            x: 0,
-            y: SceneDelegate.shared?.mainWindow?.safeAreaInsets.top ?? 0,
-            width: view.frame.width,
-            height: view.frame.width * 0.5625
-        )
-        videoImageView = UIImageView(frame: initialImageViewFrame)
-        videoImageView.isUserInteractionEnabled = true
-        videoImageView.contentMode = .scaleAspectFill
-        videoImageView.clipsToBounds = true
-        videoImageView.kf.setImage(with: URL(string: "https://www.tabemaro.jp/wp-content/uploads/2023/06/27910319_m-1700x1133.jpg"))
-        videoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageViewTap)))
-        view.addSubview(videoImageView)
-    }
-    
-    private func setupDescriptionView() {
-        let hc = UIHostingController(rootView: VideoDetailDescriptionView())
-        descriptionViewContentView = hc.view
-        descriptionViewContentView.backgroundColor = .clear
-        descriptionViewContentView.frame = CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height)
-        view.addSubview(descriptionViewContentView)
     }
     
     @objc private func handleImageViewTap() {
@@ -188,16 +199,6 @@ class VideoDetailViewController: UIViewController {
             return (progress * abs(initialValue - destinationValue)) + initialValue
         }else {
             return (progress * abs(initialValue - destinationValue)) - initialValue
-        }
-    }
-    
-    private func showModalPresentationAnimation() {
-        guard screenMode == .fullScreen else { return }
-        view.frame.origin.y = UIApplication.shared.screen.bounds.height
-        view.isHidden = false
-        
-        UIView.animate(withDuration: 0.2) {
-            self.view.frame.origin.y = 0.0
         }
     }
 }

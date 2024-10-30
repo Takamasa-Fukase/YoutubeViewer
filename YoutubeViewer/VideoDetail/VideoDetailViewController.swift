@@ -227,7 +227,7 @@ class VideoDetailViewController: UIViewController {
 
         let currentPoint = CGPoint(x: (currentMinX - (currentWidth / 2)), y: (currentMinY - (currentHeight / 2)))
         videoImageBaseView.center = currentPoint
-        let currentSize = CGSize(width: currentWidth, height: currentHeight)
+        let currentSize = CGSize(width: abs(currentWidth), height: abs(currentHeight))
 //        videoImageBaseView.contentMode = .redraw
         videoImageBaseView.bounds.size = currentSize
     }

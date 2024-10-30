@@ -136,7 +136,13 @@ class VideoDetailViewController: UIViewController {
         } completion: { _ in
             self.screenMode = .fullScreen
             self.playerView.load(withVideoId: "O5518678w8U",
-                            playerVars: ["playsinline": 1])
+                            playerVars: [
+                                "playsinline": 1,
+                                "modestbranding": 1,
+                                "iv_load_policy": 3,
+                                "fs": 0,
+                                "controls": 0
+                            ])
         }
     }
     

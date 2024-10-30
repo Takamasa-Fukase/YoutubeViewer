@@ -57,8 +57,7 @@ class VideoDetailViewController: UIViewController {
     }
     
     func showContentRestorationAnimation() {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-        let screenHeight = windowScene.screen.bounds.height
+        let screenHeight = UIApplication.shared.screen.bounds.height
         contentBaseView.frame.origin.y = screenHeight * 0.3
         
         UIView.animate(withDuration: 0.2) {
@@ -126,18 +125,16 @@ class VideoDetailViewController: UIViewController {
         // 0.0 ~ 1.0の範囲で返却
         //  - 0.0: フルスクリーン状態
         //  - 1.0: 完全にdismissされた状態
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0.0 }
         let viewPositionY = contentBaseView.frame.origin.y
-        let screenHeight = windowScene.screen.bounds.height
+        let screenHeight = UIApplication.shared.screen.bounds.height
         let progress = min(viewPositionY / screenHeight, 1.0)
         return CGFloat(progress)
     }
     
     private func setupImageView() {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         initialImageViewFrame = CGRect(
             x: 0,
-            y: windowScene.keyWindow?.safeAreaInsets.top ?? 0,
+            y: SceneDelegate.shared?.mainWindow?.safeAreaInsets.top ?? 0,
             width: view.frame.width,
             height: view.frame.width * 0.5625
         )
@@ -163,15 +160,13 @@ class VideoDetailViewController: UIViewController {
     }
 
     func updateImageViewFrame(dismissalProgress: CGFloat, tabBarHeight: CGFloat) {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-
-        let destinationWidth = windowScene.screen.bounds.width * 0.51
+        let destinationWidth = UIApplication.shared.screen.bounds.width * 0.51
         // 高さは16:9の割合の計算で求める(width * 0.5625)
         let destinationHeight = destinationWidth * 0.5625
         // 画面の横幅から(余白, 縮小後のImageViewの横幅)を差し引く
-        let destinationMinX = windowScene.screen.bounds.width - 8 - destinationWidth
+        let destinationMinX = UIApplication.shared.screen.bounds.width - 8 - destinationWidth
         // 画面の高さから(TabBarの高さ, 余白, 縮小後のImageViewの高さ)を差し引く
-        let destinationMinY = windowScene.screen.bounds.height - tabBarHeight - 8 - destinationHeight
+        let destinationMinY = UIApplication.shared.screen.bounds.height - tabBarHeight - 8 - destinationHeight
 
         let currentMinX = currentValue(initialValue: initialImageViewFrame.minX,
                                        destinationValue: destinationMinX,

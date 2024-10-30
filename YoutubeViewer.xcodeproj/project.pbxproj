@@ -36,6 +36,7 @@
 		BC25CC5A2CD12A9F00951696 /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC592CD12A9F00951696 /* Storyboard+Extension.swift */; };
 		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
+		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
 		BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCB293692CCEC51300A18ED0 /* Kingfisher */; };
 		BCE929C62CD1C4BF000985F7 /* VideoDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE929C52CD1C4BF000985F7 /* VideoDetailDescriptionView.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		BC25CC572CD12A8600951696 /* UIView+Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		BC25CC592CD12A9F00951696 /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
+		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BCE929C52CD1C4BF000985F7 /* VideoDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +185,7 @@
 				BC25CC572CD12A8600951696 /* UIView+Constraint.swift */,
 				BC25CC592CD12A9F00951696 /* Storyboard+Extension.swift */,
 				BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */,
+				BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */,
 				BC05582D2CCB94A50002ABDD /* SceneDelegate.swift in Sources */,
 				BC0558722CCEBF7C0002ABDD /* HomeVideoListCell.swift in Sources */,
+				BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */,
 				BC25CC452CD0A8DC00951696 /* MyPageHorizontalListCell.swift in Sources */,
 				BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */,
 				BC25CC582CD12A8600951696 /* UIView+Constraint.swift in Sources */,

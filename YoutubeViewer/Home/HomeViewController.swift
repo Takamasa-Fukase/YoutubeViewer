@@ -49,7 +49,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        SceneDelegate.shared.showVideoDetailWindow()
+        SceneDelegate.shared?.showVideoDetailWindow()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

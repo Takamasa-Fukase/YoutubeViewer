@@ -28,6 +28,7 @@ class VideoDetailViewController: UIViewController {
     }
     
     private var descriptionViewContentView: UIView!
+    private var backgroundMaskingView: UIView!
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
     private var isShownModalPresentationAnimation = false
@@ -45,6 +46,13 @@ class VideoDetailViewController: UIViewController {
             
             // description部分のViewのY座標をImageViewの下端に合わせて更新
             descriptionViewContentView.frame.origin.y = videoImageView.frame.maxY
+
+            // 背面を暗くしているViewの透明度を更新（最小化の進行度合いの0.0 ~ 0.3の範囲を0.5 ~ 0.0の割合に変換）
+            if minimizationProgress >= 0.3 {
+                backgroundMaskingView.alpha = (1 - minimizationProgress) * 0.715
+            }else {
+                backgroundMaskingView.alpha = 0.5
+            }
         }
     }
 
@@ -56,6 +64,7 @@ class VideoDetailViewController: UIViewController {
         
         setupImageView()
         setupDescriptionView()
+        setupBackgroundMaskingView()
 
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
     }
@@ -89,6 +98,14 @@ class VideoDetailViewController: UIViewController {
         descriptionViewContentView = hc.view
         descriptionViewContentView.frame = CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height)
         view.addSubview(descriptionViewContentView)
+    }
+    
+    private func setupBackgroundMaskingView() {
+        backgroundMaskingView = UIView(frame: view.frame)
+        backgroundMaskingView.backgroundColor = .black
+        backgroundMaskingView.alpha = 0.5
+        view.addSubview(backgroundMaskingView)
+        view.sendSubviewToBack(backgroundMaskingView)
     }
     
     private func showModalPresentationAnimation() {

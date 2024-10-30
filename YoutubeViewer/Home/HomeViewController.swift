@@ -9,7 +9,6 @@ import UIKit
 import Kingfisher
 
 class HomeViewController: UIViewController {
-    weak var videoDetailDelegate: VideoDetailDelegate?
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,16 +19,6 @@ class HomeViewController: UIViewController {
 
         setNaviBarRightButton(systemImageName: "magnifyingglass") {
             
-        }
-    }
-    
-    func restoreMiniPlayerToFullScreen() {
-        let vc = UIStoryboard(name: VideoDetailViewController.className, bundle: nil).instantiateInitialViewController() as! VideoDetailViewController
-        vc.modalPresentationStyle = .overFullScreen
-        vc.videoDetailDelegate = self.videoDetailDelegate
-        vc.isContentsHidden = true
-        self.present(vc, animated: false) {
-            vc.showContentRestorationAnimation()
         }
     }
     

@@ -8,11 +8,9 @@
 import UIKit
 
 class VideoDetailWindow: UIWindow {
-    init(windowScene: UIWindowScene, tabBarHeight: CGFloat) {
+    override init(windowScene: UIWindowScene) {
         super.init(windowScene: windowScene)
-        let videoDetailVC = VideoDetailViewController()
-        videoDetailVC.tabBarHeight = tabBarHeight
-        rootViewController = videoDetailVC
+        rootViewController = VideoDetailViewController()
         // TODO: これだとアラートが見えないかもなので、normal+1とかにするか？
         windowLevel = .alert + 1
         makeKeyAndVisible()

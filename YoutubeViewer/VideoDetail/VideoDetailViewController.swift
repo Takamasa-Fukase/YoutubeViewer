@@ -25,7 +25,6 @@ class VideoDetailViewController: UIViewController {
             }
         }
     }
-    var tabBarHeight: CGFloat = 0.0
     var videoImageView: UIImageView!
     var descriptionAreaBaseView: UIView!
     private var initialDragPositionY: CGFloat = 0.0
@@ -44,7 +43,7 @@ class VideoDetailViewController: UIViewController {
             descriptionAreaBaseView.frame.origin.y = (minimizationProgress * UIApplication.shared.screen.bounds.height) + initialImageViewFrame.maxY
             
             // ImageViewのサイズと座標を更新
-            updateImageViewFrame(dismissalProgress: minimizationProgress, tabBarHeight: tabBarHeight)
+            updateImageViewSizeAndPosition(minimizationProgress: minimizationProgress)
         }
     }
 
@@ -148,30 +147,31 @@ class VideoDetailViewController: UIViewController {
         }
     }
 
-    func updateImageViewFrame(dismissalProgress: CGFloat, tabBarHeight: CGFloat) {
+    func updateImageViewSizeAndPosition(minimizationProgress: CGFloat) {
         let destinationWidth = UIApplication.shared.screen.bounds.width * 0.51
         // 高さは16:9の割合の計算で求める(width * 0.5625)
         let destinationHeight = destinationWidth * 0.5625
         // 画面の横幅から(余白, 縮小後のImageViewの横幅)を差し引く
         let destinationMinX = UIApplication.shared.screen.bounds.width - 8 - destinationWidth
+        let tabBarHeight = (SceneDelegate.shared?.mainWindow?.rootViewController as? TabBarController)?.tabBar.frame.height ?? 0.0
         // 画面の高さから(TabBarの高さ, 余白, 縮小後のImageViewの高さ)を差し引く
         let destinationMinY = UIApplication.shared.screen.bounds.height - tabBarHeight - 8 - destinationHeight
 
         let currentMinX = currentValue(initialValue: initialImageViewFrame.minX,
                                        destinationValue: destinationMinX,
-                                       progress: dismissalProgress,
+                                       progress: minimizationProgress,
                                        isDestinationValueGreaterThanInitialValue: true)
         let currentMinY = currentValue(initialValue: initialImageViewFrame.minY,
                                        destinationValue: destinationMinY,
-                                       progress: dismissalProgress,
+                                       progress: minimizationProgress,
                                        isDestinationValueGreaterThanInitialValue: true)
         let currentWidth = currentValue(initialValue: initialImageViewFrame.width,
                                        destinationValue: destinationWidth,
-                                       progress: dismissalProgress,
+                                       progress: minimizationProgress,
                                        isDestinationValueGreaterThanInitialValue: false)
         let currentHeight = currentValue(initialValue: initialImageViewFrame.height,
                                        destinationValue: destinationHeight,
-                                       progress: dismissalProgress,
+                                       progress: minimizationProgress,
                                        isDestinationValueGreaterThanInitialValue: false)
 
         let currentPoint = CGPoint(x: (currentMinX - (currentWidth / 2)), y: (currentMinY - (currentHeight / 2)))

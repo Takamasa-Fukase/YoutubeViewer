@@ -25,8 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             videoDetailWindow = nil
         }
         guard let windowScene = UIApplication.shared.windowScene else { return }
-        guard let tabBarController = mainWindow?.rootViewController as? TabBarController else { return }
-        videoDetailWindow = VideoDetailWindow(windowScene: windowScene,
-                                              tabBarHeight: tabBarController.tabBar.frame.height)
+        videoDetailWindow = VideoDetailWindow(windowScene: windowScene)
     }
 }

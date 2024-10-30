@@ -27,8 +27,9 @@ class VideoDetailWindow: UIWindow {
         case .fullScreen, .changing:
             return view
         case .small:
-            // ImageView関連のsubviewsだけタッチを有効にする
-            if videoDetailVC.videoImageBaseView.subviews.contains(view) {
+            // 最小化状態ではVideoImageView自体もしくはそのsubviewsだけタッチを有効にする
+            if view == videoDetailVC.videoImageView ||
+                videoDetailVC.videoImageView.subviews.contains(view) {
                 return view
             }else {
                 return nil

@@ -22,26 +22,42 @@ contact@tarosac.com
 
 #見るだけで頭の中がグローバル化
 """
-    var body: some View {
-        VStack(spacing: 0) {
+//    var body: some View {
+//        VStack(spacing: 0) {
 //            Color(.clear)
 //                .frame(width: UIScreen.main.bounds.width,
 //                       height: UIScreen.main.bounds.width * 0.5625)
+//            Spacer()
+//                .frame(height: 12)
+//            VStack(spacing: 0) {
+//                Text(title)
+//                    .font(Font.system(size: 22, weight: .bold))
+//                Spacer()
+//                    .frame(height: 16)
+//                Text(description)
+//                    .font(Font.system(size: 16))
+//                Spacer()
+//            }
+//            .padding([.leading, .trailing], 16)
+//            .background(.background)
+//        }
+//        .background(.clear)
+//    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
             Spacer()
                 .frame(height: 12)
-            VStack(spacing: 0) {
-                Text(title)
-                    .font(Font.system(size: 22, weight: .bold))
-                Spacer()
-                    .frame(height: 16)
-                Text(description)
-                    .font(Font.system(size: 16))
-                Spacer()
-            }
-            .padding([.leading, .trailing], 16)
-            .background(.background)
+            Text(title)
+                .font(Font.system(size: 22, weight: .bold))
+            Spacer()
+                .frame(height: 16)
+            Text(description)
+                .font(Font.system(size: 16))
+            Spacer()
         }
-        .background(.gray)
+        .padding([.leading, .trailing], 16)
+        .background(.background)
     }
 }
 

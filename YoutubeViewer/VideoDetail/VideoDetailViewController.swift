@@ -93,7 +93,7 @@ class VideoDetailViewController: UIViewController {
             height: view.frame.width * 0.5625
         )
         playerBaseView = UIView(frame: initialPlayerBaseViewFrame)
-        playerBaseView.backgroundColor = .black
+        playerBaseView.backgroundColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1)
         playerBaseView.clipsToBounds = true
         playerBaseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePlayerViewTap)))
         view.addSubview(playerBaseView)

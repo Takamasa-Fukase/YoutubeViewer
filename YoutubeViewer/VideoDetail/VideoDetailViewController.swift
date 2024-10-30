@@ -26,7 +26,7 @@ class VideoDetailViewController: UIViewController {
         }
     }
     var videoImageView: UIImageView!
-    var descriptionAreaBaseView: UIView!
+    var descriptionViewContentView: UIView!
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
     private var isShownModalPresentationAnimation = false
@@ -37,10 +37,10 @@ class VideoDetailViewController: UIViewController {
     private var minimizationProgress: CGFloat = 0.0 {
         didSet {
             // description部分のViewの透明度を更新（最小化の進行度合いの0.0 ~ 0.3の範囲を1.0 ~ 0.0の割合に変換）
-            descriptionAreaBaseView.alpha = 1.0 - (minimizationProgress * 3.33)
+            descriptionViewContentView.alpha = 1.0 - (minimizationProgress * 3.33)
             
             // description部分のViewのY座標を更新
-            descriptionAreaBaseView.frame.origin.y = (minimizationProgress * UIApplication.shared.screen.bounds.height) + initialImageViewFrame.maxY
+            descriptionViewContentView.frame.origin.y = (minimizationProgress * UIApplication.shared.screen.bounds.height) + initialImageViewFrame.maxY
             
             // ImageViewのサイズと座標を更新
             updateImageViewSizeAndPosition(minimizationProgress: minimizationProgress)
@@ -126,14 +126,11 @@ class VideoDetailViewController: UIViewController {
     }
     
     private func setupDescriptionView() {
-        descriptionAreaBaseView = UIView(frame: CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height))
-        descriptionAreaBaseView.backgroundColor = .systemBackground
-        view.addSubview(descriptionAreaBaseView)
-        
         let hc = UIHostingController(rootView: VideoDetailDescriptionView())
-        hc.view.backgroundColor = .clear
-        descriptionAreaBaseView.addSubview(hc.view)
-        descriptionAreaBaseView.addConstraints(for: hc.view)
+        descriptionViewContentView = hc.view
+        descriptionViewContentView.backgroundColor = .clear
+        descriptionViewContentView.frame = CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height)
+        view.addSubview(descriptionViewContentView)
     }
     
     @objc private func handleImageViewTap() {

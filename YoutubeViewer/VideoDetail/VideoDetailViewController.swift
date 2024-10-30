@@ -33,7 +33,8 @@ class VideoDetailViewController: UIViewController {
     }
     
     private var imageViewCloseButton: UIButton!
-    private var descriptionViewContentView: UIView!
+    private var descriptionBaseView: UIView!
+    private var descriptionView: VideoDetailDescriptionView!
     private var backgroundMaskingView: UIView!
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
@@ -48,10 +49,10 @@ class VideoDetailViewController: UIViewController {
             updateImageViewSizeAndPosition(minimizationProgress: minimizationProgress)
             
             // description部分のViewの透明度を更新（最小化の進行度合いの0.0 ~ 0.3の範囲を1.0 ~ 0.0の割合に変換）
-            descriptionViewContentView.alpha = 1.0 - (minimizationProgress * 3.33)
+            descriptionBaseView.alpha = 1.0 - (minimizationProgress * 3.33)
             
             // description部分のViewのY座標をImageViewの下端に合わせて更新
-            descriptionViewContentView.frame.origin.y = videoImageView.frame.maxY
+            descriptionBaseView.frame.origin.y = videoImageView.frame.maxY
 
             // 背面を暗くしているViewの透明度を更新（最小化の進行度合いの0.0 ~ 0.3の範囲を0.5 ~ 0.0の割合に変換）
             if minimizationProgress >= 0.3 {
@@ -107,10 +108,13 @@ class VideoDetailViewController: UIViewController {
     }
     
     private func setupDescriptionView() {
-        let hc = UIHostingController(rootView: VideoDetailDescriptionView())
-        descriptionViewContentView = hc.view
-        descriptionViewContentView.frame = CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height)
-        view.addSubview(descriptionViewContentView)
+        descriptionBaseView = UIView(frame: CGRect(x: 0, y: videoImageView.frame.maxY, width: view.frame.width, height: view.frame.height - videoImageView.frame.height))
+        view.addSubview(descriptionBaseView)
+        
+        descriptionView = VideoDetailDescriptionView()
+        descriptionBaseView.addSubview(descriptionView)
+        descriptionBaseView.addConstraints(for: descriptionView)
+
     }
     
     private func setupBackgroundMaskingView() {
@@ -219,6 +223,8 @@ class VideoDetailViewController: UIViewController {
 
         let currentPoint = CGPoint(x: (currentMinX - (currentWidth / 2)), y: (currentMinY - (currentHeight / 2)))
         videoImageView.center = currentPoint
+        
+        // TODO: absで正の値に戻しているが、なぜ負の値になっているのか調査＆直したい
         let currentSize = CGSize(width: abs(currentWidth), height: abs(currentHeight))
         videoImageView.bounds.size = currentSize
     }

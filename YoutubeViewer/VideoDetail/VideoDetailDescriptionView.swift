@@ -5,11 +5,30 @@
 //  Created by ウルトラ深瀬 on 30/10/24.
 //
 
-import SwiftUI
+import UIKit
 
-struct VideoDetailDescriptionView: View {
-    let title = "【やる気が出ない人必見】モチベーションが上がらない｜辞めてしまいたいを変える動画"
-    let description =  """
+class VideoDetailDescriptionView: UIView {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configure()
+    }
+    
+    private func configure() {
+        loadNib()
+        setupUI()
+    }
+
+    private func setupUI() {
+        titleLabel.text = "【やる気が出ない人必見】モチベーションが上がらない｜辞めてしまいたいを変える動画"
+        descriptionLabel.text = """
 【タロサックってこんな人】
 1990年生まれ　新潟県出身
 18歳の時、Be動詞すら何なのかも知らない状態で偏差値38の学部を2つ受験し両方とも滑り一時露頭に迷う。
@@ -22,24 +41,5 @@ contact@tarosac.com
 
 #見るだけで頭の中がグローバル化
 """
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
-                .frame(height: 12)
-            Text(title)
-                .font(Font.system(size: 22, weight: .bold))
-            Spacer()
-                .frame(height: 16)
-            Text(description)
-                .font(Font.system(size: 16))
-            Spacer()
-        }
-        .padding([.leading, .trailing], 16)
-        .background(.background)
     }
-}
-
-#Preview {
-    VideoDetailDescriptionView()
 }

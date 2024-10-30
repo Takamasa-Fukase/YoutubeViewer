@@ -31,9 +31,13 @@ class VideoDetailViewController: UIViewController {
     var descriptionAreaBaseView: UIView!
     private var initialDragPositionY: CGFloat = 0.0
     private var initialImageViewFrame: CGRect!
+    private var isShownModalPresentationAnimation = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 初回表示時にはモーダル出現風アニメーションを行うため、viewがちらつかない様に予め非表示にしておく
+        view.isHidden = true
         
         setupImageView()
         contentBaseView = UIView(frame: view.frame)
@@ -48,24 +52,12 @@ class VideoDetailViewController: UIViewController {
 
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture)))
     }
-
-    private func setDescriptionView() {
-        let hc = UIHostingController(rootView: VideoDetailDescriptionView())
-        hc.view.backgroundColor = .clear
-        descriptionAreaBaseView.addSubview(hc.view)
-        descriptionAreaBaseView.addConstraints(for: hc.view)
-    }
     
-    func showContentRestorationAnimation() {
-        let screenHeight = UIApplication.shared.screen.bounds.height
-        contentBaseView.frame.origin.y = screenHeight * 0.3
-        
-        UIView.animate(withDuration: 0.2) {
-            self.contentBaseView.frame.origin.y = 0.0
-            
-            // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
-            let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
-            self.contentBaseView.alpha = CGFloat(viewAlpha)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isShownModalPresentationAnimation {
+            isShownModalPresentationAnimation = true
+            showModalPresentationAnimation()
         }
     }
     
@@ -119,6 +111,13 @@ class VideoDetailViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func setDescriptionView() {
+        let hc = UIHostingController(rootView: VideoDetailDescriptionView())
+        hc.view.backgroundColor = .clear
+        descriptionAreaBaseView.addSubview(hc.view)
+        descriptionAreaBaseView.addConstraints(for: hc.view)
     }
     
     private func dismissalProgress() -> CGFloat {
@@ -202,6 +201,29 @@ class VideoDetailViewController: UIViewController {
             return (progress * abs(initialValue - destinationValue)) + initialValue
         }else {
             return (progress * abs(initialValue - destinationValue)) - initialValue
+        }
+    }
+    
+    private func showModalPresentationAnimation() {
+        guard screenMode == .fullScreen else { return }
+        view.frame.origin.y = UIApplication.shared.screen.bounds.height
+        view.isHidden = false
+        
+        UIView.animate(withDuration: 0.2) {
+            self.view.frame.origin.y = 0.0
+        }
+    }
+    
+    private func showContentRestorationAnimation() {
+        guard screenMode == .small else { return }
+        contentBaseView.frame.origin.y = UIApplication.shared.screen.bounds.height * 0.3
+        
+        UIView.animate(withDuration: 0.2) {
+            self.contentBaseView.frame.origin.y = 0.0
+            
+            // Viewの透明度を変更（dismissの進行度合いの0.0~0.3の範囲を1.0~0.0の割合に変換）
+            let viewAlpha = 1.0 - (self.dismissalProgress() * 3.33)
+            self.contentBaseView.alpha = CGFloat(viewAlpha)
         }
     }
 }

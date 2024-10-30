@@ -27,7 +27,7 @@ class VideoDetailWindow: UIWindow {
         case .fullScreen, .changing:
             return view
         case .small:
-            if view == videoDetailVC.videoImageView {
+            if view == videoDetailVC.videoImageBaseView {
                 return view
             } else {
                 return nil

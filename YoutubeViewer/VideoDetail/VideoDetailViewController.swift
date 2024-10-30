@@ -37,14 +37,14 @@ class VideoDetailViewController: UIViewController {
     //  - 1.0: 最小化された状態
     private var minimizationProgress: CGFloat = 0.0 {
         didSet {
+            // ImageViewのサイズと座標を更新
+            updateImageViewSizeAndPosition(minimizationProgress: minimizationProgress)
+            
             // description部分のViewの透明度を更新（最小化の進行度合いの0.0 ~ 0.3の範囲を1.0 ~ 0.0の割合に変換）
             descriptionViewContentView.alpha = 1.0 - (minimizationProgress * 3.33)
             
-            // description部分のViewのY座標を更新
-            descriptionViewContentView.frame.origin.y = (minimizationProgress * UIApplication.shared.screen.bounds.height) + initialImageViewFrame.maxY
-            
-            // ImageViewのサイズと座標を更新
-            updateImageViewSizeAndPosition(minimizationProgress: minimizationProgress)
+            // description部分のViewのY座標をImageViewの下端に合わせて更新
+            descriptionViewContentView.frame.origin.y = videoImageView.frame.maxY
         }
     }
 

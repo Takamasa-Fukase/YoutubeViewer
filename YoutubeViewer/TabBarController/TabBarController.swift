@@ -10,22 +10,11 @@ import UIKit
 class TabBarController: UITabBarController {
     private var homeVC: HomeViewController!
     private var myPageVC: MyPageViewController!
-    private var videoDetailWindow: VideoDetailWindow?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setVCs()
-    }
-    
-    func showVideoDetailWindow() {
-        // 既に存在していたら一度閉じる
-        if videoDetailWindow != nil {
-            videoDetailWindow?.close()
-            videoDetailWindow = nil
-        }
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-        videoDetailWindow = VideoDetailWindow(windowScene: windowScene, tabBarHeight: tabBar.frame.height)
     }
     
     private func setVCs() {

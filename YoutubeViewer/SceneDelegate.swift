@@ -8,34 +8,25 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
-    var window: UIWindow?
+    var mainWindow: UIWindow?
+    var videoDetailWindow: VideoDetailWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = TabBarController()
-        window?.makeKeyAndVisible()
+        mainWindow = UIWindow(windowScene: windowScene)
+        mainWindow?.rootViewController = TabBarController()
+        mainWindow?.makeKeyAndVisible()
     }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-        
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        
+    
+    func showVideoDetailWindow() {
+        // 既に存在していたら一度閉じる
+        if videoDetailWindow != nil {
+            videoDetailWindow?.close()
+            videoDetailWindow = nil
+        }
+//        guard let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene else { return }
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        guard let tabBarController = mainWindow?.rootViewController as? TabBarController else { return }
+        videoDetailWindow = VideoDetailWindow(windowScene: windowScene, tabBarHeight: tabBarController.tabBar.frame.height)
     }
 }
-

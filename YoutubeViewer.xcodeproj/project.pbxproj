@@ -35,6 +35,7 @@
 		BC25CC582CD12A8600951696 /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC572CD12A8600951696 /* UIView+Constraint.swift */; };
 		BC25CC5A2CD12A9F00951696 /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC592CD12A9F00951696 /* Storyboard+Extension.swift */; };
 		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
+		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCB293692CCEC51300A18ED0 /* Kingfisher */; };
 		BCE929C62CD1C4BF000985F7 /* VideoDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE929C52CD1C4BF000985F7 /* VideoDetailDescriptionView.swift */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		BC25CC552CD12A7400951696 /* UIView+NibLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoading.swift"; sourceTree = "<group>"; };
 		BC25CC572CD12A8600951696 /* UIView+Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		BC25CC592CD12A9F00951696 /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
+		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BCE929C52CD1C4BF000985F7 /* VideoDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 				BC25CC552CD12A7400951696 /* UIView+NibLoading.swift */,
 				BC25CC572CD12A8600951696 /* UIView+Constraint.swift */,
 				BC25CC592CD12A9F00951696 /* Storyboard+Extension.swift */,
+				BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC05585F2CCDD8A50002ABDD /* HomeViewController.swift in Sources */,
+				BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */,
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
 				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */,

@@ -33,7 +33,7 @@ class VideoDetailViewController: UIViewController {
         }
     }
     
-    private var playerView: WKYTPlayerView!
+    private var playerView: WKYTPlayerView?
     private var playerCloseButton: UIButton!
     private var descriptionBaseView: UIView!
     private var backgroundMaskingView: UIView!
@@ -99,6 +99,7 @@ class VideoDetailViewController: UIViewController {
         view.addSubview(playerBaseView)
         
         playerView = WKYTPlayerView(frame: playerBaseView.frame)
+        guard let playerView = playerView else { return }
         playerView.delegate = self
         // タッチを透過させて下のplayerBaseViewを反応させる
         playerView.isUserInteractionEnabled = false
@@ -111,6 +112,17 @@ class VideoDetailViewController: UIViewController {
         playerCloseButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         playerCloseButton.addTarget(self, action: #selector(handlePlayerCloseButtonTap), for: .touchUpInside)
         playerBaseView.addSubview(playerCloseButton)
+    }
+    
+    private func loadVideo() {
+        self.playerView?.load(withVideoId: "O5518678w8U",
+                              playerVars: [
+                                "playsinline": 1,
+                                "modestbranding": 1,
+                                "iv_load_policy": 3,
+                                "fs": 0,
+                                "controls": 0
+                              ])
     }
     
     private func setupDescriptionView() {
@@ -139,14 +151,7 @@ class VideoDetailViewController: UIViewController {
             self.view.frame.origin.y = 0.0
         } completion: { _ in
             self.screenMode = .fullScreen
-            self.playerView.load(withVideoId: "O5518678w8U",
-                            playerVars: [
-                                "playsinline": 1,
-                                "modestbranding": 1,
-                                "iv_load_policy": 3,
-                                "fs": 0,
-                                "controls": 0
-                            ])
+            self.loadVideo()
         }
     }
     
@@ -204,6 +209,9 @@ class VideoDetailViewController: UIViewController {
     }
     
     @objc  private func handlePlayerCloseButtonTap() {
+        playerView?.stopVideo()
+        playerView?.removeFromSuperview()
+        playerView = nil
         SceneDelegate.shared?.videoDetailWindow?.close()
     }
 

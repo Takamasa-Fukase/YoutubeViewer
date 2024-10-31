@@ -25,9 +25,6 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("viewHeight: \(view.frame.height)")
-        print("tableViewHeight: \(tableView.frame.height)")
-
         setupSignInView()
         setupTableView()
         

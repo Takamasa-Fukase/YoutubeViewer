@@ -23,6 +23,7 @@
 		BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */; };
 		BC0558722CCEBF7C0002ABDD /* HomeVideoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0558702CCEBF7C0002ABDD /* HomeVideoListCell.swift */; };
 		BC0558732CCEBF7C0002ABDD /* HomeVideoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */; };
+		BC06C1AE2CD33849000B8E61 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06C1AD2CD33849000B8E61 /* UIColor+Extension.swift */; };
 		BC25CC402CD0A5C900951696 /* MyPageProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC25CC3F2CD0A5C900951696 /* MyPageProfileCell.xib */; };
 		BC25CC412CD0A5C900951696 /* MyPageProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC25CC3E2CD0A5C900951696 /* MyPageProfileCell.swift */; };
 		BC25CC442CD0A8DC00951696 /* MyPageHorizontalListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC25CC432CD0A8DC00951696 /* MyPageHorizontalListCell.xib */; };
@@ -41,8 +42,8 @@
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
 		BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */; };
 		BC7B68C22CD31DF200D5A203 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68C12CD31DF200D5A203 /* GoogleSignIn */; };
-		BC7B68C52CD3252E00D5A203 /* MyPageSignInCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC7B68C42CD3252E00D5A203 /* MyPageSignInCell.xib */; };
-		BC7B68C62CD3252E00D5A203 /* MyPageSignInCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B68C32CD3252E00D5A203 /* MyPageSignInCell.swift */; };
+		BC7B68C52CD3252E00D5A203 /* MyPageSignInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC7B68C42CD3252E00D5A203 /* MyPageSignInView.xib */; };
+		BC7B68C62CD3252E00D5A203 /* MyPageSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */; };
 		BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCB293692CCEC51300A18ED0 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		BC0558682CCEAC0A0002ABDD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		BC0558702CCEBF7C0002ABDD /* HomeVideoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoListCell.swift; sourceTree = "<group>"; };
 		BC0558712CCEBF7C0002ABDD /* HomeVideoListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVideoListCell.xib; sourceTree = "<group>"; };
+		BC06C1AD2CD33849000B8E61 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		BC25CC3E2CD0A5C900951696 /* MyPageProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileCell.swift; sourceTree = "<group>"; };
 		BC25CC3F2CD0A5C900951696 /* MyPageProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageProfileCell.xib; sourceTree = "<group>"; };
 		BC25CC422CD0A8DC00951696 /* MyPageHorizontalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHorizontalListCell.swift; sourceTree = "<group>"; };
@@ -99,8 +101,8 @@
 		BC2665012CD24E9300A489D6 /* VideoDetailDescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailDescriptionView.xib; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
-		BC7B68C32CD3252E00D5A203 /* MyPageSignInCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInCell.swift; sourceTree = "<group>"; };
-		BC7B68C42CD3252E00D5A203 /* MyPageSignInCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageSignInCell.xib; sourceTree = "<group>"; };
+		BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInView.swift; sourceTree = "<group>"; };
+		BC7B68C42CD3252E00D5A203 /* MyPageSignInView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageSignInView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				BC25CC592CD12A9F00951696 /* Storyboard+Extension.swift */,
 				BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */,
 				BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */,
+				BC06C1AD2CD33849000B8E61 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -230,8 +233,8 @@
 				BC25CC432CD0A8DC00951696 /* MyPageHorizontalListCell.xib */,
 				BC25CC462CD0CA4300951696 /* MyPageHorizontalListItemCell.swift */,
 				BC25CC472CD0CA4300951696 /* MyPageHorizontalListItemCell.xib */,
-				BC7B68C32CD3252E00D5A203 /* MyPageSignInCell.swift */,
-				BC7B68C42CD3252E00D5A203 /* MyPageSignInCell.xib */,
+				BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */,
+				BC7B68C42CD3252E00D5A203 /* MyPageSignInView.xib */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -371,7 +374,7 @@
 				BC25CC482CD0CA4300951696 /* MyPageHorizontalListItemCell.xib in Resources */,
 				BC25CC402CD0A5C900951696 /* MyPageProfileCell.xib in Resources */,
 				BC25CC442CD0A8DC00951696 /* MyPageHorizontalListCell.xib in Resources */,
-				BC7B68C52CD3252E00D5A203 /* MyPageSignInCell.xib in Resources */,
+				BC7B68C52CD3252E00D5A203 /* MyPageSignInView.xib in Resources */,
 				BC0558372CCB94A70002ABDD /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,11 +400,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC06C1AE2CD33849000B8E61 /* UIColor+Extension.swift in Sources */,
 				BC05585F2CCDD8A50002ABDD /* HomeViewController.swift in Sources */,
 				BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */,
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
-				BC7B68C62CD3252E00D5A203 /* MyPageSignInCell.swift in Sources */,
+				BC7B68C62CD3252E00D5A203 /* MyPageSignInView.swift in Sources */,
 				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
 				BC25CC562CD12A7400951696 /* UIView+NibLoading.swift in Sources */,

@@ -18,6 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         mainWindow?.makeKeyAndVisible()
     }
     
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        print("SceneDelegate openURLContexts: \(URLContexts)")
+        guard let urlContext = URLContexts.first else {
+            return
+        }
+        let url = urlContext.url
+        if let scheme = url.scheme,
+           scheme == "youtube-viewer" {
+            return
+        }
+    }
+    
     func showVideoDetailWindow() {
         // 既に存在していたら一度閉じる
         if videoDetailWindow != nil {

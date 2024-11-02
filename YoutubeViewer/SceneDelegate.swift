@@ -14,6 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        // ユニバーサルリンク経由でのアプリ起動のハンドリング
+        if let userActivity = connectionOptions.userActivities.first(where: { $0.webpageURL != nil }),
+           userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            guard let tabBarController = mainWindow?.rootViewController as? TabBarController else { return }
+            
+        }
+        
         mainWindow = UIWindow(windowScene: windowScene)
         mainWindow?.rootViewController = TabBarController()
         mainWindow?.makeKeyAndVisible()
@@ -29,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         _ = GIDSignIn.sharedInstance.handle(url)
     }
     
-    // ユニバーサルリンク経由でアプリが開かれた時のハンドリング
+    // ユニバーサルリンク経由でアプリが開かれた時のハンドリング（アプリが既に起動中の場合）
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         print("SceneDelegate scene continue")
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb,

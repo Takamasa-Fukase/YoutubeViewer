@@ -30,6 +30,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        print("SceneDelegate scene continue")
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+           let url = userActivity.webpageURL,
+           let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true) {
+            print("url: \(url), components: \(components)")
+        }
+    }
+    
     func showVideoDetailWindow() {
         // 既に存在していたら一度閉じる
         if videoDetailWindow != nil {

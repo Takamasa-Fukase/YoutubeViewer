@@ -103,6 +103,7 @@
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInView.swift; sourceTree = "<group>"; };
 		BC7B68C42CD3252E00D5A203 /* MyPageSignInView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageSignInView.xib; sourceTree = "<group>"; };
+		BCB5A3EB2CD608AD0003F2BF /* YoutubeViewer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YoutubeViewer.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +158,7 @@
 		BC0558292CCB94A50002ABDD /* YoutubeViewer */ = {
 			isa = PBXGroup;
 			children = (
+				BCB5A3EB2CD608AD0003F2BF /* YoutubeViewer.entitlements */,
 				BC05582A2CCB94A50002ABDD /* AppDelegate.swift */,
 				BC05582C2CCB94A50002ABDD /* SceneDelegate.swift */,
 				BC05586C2CCEB2750002ABDD /* Extensions */,
@@ -592,6 +594,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = YoutubeViewer/YoutubeViewer.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -624,6 +627,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = YoutubeViewer/YoutubeViewer.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

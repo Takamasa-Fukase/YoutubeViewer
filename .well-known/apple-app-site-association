@@ -1,1 +1,17 @@
-
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "37MFDT4LMQ.com.takamasafukase.YoutubeViewerApp"
+        ],
+        "components": [
+          {
+            "/": "/deep-link*",
+            "comment": "Matches any URL with a path that starts with /deep-link*."
+          }
+        ]
+      }
+    ]
+  }
+}

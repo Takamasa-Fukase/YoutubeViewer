@@ -15,16 +15,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        // ユニバーサルリンク経由でのアプリ起動のハンドリング
-        if let userActivity = connectionOptions.userActivities.first(where: { $0.webpageURL != nil }),
-           userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            guard let tabBarController = mainWindow?.rootViewController as? TabBarController else { return }
-            
-        }
-        
         mainWindow = UIWindow(windowScene: windowScene)
         mainWindow?.rootViewController = TabBarController()
         mainWindow?.makeKeyAndVisible()
+        
+        // ユニバーサルリンク経由でのアプリ起動のハンドリング
+        if let userActivity = connectionOptions.userActivities.first(where: { $0.webpageURL != nil }),
+           userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+           let url = userActivity.webpageURL,
+           let components = URLComponents(url: url, resolvingAgainstBaseURL: true) {
+            guard let tabBarController = mainWindow?.rootViewController as? TabBarController else { return }
+            guard let index = handleDeepLink(urlComponents: components) else {
+                tabBarController.setTitle("willConnectTo経由 no index")
+                return
+            }
+            tabBarController.setTitle("willConnectTo経由 \(index)")
+            tabBarController.selectTab(index: index)
+        }
     }
     
     // カスタムURLスキーム経由でアプリが開かれた時のハンドリング
@@ -42,8 +49,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("SceneDelegate scene continue")
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
            let url = userActivity.webpageURL,
-           let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true) {
-            print("url: \(url), components: \(components)")
+           let components = URLComponents(url: url, resolvingAgainstBaseURL: true) {
+            print("url: \(url)")
+            
+            guard let tabBarController = mainWindow?.rootViewController as? TabBarController else { return }
+            guard let index = handleDeepLink(urlComponents: components) else {
+                tabBarController.setTitle("continue経由 no index")
+                return
+            }
+            tabBarController.setTitle("continue経由 \(index)")
+            tabBarController.selectTab(index: index)
+        }
+    }
+    
+    func handleDeepLink(urlComponents: URLComponents) -> Int? {
+        if urlComponents.path.contains("home") {
+            return 0
+        }else if urlComponents.path.contains("profile") {
+            return 1
+        }else {
+            return nil
         }
     }
     

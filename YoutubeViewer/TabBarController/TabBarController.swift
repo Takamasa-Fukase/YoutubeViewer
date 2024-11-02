@@ -35,4 +35,13 @@ class TabBarController: UITabBarController {
         })
         setViewControllers(viewControllers, animated: false)
     }
+    
+    func setTitle(_ title: String) {
+        homeVC.title = title
+        myPageVC.title = title
+    }
+    
+    func selectTab(index: Int) {
+        selectedIndex = index
+    }
 }

@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         mainWindow?.makeKeyAndVisible()
     }
     
+    // カスタムURLスキーム経由でアプリが開かれた時のハンドリング
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         print("SceneDelegate openURLContexts: \(URLContexts)")
         guard let urlContext = URLContexts.first else {
@@ -27,6 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         _ = GIDSignIn.sharedInstance.handle(url)
     }
     
+    // ユニバーサルリンク経由でアプリが開かれた時のハンドリング
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         print("SceneDelegate scene continue")
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb,

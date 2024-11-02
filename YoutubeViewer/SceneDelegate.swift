@@ -24,10 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         let url = urlContext.url
-        if let scheme = url.scheme,
-           scheme == "youtube-viewer" {
-            return
-        }
+        _ = GIDSignIn.sharedInstance.handle(url)
     }
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {

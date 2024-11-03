@@ -108,6 +108,7 @@ extension MyPageViewController: UITabBarDelegate, UITableViewDataSource {
 
 extension MyPageViewController: MyPageHorizontalListDelegate {
     func itemSelected(at indexPath: IndexPath) {
-        SceneDelegate.shared?.showVideoDetailWindow()
+//        let dummyVideo =
+//        SceneDelegate.shared?.showVideoDetailWindow()
     }
 }

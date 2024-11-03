@@ -10,6 +10,7 @@ import Kingfisher
 import GoogleSignIn
 
 class HomeViewController: UIViewController {
+    var videos: [Video] = []
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,6 +46,9 @@ class HomeViewController: UIViewController {
         print("jsonData: \(jsonData)")
         let videosResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
         print("videosResponse: \(videosResponse)")
+        
+        videos = videosResponse.items
+        tableView.reloadData()
     }
     
     private func getUserLikedVideos(accessToken: String) async throws {
@@ -64,6 +68,9 @@ class HomeViewController: UIViewController {
         print("jsonData: \(jsonData)")
         let videosResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
         print("videosResponse: \(videosResponse)")
+        
+        videos = videosResponse.items
+        tableView.reloadData()
     }
     
     @objc private func handleSignedInUserChange(notification: Notification) {
@@ -97,22 +104,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return videos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeVideoListCell.className, for: indexPath) as! HomeVideoListCell
-        let url = URL(string: "https://dol.ismcdn.jp/mwimgs/2/7/650/img_2753004f183b1b28893cb3dc0dc4412a263663.jpg")
+        let video = videos[indexPath.row]
+        let url = URL(string: video.snippet.thumbnails.standard.url)
         cell.thumbnailImageView.kf.setImage(
             with: url,
             placeholder: UIImage(systemName: "photo")
         )
-        cell.titleLabel.text = "鉄道で行くスイス】アルプス山脈のふもと超絶景山岳リゾートへの車窓の旅“3つのルート” | 地球の歩き方ニュース＆レポート | ダイヤモンド・オンライン"
+        cell.titleLabel.text = video.snippet.title
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        SceneDelegate.shared?.showVideoDetailWindow()
+        SceneDelegate.shared?.showVideoDetailWindow(video: videos[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

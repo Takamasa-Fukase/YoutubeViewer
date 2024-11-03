@@ -92,13 +92,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    func showVideoDetailWindow() {
+    func showVideoDetailWindow(video: Video) {
         // 既に存在していたら一度閉じる
         if videoDetailWindow != nil {
             videoDetailWindow?.close()
             videoDetailWindow = nil
         }
         guard let windowScene = UIApplication.shared.windowScene else { return }
-        videoDetailWindow = VideoDetailWindow(windowScene: windowScene)
+        videoDetailWindow = VideoDetailWindow(windowScene: windowScene, video: video)
     }
 }

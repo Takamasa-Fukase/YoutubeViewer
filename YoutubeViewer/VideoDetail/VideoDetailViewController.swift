@@ -33,6 +33,7 @@ class VideoDetailViewController: UIViewController {
         }
     }
     
+    private let video: Video
     private var playerView: WKYTPlayerView?
     private var playerCloseButton: UIButton!
     private var descriptionBaseView: UIView!
@@ -63,7 +64,16 @@ class VideoDetailViewController: UIViewController {
             }
         }
     }
-
+    
+    init(video: Video) {
+        self.video = video
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,7 +125,7 @@ class VideoDetailViewController: UIViewController {
     }
     
     private func loadVideo() {
-        self.playerView?.load(withVideoId: "O5518678w8U",
+        self.playerView?.load(withVideoId: video.id,
                               playerVars: [
                                 "playsinline": 1,
                                 "modestbranding": 1,
@@ -130,6 +140,8 @@ class VideoDetailViewController: UIViewController {
         view.addSubview(descriptionBaseView)
         
         let descriptionView = VideoDetailDescriptionView()
+        descriptionView.titleLabel.text = video.snippet.title
+        descriptionView.descriptionLabel.text = video.snippet.description
         descriptionBaseView.addSubview(descriptionView)
         descriptionBaseView.addConstraints(for: descriptionView)
     }

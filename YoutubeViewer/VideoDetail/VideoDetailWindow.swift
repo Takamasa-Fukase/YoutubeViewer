@@ -8,9 +8,9 @@
 import UIKit
 
 class VideoDetailWindow: UIWindow {
-    override init(windowScene: UIWindowScene) {
+    init(windowScene: UIWindowScene, video: Video) {
         super.init(windowScene: windowScene)
-        rootViewController = VideoDetailViewController()
+        rootViewController = VideoDetailViewController(video: video)
         // TODO: これだとアラートが見えないかもなので、normal+1とかにするか？
         windowLevel = .alert + 1
         makeKeyAndVisible()

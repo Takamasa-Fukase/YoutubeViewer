@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import GoogleSignIn
 
 class HomeViewController: UIViewController {
 
@@ -21,13 +22,7 @@ class HomeViewController: UIViewController {
             
         }
         
-        Task {
-            do {
-                try await getVideos()
-            } catch {
-                print("getVideos error: \(error)")
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(handleSignedInUserChange), name: Notification.Name("signedInUserChanged"), object: nil)
     }
     
     private func setupTableView() {
@@ -35,8 +30,23 @@ class HomeViewController: UIViewController {
         tableView.contentInset.top = -8
     }
     
-    private func getVideos() async throws {
-        let accessToken = ""
+    private func getPopularVideos() async throws {
+        print("getPopularVideos")
+        let apiKey = ""
+        let queries = "?maxResults=20&part=snippet&key=\(apiKey)"
+        let url = URL(string: "https://www.googleapis.com/youtube/v3/videos\(queries)")
+        guard let url = url else {
+            print("urlが不正です")
+            return
+        }
+        let urlRequest = URLRequest(url: url)
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+        let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+        print("jsonData: \(jsonData)")
+    }
+    
+    private func getUserLikedVideos(accessToken: String) async throws {
+        print("getUserLikedVideos token: \(accessToken)")
         let apiKey = ""
         let queries = "?myRating=like&maxResults=20&part=snippet&key=\(apiKey)"
         let url = URL(string: "https://www.googleapis.com/youtube/v3/videos\(queries)")
@@ -45,10 +55,35 @@ class HomeViewController: UIViewController {
             return
         }
         var urlRequest = URLRequest(url: url)
-        urlRequest.setValue(accessToken, forHTTPHeaderField: "Authorization")
-        let (data, _) = try await URLSession.shared.data(from: url)
+        // 認証が必要なAPIなのでAuthorizationヘッダーにBearerTokenを設定する
+        urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
         let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
         print("jsonData: \(jsonData)")
+    }
+    
+    @objc private func handleSignedInUserChange(notification: Notification) {
+        print("HomeVC handleSignedInUserChange notification: \(notification)")
+        if let signedInUser = notification.userInfo?["signedInUser"] as? GIDGoogleUser {
+            // 認証済みユーザーが高評価した動画一覧を取得
+            Task {
+                do {
+                    try await getUserLikedVideos(accessToken: signedInUser.accessToken.tokenString)
+                } catch {
+                    print("getVideos error: \(error)")
+                }
+            }
+            
+        }else {
+            // 認証していないので人気の動画一覧を取得
+            Task {
+                do {
+                    try await getPopularVideos()
+                } catch {
+                    print("getVideos error: \(error)")
+                }
+            }
+        }
     }
 }
 

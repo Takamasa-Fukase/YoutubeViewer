@@ -11,9 +11,29 @@ import GoogleSignIn
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var mainWindow: UIWindow?
     var videoDetailWindow: VideoDetailWindow?
+    var signedInUser: GIDGoogleUser? {
+        didSet {
+            print("sceneDelegate signedInUser didSet: \(signedInUser)")
+            NotificationCenter.default.post(name: Notification.Name("signedInUserChanged"), object: nil, userInfo: ["signedInUser": signedInUser])
+        }
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+                
+        Task {
+            do {
+                print("ログイン状態を確認してisSignedIn変数を更新")
+                // ログイン状態を確認してisSignedIn変数を更新
+                let user = try await GIDSignIn.sharedInstance.restorePreviousSignIn()
+                print("userを取得完了: \(user)")
+                print("token: \(user.accessToken.tokenString)")
+                signedInUser = user
+            } catch {
+                print("GIDSignIn.sharedInstance.restorePreviousSignIn error: \(error)")
+                signedInUser = nil
+            }
+        }
         
         mainWindow = UIWindow(windowScene: windowScene)
         mainWindow?.rootViewController = TabBarController()

@@ -20,11 +20,35 @@ class HomeViewController: UIViewController {
         setNaviBarRightButton(systemImageName: "magnifyingglass") {
             
         }
+        
+        Task {
+            do {
+                try await getVideos()
+            } catch {
+                print("getVideos error: \(error)")
+            }
+        }
     }
     
     private func setupTableView() {
         tableView.register(UINib(nibName: HomeVideoListCell.className, bundle: nil), forCellReuseIdentifier: HomeVideoListCell.className)
         tableView.contentInset.top = -8
+    }
+    
+    private func getVideos() async throws {
+        let accessToken = ""
+        let apiKey = ""
+        let queries = "?myRating=like&maxResults=20&part=snippet&key=\(apiKey)"
+        let url = URL(string: "https://www.googleapis.com/youtube/v3/videos\(queries)")
+        guard let url = url else {
+            print("urlが不正です")
+            return
+        }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.setValue(accessToken, forHTTPHeaderField: "Authorization")
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+        print("jsonData: \(jsonData)")
     }
 }
 

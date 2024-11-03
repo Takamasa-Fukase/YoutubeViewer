@@ -38,6 +38,7 @@
 		BC2665002CD24E8700A489D6 /* VideoDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2664FF2CD24E8700A489D6 /* VideoDetailDescriptionView.swift */; };
 		BC2665022CD24E9300A489D6 /* VideoDetailDescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC2665012CD24E9300A489D6 /* VideoDetailDescriptionView.xib */; };
 		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
+		BC5AC9E22CD7BDC100025518 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9E12CD7BDC100025518 /* Video.swift */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
 		BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */; };
@@ -99,6 +100,7 @@
 		BC25CC592CD12A9F00951696 /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		BC2664FF2CD24E8700A489D6 /* VideoDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailDescriptionView.swift; sourceTree = "<group>"; };
 		BC2665012CD24E9300A489D6 /* VideoDetailDescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailDescriptionView.xib; sourceTree = "<group>"; };
+		BC5AC9E12CD7BDC100025518 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				BC05582A2CCB94A50002ABDD /* AppDelegate.swift */,
 				BC05582C2CCB94A50002ABDD /* SceneDelegate.swift */,
 				BC05586C2CCEB2750002ABDD /* Extensions */,
+				BC5AC9E02CD7BDA500025518 /* Entities */,
 				BC05586D2CCEBEFA0002ABDD /* TabBarController */,
 				BC05586E2CCEBF090002ABDD /* Home */,
 				BC05586F2CCEBF130002ABDD /* MyPage */,
@@ -250,6 +253,14 @@
 				BC2665012CD24E9300A489D6 /* VideoDetailDescriptionView.xib */,
 			);
 			path = VideoDetail;
+			sourceTree = "<group>";
+		};
+		BC5AC9E02CD7BDA500025518 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				BC5AC9E12CD7BDC100025518 /* Video.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,6 +420,7 @@
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
 				BC7B68C62CD3252E00D5A203 /* MyPageSignInView.swift in Sources */,
 				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */,
+				BC5AC9E22CD7BDC100025518 /* Video.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
 				BC25CC562CD12A7400951696 /* UIView+NibLoading.swift in Sources */,
 				BC25CC4C2CD0E41600951696 /* VideoDetailWindow.swift in Sources */,

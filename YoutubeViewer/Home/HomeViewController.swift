@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
     private func getPopularVideos() async throws {
         print("getPopularVideos")
         let apiKey = ""
-        let queries = "?maxResults=20&part=snippet&key=\(apiKey)"
+        let queries = "?chart=mostPopular&maxResults=20&part=snippet&key=\(apiKey)"
         let url = URL(string: "https://www.googleapis.com/youtube/v3/videos\(queries)")
         guard let url = url else {
             print("urlが不正です")
@@ -43,6 +43,8 @@ class HomeViewController: UIViewController {
         let (data, _) = try await URLSession.shared.data(for: urlRequest)
         let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
         print("jsonData: \(jsonData)")
+        let videosResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
+        print("videosResponse: \(videosResponse)")
     }
     
     private func getUserLikedVideos(accessToken: String) async throws {
@@ -60,6 +62,8 @@ class HomeViewController: UIViewController {
         let (data, _) = try await URLSession.shared.data(for: urlRequest)
         let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
         print("jsonData: \(jsonData)")
+        let videosResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
+        print("videosResponse: \(videosResponse)")
     }
     
     @objc private func handleSignedInUserChange(notification: Notification) {

@@ -10,6 +10,7 @@ import Kingfisher
 import GoogleSignIn
 
 class HomeViewController: UIViewController {
+    private let videosRepository = VideosRepository()
     var videos: [Video] = []
 
     @IBOutlet weak var tableView: UITableView!
@@ -33,42 +34,14 @@ class HomeViewController: UIViewController {
     
     private func getPopularVideos() async throws {
         print("getPopularVideos")
-        let apiKey = ""
-        let queries = "?chart=mostPopular&maxResults=20&part=snippet&key=\(apiKey)"
-        let url = URL(string: "https://www.googleapis.com/youtube/v3/videos\(queries)")
-        guard let url = url else {
-            print("urlが不正です")
-            return
-        }
-        let urlRequest = URLRequest(url: url)
-        let (data, _) = try await URLSession.shared.data(for: urlRequest)
-        let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-//        print("jsonData: \(jsonData)")
-        let videosResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
-//        print("videosResponse: \(videosResponse)")
-        
+        let videosResponse = try await videosRepository.getPopularVideos()
         videos = videosResponse.items
         tableView.reloadData()
     }
     
     private func getUserLikedVideos(accessToken: String) async throws {
         print("getUserLikedVideos token: \(accessToken)")
-        let apiKey = ""
-        let queries = "?myRating=like&maxResults=20&part=snippet&key=\(apiKey)"
-        let url = URL(string: "https://www.googleapis.com/youtube/v3/videos\(queries)")
-        guard let url = url else {
-            print("urlが不正です")
-            return
-        }
-        var urlRequest = URLRequest(url: url)
-        // 認証が必要なAPIなのでAuthorizationヘッダーにBearerTokenを設定する
-        urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        let (data, _) = try await URLSession.shared.data(for: urlRequest)
-        let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-//        print("jsonData: \(jsonData)")
-        let videosResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
-//        print("videosResponse: \(videosResponse)")
-        
+        let videosResponse = try await videosRepository.getUserLikedVideos()
         videos = videosResponse.items
         tableView.reloadData()
     }

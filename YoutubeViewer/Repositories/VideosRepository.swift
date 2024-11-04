@@ -14,8 +14,8 @@ final class VideosRepository {
         let request = try URLRequest(url: url, method: .get, headers: APIHeader.applicationJson())
         let parameters: Parameters = [
             "chart": "mostPopular",
-            "maxResults": 20,
             "part": "snippet",
+            "maxResults": 20,
             "key": Env.googleApiKey
         ]
         let requestConvertible = try URLEncoding.default.encode(request, with: parameters)
@@ -32,9 +32,9 @@ final class VideosRepository {
         let url = URL(string: APIConst.BASE_URL + APIConst.VIDEOS)!
         let request = try URLRequest(url: url, method: .get, headers: APIHeader.applicationJson())
         let parameters: Parameters = [
-            "chart": "mostPopular",
-            "maxResults": 20,
+            "myRating": "like",
             "part": "snippet",
+            "maxResults": 20,
             "key": Env.googleApiKey
         ]
         let requestConvertible = try URLEncoding.default.encode(request, with: parameters)

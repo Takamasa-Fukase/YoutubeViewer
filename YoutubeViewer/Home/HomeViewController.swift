@@ -83,7 +83,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeVideoListCell.className, for: indexPath) as! HomeVideoListCell
         let video = videos[indexPath.row]
-        let url = URL(string: video.snippet.thumbnails.standard.url)
+        let url = URL(string: video.snippet.thumbnails.standard?.url ?? "")
         cell.thumbnailImageView.kf.setImage(
             with: url,
             placeholder: UIImage(systemName: "photo")

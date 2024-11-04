@@ -39,6 +39,10 @@
 		BC2665022CD24E9300A489D6 /* VideoDetailDescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC2665012CD24E9300A489D6 /* VideoDetailDescriptionView.xib */; };
 		BC33685B2CCF209A008A1526 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = BC33685A2CCF209A008A1526 /* PanModal */; };
 		BC5AC9E22CD7BDC100025518 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9E12CD7BDC100025518 /* Video.swift */; };
+		BC5AC9E42CD842FE00025518 /* VideosRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9E32CD842FE00025518 /* VideosRepository.swift */; };
+		BC5AC9E72CD843F000025518 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BC5AC9E62CD843F000025518 /* Alamofire */; };
+		BC5AC9EB2CD8493200025518 /* APIConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9EA2CD8493200025518 /* APIConst.swift */; };
+		BC5AC9ED2CD84D1B00025518 /* APIHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9EC2CD84D1B00025518 /* APIHeader.swift */; };
 		BC5AC9EF2CD84F6500025518 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9EE2CD84F6500025518 /* Env.swift */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
@@ -102,6 +106,9 @@
 		BC2664FF2CD24E8700A489D6 /* VideoDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailDescriptionView.swift; sourceTree = "<group>"; };
 		BC2665012CD24E9300A489D6 /* VideoDetailDescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailDescriptionView.xib; sourceTree = "<group>"; };
 		BC5AC9E12CD7BDC100025518 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		BC5AC9E32CD842FE00025518 /* VideosRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosRepository.swift; sourceTree = "<group>"; };
+		BC5AC9EA2CD8493200025518 /* APIConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConst.swift; sourceTree = "<group>"; };
+		BC5AC9EC2CD84D1B00025518 /* APIHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHeader.swift; sourceTree = "<group>"; };
 		BC5AC9EE2CD84F6500025518 /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
@@ -115,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC5AC9E72CD843F000025518 /* Alamofire in Frameworks */,
 				BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */,
 				BC7B68C22CD31DF200D5A203 /* GoogleSignIn in Frameworks */,
 				BC33685B2CCF209A008A1526 /* PanModal in Frameworks */,
@@ -165,7 +173,10 @@
 				BCB5A3EB2CD608AD0003F2BF /* YoutubeViewer.entitlements */,
 				BC05582A2CCB94A50002ABDD /* AppDelegate.swift */,
 				BC05582C2CCB94A50002ABDD /* SceneDelegate.swift */,
+				BC5AC9EC2CD84D1B00025518 /* APIHeader.swift */,
 				BC5AC9EE2CD84F6500025518 /* Env.swift */,
+				BC5AC9E92CD8492500025518 /* Constants */,
+				BC5AC9E82CD8482800025518 /* Repositories */,
 				BC05586C2CCEB2750002ABDD /* Extensions */,
 				BC5AC9E02CD7BDA500025518 /* Entities */,
 				BC05586D2CCEBEFA0002ABDD /* TabBarController */,
@@ -266,6 +277,22 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		BC5AC9E82CD8482800025518 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				BC5AC9E32CD842FE00025518 /* VideosRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		BC5AC9E92CD8492500025518 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				BC5AC9EA2CD8493200025518 /* APIConst.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -287,6 +314,7 @@
 				BC33685A2CCF209A008A1526 /* PanModal */,
 				BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */,
 				BC7B68C12CD31DF200D5A203 /* GoogleSignIn */,
+				BC5AC9E62CD843F000025518 /* Alamofire */,
 			);
 			productName = YoutubeViewer;
 			productReference = BC0558272CCB94A50002ABDD /* YoutubeViewer.app */;
@@ -365,6 +393,7 @@
 				BCB293702CCF1F8C00A18ED0 /* XCRemoteSwiftPackageReference "PanModal" */,
 				BC7B68BD2CD253D300D5A203 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */,
 				BC7B68C02CD31DF200D5A203 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				BC5AC9E52CD843F000025518 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = BC0558282CCB94A50002ABDD /* Products */;
 			projectDirPath = "";
@@ -421,6 +450,7 @@
 				BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */,
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
+				BC5AC9ED2CD84D1B00025518 /* APIHeader.swift in Sources */,
 				BC7B68C62CD3252E00D5A203 /* MyPageSignInView.swift in Sources */,
 				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */,
 				BC5AC9E22CD7BDC100025518 /* Video.swift in Sources */,
@@ -434,11 +464,13 @@
 				BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */,
 				BC25CC452CD0A8DC00951696 /* MyPageHorizontalListCell.swift in Sources */,
 				BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */,
+				BC5AC9EB2CD8493200025518 /* APIConst.swift in Sources */,
 				BC25CC582CD12A8600951696 /* UIView+Constraint.swift in Sources */,
 				BC2665002CD24E8700A489D6 /* VideoDetailDescriptionView.swift in Sources */,
 				BC25CC5A2CD12A9F00951696 /* Storyboard+Extension.swift in Sources */,
 				BC5AC9EF2CD84F6500025518 /* Env.swift in Sources */,
 				BC25CC492CD0CA4300951696 /* MyPageHorizontalListItemCell.swift in Sources */,
+				BC5AC9E42CD842FE00025518 /* VideosRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +821,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BC5AC9E52CD843F000025518 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire#installation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
 		BC7B68BD2CD253D300D5A203 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmhv/YoutubePlayer-in-WKWebView";
@@ -828,6 +868,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BCB293702CCF1F8C00A18ED0 /* XCRemoteSwiftPackageReference "PanModal" */;
 			productName = PanModal;
+		};
+		BC5AC9E62CD843F000025518 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC5AC9E52CD843F000025518 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */ = {
 			isa = XCSwiftPackageProductDependency;

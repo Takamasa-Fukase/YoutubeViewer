@@ -43,9 +43,9 @@ class HomeViewController: UIViewController {
         let urlRequest = URLRequest(url: url)
         let (data, _) = try await URLSession.shared.data(for: urlRequest)
         let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-        print("jsonData: \(jsonData)")
+//        print("jsonData: \(jsonData)")
         let videosResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
-        print("videosResponse: \(videosResponse)")
+//        print("videosResponse: \(videosResponse)")
         
         videos = videosResponse.items
         tableView.reloadData()
@@ -65,9 +65,9 @@ class HomeViewController: UIViewController {
         urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         let (data, _) = try await URLSession.shared.data(for: urlRequest)
         let jsonData = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-        print("jsonData: \(jsonData)")
+//        print("jsonData: \(jsonData)")
         let videosResponse = try JSONDecoder().decode(VideosResponse.self, from: data)
-        print("videosResponse: \(videosResponse)")
+//        print("videosResponse: \(videosResponse)")
         
         videos = videosResponse.items
         tableView.reloadData()

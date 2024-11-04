@@ -24,7 +24,10 @@ struct Video: Decodable {
 }
 
 struct Thumbnails: Decodable {
-    let standard: Thumbnail
+    let `default`: Thumbnail?
+    let medium: Thumbnail?
+    let high: Thumbnail?
+    let standard: Thumbnail?
     
     struct Thumbnail: Decodable {
         let url: String

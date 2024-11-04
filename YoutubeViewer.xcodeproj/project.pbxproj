@@ -44,6 +44,10 @@
 		BC5AC9EB2CD8493200025518 /* APIConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9EA2CD8493200025518 /* APIConst.swift */; };
 		BC5AC9ED2CD84D1B00025518 /* APIHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9EC2CD84D1B00025518 /* APIHeader.swift */; };
 		BC5AC9EF2CD84F6500025518 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9EE2CD84F6500025518 /* Env.swift */; };
+		BC5AC9F12CD8596500025518 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F02CD8596500025518 /* Channel.swift */; };
+		BC5AC9F32CD8596F00025518 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F22CD8596F00025518 /* Playlist.swift */; };
+		BC5AC9F52CD85B4400025518 /* ChannelsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F42CD85B4400025518 /* ChannelsRepository.swift */; };
+		BC5AC9F72CD85B4E00025518 /* PlaylistsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
 		BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */; };
@@ -110,6 +114,10 @@
 		BC5AC9EA2CD8493200025518 /* APIConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConst.swift; sourceTree = "<group>"; };
 		BC5AC9EC2CD84D1B00025518 /* APIHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHeader.swift; sourceTree = "<group>"; };
 		BC5AC9EE2CD84F6500025518 /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
+		BC5AC9F02CD8596500025518 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		BC5AC9F22CD8596F00025518 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		BC5AC9F42CD85B4400025518 /* ChannelsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsRepository.swift; sourceTree = "<group>"; };
+		BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsRepository.swift; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInView.swift; sourceTree = "<group>"; };
@@ -179,6 +187,7 @@
 				BC5AC9E82CD8482800025518 /* Repositories */,
 				BC05586C2CCEB2750002ABDD /* Extensions */,
 				BC5AC9E02CD7BDA500025518 /* Entities */,
+				BC5AC9F82CD8C96800025518 /* Model */,
 				BC05586D2CCEBEFA0002ABDD /* TabBarController */,
 				BC05586E2CCEBF090002ABDD /* Home */,
 				BC05586F2CCEBF130002ABDD /* MyPage */,
@@ -273,6 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				BC5AC9E12CD7BDC100025518 /* Video.swift */,
+				BC5AC9F02CD8596500025518 /* Channel.swift */,
+				BC5AC9F22CD8596F00025518 /* Playlist.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -281,6 +292,8 @@
 			isa = PBXGroup;
 			children = (
 				BC5AC9E32CD842FE00025518 /* VideosRepository.swift */,
+				BC5AC9F42CD85B4400025518 /* ChannelsRepository.swift */,
+				BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -291,6 +304,13 @@
 				BC5AC9EA2CD8493200025518 /* APIConst.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		BC5AC9F82CD8C96800025518 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,12 +466,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC06C1AE2CD33849000B8E61 /* UIColor+Extension.swift in Sources */,
+				BC5AC9F72CD85B4E00025518 /* PlaylistsRepository.swift in Sources */,
 				BC05585F2CCDD8A50002ABDD /* HomeViewController.swift in Sources */,
 				BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */,
+				BC5AC9F32CD8596F00025518 /* Playlist.swift in Sources */,
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,
 				BC05585C2CCBD8C00002ABDD /* TabBarController.swift in Sources */,
 				BC5AC9ED2CD84D1B00025518 /* APIHeader.swift in Sources */,
+				BC5AC9F52CD85B4400025518 /* ChannelsRepository.swift in Sources */,
 				BC7B68C62CD3252E00D5A203 /* MyPageSignInView.swift in Sources */,
+				BC5AC9F12CD8596500025518 /* Channel.swift in Sources */,
 				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */,
 				BC5AC9E22CD7BDC100025518 /* Video.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,

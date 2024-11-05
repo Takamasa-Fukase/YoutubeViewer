@@ -7,12 +7,13 @@
 
 import Foundation
 import Alamofire
+import KeychainAccess
 
 final class APIHeader {
     static func applicationJson() -> HTTPHeaders {
         let headers = HTTPHeaders([
             "Content-Type": "application/json",
-            "Authorization": "Bearer \(SceneDelegate.shared?.signedInUser?.accessToken.tokenString ?? "")"
+            "Authorization": "Bearer \(Keychain()[KeychainKey.GOOGLE_AUTH_ACCESS_TOKEN] ?? "")"
         ])
         return headers
     }

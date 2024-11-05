@@ -50,6 +50,10 @@
 		BC5AC9F72CD85B4E00025518 /* PlaylistsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */; };
 		BC5AC9FA2CD9990500025518 /* PlaylistVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F92CD9990500025518 /* PlaylistVideo.swift */; };
 		BC5AC9FC2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9FB2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift */; };
+		BC5AC9FF2CD9B60200025518 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = BC5AC9FE2CD9B60200025518 /* KeychainAccess */; };
+		BC5ACA012CD9B6BB00025518 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACA002CD9B6BB00025518 /* KeychainKey.swift */; };
+		BC5ACA032CD9B8EF00025518 /* NotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACA022CD9B8EF00025518 /* NotificationKey.swift */; };
+		BC5ACA052CD9BA3F00025518 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACA042CD9BA3F00025518 /* AppState.swift */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
 		BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */; };
@@ -122,6 +126,9 @@
 		BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsRepository.swift; sourceTree = "<group>"; };
 		BC5AC9F92CD9990500025518 /* PlaylistVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVideo.swift; sourceTree = "<group>"; };
 		BC5AC9FB2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Asynchronous&Concurrency.swift"; sourceTree = "<group>"; };
+		BC5ACA002CD9B6BB00025518 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
+		BC5ACA022CD9B8EF00025518 /* NotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKey.swift; sourceTree = "<group>"; };
+		BC5ACA042CD9BA3F00025518 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInView.swift; sourceTree = "<group>"; };
@@ -136,6 +143,7 @@
 			files = (
 				BC5AC9E72CD843F000025518 /* Alamofire in Frameworks */,
 				BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */,
+				BC5AC9FF2CD9B60200025518 /* KeychainAccess in Frameworks */,
 				BC7B68C22CD31DF200D5A203 /* GoogleSignIn in Frameworks */,
 				BC33685B2CCF209A008A1526 /* PanModal in Frameworks */,
 				BCB2936A2CCEC51300A18ED0 /* Kingfisher in Frameworks */,
@@ -186,7 +194,7 @@
 				BC05582A2CCB94A50002ABDD /* AppDelegate.swift */,
 				BC05582C2CCB94A50002ABDD /* SceneDelegate.swift */,
 				BC5AC9EC2CD84D1B00025518 /* APIHeader.swift */,
-				BC5AC9EE2CD84F6500025518 /* Env.swift */,
+				BC5ACA042CD9BA3F00025518 /* AppState.swift */,
 				BC5AC9E92CD8492500025518 /* Constants */,
 				BC5AC9E82CD8482800025518 /* Repositories */,
 				BC05586C2CCEB2750002ABDD /* Extensions */,
@@ -199,6 +207,7 @@
 				BC0558332CCB94A70002ABDD /* Assets.xcassets */,
 				BC0558352CCB94A70002ABDD /* LaunchScreen.storyboard */,
 				BC0558382CCB94A70002ABDD /* Info.plist */,
+				BC5AC9EE2CD84F6500025518 /* Env.swift */,
 			);
 			path = YoutubeViewer;
 			sourceTree = "<group>";
@@ -308,6 +317,8 @@
 			isa = PBXGroup;
 			children = (
 				BC5AC9EA2CD8493200025518 /* APIConst.swift */,
+				BC5ACA002CD9B6BB00025518 /* KeychainKey.swift */,
+				BC5ACA022CD9B8EF00025518 /* NotificationKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -341,6 +352,7 @@
 				BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */,
 				BC7B68C12CD31DF200D5A203 /* GoogleSignIn */,
 				BC5AC9E62CD843F000025518 /* Alamofire */,
+				BC5AC9FE2CD9B60200025518 /* KeychainAccess */,
 			);
 			productName = YoutubeViewer;
 			productReference = BC0558272CCB94A50002ABDD /* YoutubeViewer.app */;
@@ -420,6 +432,7 @@
 				BC7B68BD2CD253D300D5A203 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */,
 				BC7B68C02CD31DF200D5A203 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				BC5AC9E52CD843F000025518 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BC5AC9FD2CD9B60200025518 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = BC0558282CCB94A50002ABDD /* Products */;
 			projectDirPath = "";
@@ -473,6 +486,7 @@
 			files = (
 				BC06C1AE2CD33849000B8E61 /* UIColor+Extension.swift in Sources */,
 				BC5AC9F72CD85B4E00025518 /* PlaylistsRepository.swift in Sources */,
+				BC5ACA012CD9B6BB00025518 /* KeychainKey.swift in Sources */,
 				BC05585F2CCDD8A50002ABDD /* HomeViewController.swift in Sources */,
 				BC5AC9FC2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift in Sources */,
 				BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */,
@@ -486,12 +500,14 @@
 				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */,
 				BC5AC9E22CD7BDC100025518 /* Video.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
+				BC5ACA052CD9BA3F00025518 /* AppState.swift in Sources */,
 				BC5AC9FA2CD9990500025518 /* PlaylistVideo.swift in Sources */,
 				BC25CC562CD12A7400951696 /* UIView+NibLoading.swift in Sources */,
 				BC25CC4C2CD0E41600951696 /* VideoDetailWindow.swift in Sources */,
 				BC25CC412CD0A5C900951696 /* MyPageProfileCell.swift in Sources */,
 				BC0558692CCEAC0A0002ABDD /* UIViewController+Extension.swift in Sources */,
 				BC05582D2CCB94A50002ABDD /* SceneDelegate.swift in Sources */,
+				BC5ACA032CD9B8EF00025518 /* NotificationKey.swift in Sources */,
 				BC0558722CCEBF7C0002ABDD /* HomeVideoListCell.swift in Sources */,
 				BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */,
 				BC25CC452CD0A8DC00951696 /* MyPageHorizontalListCell.swift in Sources */,
@@ -861,6 +877,14 @@
 				minimumVersion = 5.10.1;
 			};
 		};
+		BC5AC9FD2CD9B60200025518 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		BC7B68BD2CD253D300D5A203 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmhv/YoutubePlayer-in-WKWebView";
@@ -905,6 +929,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC5AC9E52CD843F000025518 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		BC5AC9FE2CD9B60200025518 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC5AC9FD2CD9B60200025518 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 		BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */ = {
 			isa = XCSwiftPackageProductDependency;

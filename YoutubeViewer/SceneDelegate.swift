@@ -7,27 +7,28 @@
 
 import UIKit
 import GoogleSignIn
+import KeychainAccess
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var mainWindow: UIWindow?
     var videoDetailWindow: VideoDetailWindow?
-    var signedInUser: GIDGoogleUser? {
-        didSet {
-            NotificationCenter.default.post(name: Notification.Name("signedInUserChanged"), object: nil, userInfo: ["signedInUser": signedInUser])
-        }
-    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
                 
         Task {
             do {
-                // ログイン状態を確認してisSignedIn変数を更新
+                // ログイン状態の復元を試行
                 let user = try await GIDSignIn.sharedInstance.restorePreviousSignIn()
-                signedInUser = user
+                let accessToken = user.accessToken.tokenString
+                print("ログイン状態の復元に成功 accessToken: \(accessToken)")
+                Keychain()[KeychainKey.GOOGLE_AUTH_ACCESS_TOKEN] = accessToken
+                AppState.shared.isSignedIn = true
+                
             } catch {
                 print("GIDSignIn.sharedInstance.restorePreviousSignIn error: \(error)")
-                signedInUser = nil
+                Keychain()[KeychainKey.GOOGLE_AUTH_ACCESS_TOKEN] = nil
+                AppState.shared.isSignedIn = false
             }
         }
         

@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import KeychainAccess
 
 class MyPageViewController: UIViewController {
     var myChannel: Channel?
@@ -21,6 +22,9 @@ class MyPageViewController: UIViewController {
         
         setupSignInView()
         setupTableView()
+        // 初回load時は手動でisSignedInをチェックしてUIの表示切り替えを行っている
+        // 起動時のログイン状態復元結果が返ってきた時点でマイページタブがまだ選択されていない場合はMyPageのloadが終わっていなくてNotificationを受け取れない為
+        handleSignInStatusChange()
         setNaviBarRightButton(systemImageName: "gearshape") {
             
         }
@@ -28,12 +32,7 @@ class MyPageViewController: UIViewController {
             
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleSignedInUserChange), name: Notification.Name("signedInUserChanged"), object: nil)
-        
-        // TODO: 後で良い感じにしたい。一旦愚直に実装している
-        // 起動時のログイン状態チェック完了時にマイページタブがまだ選択されていない場合はMyPageのloadが終わっていなくてNotificationを受け取れないので、
-        // 初回は手動でisSignedInをチェックしてUIをハンドリングする
-        handleSignInStatusChange(isSignedIn: SceneDelegate.shared?.signedInUser != nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleSignInStatusChange), name: NotificationKey.signInStatusChanged, object: nil)
     }
     
     private func setupSignInView() {
@@ -56,8 +55,9 @@ class MyPageViewController: UIViewController {
                                                 additionalScopes: ["https://www.googleapis.com/auth/youtube.readonly"])
                 let user = result.user
                 let accessToken = user.accessToken.tokenString
-                print("accessToken: \(accessToken)")
-                SceneDelegate.shared?.signedInUser = user
+                print("ログイン成功 accessToken: \(accessToken)")
+                Keychain()[KeychainKey.GOOGLE_AUTH_ACCESS_TOKEN] = accessToken
+                AppState.shared.isSignedIn = true
                 
             } catch {
                 print("GoogleSignIn error: \(error)")
@@ -65,17 +65,12 @@ class MyPageViewController: UIViewController {
         }
     }
     
-    private func handleSignInStatusChange(isSignedIn: Bool) {
-        signInView.isHidden = isSignedIn
-        tableView.isHidden = !isSignedIn
-        if isSignedIn {
+    @objc private func handleSignInStatusChange() {
+        signInView.isHidden = AppState.shared.isSignedIn
+        tableView.isHidden = !AppState.shared.isSignedIn
+        if AppState.shared.isSignedIn {
             fetch()
         }
-    }
-    
-    @objc private func handleSignedInUserChange(notification: Notification) {
-        let isSignedIn = notification.userInfo?["signedInUserChanged"] as? GIDGoogleUser != nil
-        handleSignInStatusChange(isSignedIn: isSignedIn)
     }
     
     private func fetch() {
@@ -106,7 +101,7 @@ extension MyPageViewController: UITabBarDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard SceneDelegate.shared?.signedInUser != nil else { return 0 }
+        guard AppState.shared.isSignedIn else { return 0 }
         // プロフィールセル用の1（固定） + プレイリストの数（可変）
         return 1 + myPlaylists.count
     }

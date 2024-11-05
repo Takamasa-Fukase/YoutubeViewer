@@ -7,7 +7,6 @@
 
 import UIKit
 import Kingfisher
-import GoogleSignIn
 
 class HomeViewController: UIViewController {
     private let videosRepository = VideosRepository()
@@ -24,7 +23,7 @@ class HomeViewController: UIViewController {
             
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleSignedInUserChange), name: Notification.Name("signedInUserChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleSignInStatusChange), name: NotificationKey.signInStatusChanged, object: nil)
     }
     
     private func setupTableView() {
@@ -32,29 +31,19 @@ class HomeViewController: UIViewController {
         tableView.contentInset.top = -8
     }
     
-    private func getPopularVideos() async throws {
-        let videosResponse = try await videosRepository.getPopularVideos()
-        videos = videosResponse.items
-        tableView.reloadData()
-    }
-    
-    private func getUserLikedVideos(accessToken: String) async throws {
-        let videosResponse = try await videosRepository.getUserLikedVideos()
-        videos = videosResponse.items
-        tableView.reloadData()
-    }
-    
-    @objc private func handleSignedInUserChange(notification: Notification) {
+    @objc private func handleSignInStatusChange() {
         Task {
             do {
-                if let signedInUser = notification.userInfo?["signedInUser"] as? GIDGoogleUser {
+                if AppState.shared.isSignedIn {
                     // 認証済みユーザーが高評価した動画一覧を取得
-                    try await getUserLikedVideos(accessToken: signedInUser.accessToken.tokenString)
+                    videos = try await videosRepository.getUserLikedVideos().items
                     
                 } else {
                     // 認証していないので人気の動画一覧を取得
-                    try await getPopularVideos()
+                    videos = try await videosRepository.getPopularVideos().items
                 }
+                tableView.reloadData()
+                
             } catch {
                 print("getVideos error: \(error)")
             }

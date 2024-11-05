@@ -45,24 +45,18 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func handleSignedInUserChange(notification: Notification) {
-        if let signedInUser = notification.userInfo?["signedInUser"] as? GIDGoogleUser {
-            // 認証済みユーザーが高評価した動画一覧を取得
-            Task {
-                do {
+        Task {
+            do {
+                if let signedInUser = notification.userInfo?["signedInUser"] as? GIDGoogleUser {
+                    // 認証済みユーザーが高評価した動画一覧を取得
                     try await getUserLikedVideos(accessToken: signedInUser.accessToken.tokenString)
-                } catch {
-                    print("getVideos error: \(error)")
-                }
-            }
-            
-        }else {
-            // 認証していないので人気の動画一覧を取得
-            Task {
-                do {
+                    
+                } else {
+                    // 認証していないので人気の動画一覧を取得
                     try await getPopularVideos()
-                } catch {
-                    print("getVideos error: \(error)")
                 }
+            } catch {
+                print("getVideos error: \(error)")
             }
         }
     }

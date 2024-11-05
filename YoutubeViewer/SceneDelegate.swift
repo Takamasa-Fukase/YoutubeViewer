@@ -13,7 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var videoDetailWindow: VideoDetailWindow?
     var signedInUser: GIDGoogleUser? {
         didSet {
-            print("sceneDelegate signedInUser didSet: \(signedInUser)")
             NotificationCenter.default.post(name: Notification.Name("signedInUserChanged"), object: nil, userInfo: ["signedInUser": signedInUser])
         }
     }
@@ -23,11 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
         Task {
             do {
-                print("ログイン状態を確認してisSignedIn変数を更新")
                 // ログイン状態を確認してisSignedIn変数を更新
                 let user = try await GIDSignIn.sharedInstance.restorePreviousSignIn()
-                print("userを取得完了: \(user)")
-                print("token: \(user.accessToken.tokenString)")
                 signedInUser = user
             } catch {
                 print("GIDSignIn.sharedInstance.restorePreviousSignIn error: \(error)")
@@ -44,13 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            userActivity.activityType == NSUserActivityTypeBrowsingWeb,
            let url = userActivity.webpageURL,
            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) {
-            guard let tabBarController = mainWindow?.rootViewController as? TabBarController else { return }
-            guard let index = handleDeepLink(urlComponents: components) else {
-                tabBarController.setTitle("willConnectTo経由 no index")
-                return
-            }
-            tabBarController.setTitle("willConnectTo経由 \(index)")
-            tabBarController.selectTab(index: index)
+            print("url: \(url)")
         }
     }
     
@@ -71,24 +61,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            let url = userActivity.webpageURL,
            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) {
             print("url: \(url)")
-            
-            guard let tabBarController = mainWindow?.rootViewController as? TabBarController else { return }
-            guard let index = handleDeepLink(urlComponents: components) else {
-                tabBarController.setTitle("continue経由 no index")
-                return
-            }
-            tabBarController.setTitle("continue経由 \(index)")
-            tabBarController.selectTab(index: index)
-        }
-    }
-    
-    func handleDeepLink(urlComponents: URLComponents) -> Int? {
-        if urlComponents.path.contains("home") {
-            return 0
-        }else if urlComponents.path.contains("profile") {
-            return 1
-        }else {
-            return nil
         }
     }
     

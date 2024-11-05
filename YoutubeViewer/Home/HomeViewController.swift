@@ -33,21 +33,18 @@ class HomeViewController: UIViewController {
     }
     
     private func getPopularVideos() async throws {
-        print("getPopularVideos")
         let videosResponse = try await videosRepository.getPopularVideos()
         videos = videosResponse.items
         tableView.reloadData()
     }
     
     private func getUserLikedVideos(accessToken: String) async throws {
-        print("getUserLikedVideos token: \(accessToken)")
         let videosResponse = try await videosRepository.getUserLikedVideos()
         videos = videosResponse.items
         tableView.reloadData()
     }
     
     @objc private func handleSignedInUserChange(notification: Notification) {
-        print("HomeVC handleSignedInUserChange notification: \(notification)")
         if let signedInUser = notification.userInfo?["signedInUser"] as? GIDGoogleUser {
             // 認証済みユーザーが高評価した動画一覧を取得
             Task {

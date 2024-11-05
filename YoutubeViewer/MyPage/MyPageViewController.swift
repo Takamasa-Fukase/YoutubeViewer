@@ -56,7 +56,6 @@ class MyPageViewController: UIViewController {
                                                 additionalScopes: ["https://www.googleapis.com/auth/youtube.readonly"])
                 let user = result.user
                 let accessToken = user.accessToken.tokenString
-                print("user: \(user)")
                 print("accessToken: \(accessToken)")
                 SceneDelegate.shared?.signedInUser = user
                 
@@ -67,7 +66,6 @@ class MyPageViewController: UIViewController {
     }
     
     private func handleSignInStatusChange(isSignedIn: Bool) {
-        print("handleSignInStatusChange isSignedIn: \(isSignedIn)")
         signInView.isHidden = isSignedIn
         tableView.isHidden = !isSignedIn
         if isSignedIn {
@@ -76,13 +74,11 @@ class MyPageViewController: UIViewController {
     }
     
     @objc private func handleSignedInUserChange(notification: Notification) {
-        print("MyPageVC handleSignedInUserChange notification: \(notification)")
         let isSignedIn = notification.userInfo?["signedInUserChanged"] as? GIDGoogleUser != nil
         handleSignInStatusChange(isSignedIn: isSignedIn)
     }
     
     private func fetch() {
-        print("fetch")
         Task {
             do {
                 async let myChannel = ChannelsRepository().getMyChannels().items.first

@@ -80,6 +80,32 @@ class MyPageViewController: UIViewController {
         }
     }
     
+    // MEMO: 複数の並行実行するAPIのうちどれかがthrowしても他のタスクを全て続行させるやり方
+    private func fetch() {
+        Task {
+            _ = await withTaskGroup(of: Void.self) { group in
+                group.addTask {
+                    do {
+                        let channel = try await ChannelsRepository().getMyChannels().items.first
+                        await self.showChannelAndReload(channel)
+                    } catch {
+                        print("channel error: \(error)")
+                    }
+                    
+                }
+                group.addTask {
+                    do {
+                        let playlists = try await PlaylistsRepository().getMyPlaylists().items
+                        await self.showPlaylistsAndReload(playlists)
+                        try await self.getPlaylistItemsAndReload()
+                    }catch {
+                        print("playlists error: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
     @MainActor private func showChannelAndReload(_ channel: Channel?) {
         profileModel = .init(
             thumbnailUrl: channel?.snippet.thumbnails.default?.url ?? "",
@@ -97,16 +123,19 @@ class MyPageViewController: UIViewController {
         })
     }
         
+    // MEMO: 複数の並行実行するAPIのうちどれかがthrowしても他のタスクを全て続行させるやり方
     private func getPlaylistItemsAndReload() async throws {
-        _ = try await withThrowingTaskGroup(of: Void.self) { group in
+        _ = await withTaskGroup(of: Void.self) { group in
             self.playlistModels.enumerated().forEach({ (index, playlistModel) in
                 group.addTask {
-                    let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistModel.id).items
-                    return await self.showPlaylistItemsAndReload(index: index, videos: videos)
+                    do {
+                        let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistModel.id).items
+                        return await self.showPlaylistItemsAndReload(index: index, videos: videos)
+                    } catch {
+                        print("playlistItems error: \(error)")
+                    }
                 }
             })
-            // エラーを呼び出し元に渡すためにtryする
-            for try await _ in group {}
         }
     }
     
@@ -114,28 +143,44 @@ class MyPageViewController: UIViewController {
         playlistModels[index].videos = videos
     }
     
-    private func fetch() {
-        Task {
-            do {
-                _ = try await withThrowingTaskGroup(of: Void.self) { group in
-                    group.addTask {
-                        let channel = try await ChannelsRepository().getMyChannels().items.first
-                        await self.showChannelAndReload(channel)
-                    }
-                    group.addTask {
-                        let playlists = try await PlaylistsRepository().getMyPlaylists().items
-                        await self.showPlaylistsAndReload(playlists)
-                        try await self.getPlaylistItemsAndReload()
-                    }
-                    // エラーを呼び出し元に渡すためにtryする
-                    for try await _ in group {}
-                }
-                
-            } catch {
-                print("MyPage fetch error: \(error)")
-            }
-        }
-    }
+    /*
+     下記は複数並行実行のAPIのうちどれか最初にthrowした時点で他のタスクを全てキャンセルさせるやり方
+     
+     private func fetch() {
+         Task {
+             do {
+                 _ = try await withThrowingTaskGroup(of: Void.self) { group in
+                     group.addTask {
+                         let channel = try await ChannelsRepository().getMyChannels().items.first
+                         await self.showChannelAndReload(channel)
+                     }
+                     group.addTask {
+                         let playlists = try await PlaylistsRepository().getMyPlaylists().items
+                         await self.showPlaylistsAndReload(playlists)
+                         try await self.getPlaylistItemsAndReload()
+                     }
+                     // エラーを呼び出し元に渡すためにtryする
+                     for try await _ in group {}
+                 }
+                 
+             } catch {
+                 print("MyPage fetch error: \(error)")
+             }
+         }
+     }
+     private func getPlaylistItemsAndReload() async throws {
+         _ = try await withThrowingTaskGroup(of: Void.self) { group in
+             self.playlistModels.enumerated().forEach({ (index, playlistModel) in
+                 group.addTask {
+                     let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistModel.id).items
+                     return await self.showPlaylistItemsAndReload(index: index, videos: videos)
+                 }
+             })
+             // エラーを呼び出し元に渡すためにtryする
+             for try await _ in group {}
+         }
+     }
+     */
 }
 
 extension MyPageViewController: UITabBarDelegate, UITableViewDataSource {

@@ -84,16 +84,20 @@ class MyPageViewController: UIViewController {
                     thumbnailUrl: myChannel?.snippet.thumbnails.default?.url ?? "",
                     title: myChannel?.snippet.title ?? ""
                 )
+                tableView.reloadData()
 
-                playlistModels = try await myPlaylistInfos.enumerated().concurrentMap { (index, playlistInfo) in
-                    let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistInfo.id).items
+                playlistModels = myPlaylistInfos.map({ playlistInfo in
                     return .init(
                         id: playlistInfo.id,
                         title: playlistInfo.snippet.title,
-                        videos: videos
+                        videos: []
                     )
-                }
+                })
+                tableView.reloadData()
                 
+                try await playlistModels.enumerated().concurrentThrowingForEach { [weak self] (index, playlistModel) in
+                    self?.playlistModels[index].videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistModel.id).items
+                }
                 tableView.reloadData()
                 
             } catch {

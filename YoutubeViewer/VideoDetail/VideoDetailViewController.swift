@@ -125,7 +125,7 @@ class VideoDetailViewController: UIViewController {
     }
     
     private func loadVideo() {
-        self.playerView?.load(withVideoId: video.id,
+        self.playerView?.load(withVideoId: video.videoId,
                               playerVars: [
                                 "playsinline": 1,
                                 "modestbranding": 1,

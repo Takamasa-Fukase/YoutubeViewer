@@ -9,12 +9,12 @@ import UIKit
 import Kingfisher
 
 protocol MyPageHorizontalListDelegate: AnyObject {
-    func itemSelected(video: Video)
+    func itemSelected(video: PlaylistVideo)
 }
 
 class MyPageHorizontalListCell: UITableViewCell {
     weak var myPageHorizontalListDelegate: MyPageHorizontalListDelegate?
-    var videos: [Video] = []
+    var videos: [PlaylistVideo] = []
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var viewAllButton: UIButton!

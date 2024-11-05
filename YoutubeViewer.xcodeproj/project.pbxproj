@@ -48,6 +48,7 @@
 		BC5AC9F32CD8596F00025518 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F22CD8596F00025518 /* Playlist.swift */; };
 		BC5AC9F52CD85B4400025518 /* ChannelsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F42CD85B4400025518 /* ChannelsRepository.swift */; };
 		BC5AC9F72CD85B4E00025518 /* PlaylistsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */; };
+		BC5AC9FA2CD9990500025518 /* PlaylistVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F92CD9990500025518 /* PlaylistVideo.swift */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
 		BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */; };
@@ -118,6 +119,7 @@
 		BC5AC9F22CD8596F00025518 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		BC5AC9F42CD85B4400025518 /* ChannelsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsRepository.swift; sourceTree = "<group>"; };
 		BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsRepository.swift; sourceTree = "<group>"; };
+		BC5AC9F92CD9990500025518 /* PlaylistVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVideo.swift; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInView.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				BC5AC9E12CD7BDC100025518 /* Video.swift */,
 				BC5AC9F02CD8596500025518 /* Channel.swift */,
 				BC5AC9F22CD8596F00025518 /* Playlist.swift */,
+				BC5AC9F92CD9990500025518 /* PlaylistVideo.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				BC25CC4E2CD0E42B00951696 /* VideoDetailViewController.swift in Sources */,
 				BC5AC9E22CD7BDC100025518 /* Video.swift in Sources */,
 				BC05582B2CCB94A50002ABDD /* AppDelegate.swift in Sources */,
+				BC5AC9FA2CD9990500025518 /* PlaylistVideo.swift in Sources */,
 				BC25CC562CD12A7400951696 /* UIView+NibLoading.swift in Sources */,
 				BC25CC4C2CD0E41600951696 /* VideoDetailWindow.swift in Sources */,
 				BC25CC412CD0A5C900951696 /* MyPageProfileCell.swift in Sources */,

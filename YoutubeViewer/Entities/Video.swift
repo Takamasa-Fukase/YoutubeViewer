@@ -12,15 +12,21 @@ struct VideosResponse: Decodable {
 }
 
 struct Video: Decodable {
-    let id: String
+    let videoId: String
     let snippet: Snippet
     
-    struct Snippet: Decodable {
-        let publishedAt: String
-        let title: String
-        let description: String
-        let thumbnails: Thumbnails
+    private enum CodingKeys: String, CodingKey {
+        // videosAPIのレスポンスだとこのidが動画IDだが、playlistItemsAPIのレスポンスだとこのidは動画IDではなくプレイリストアイテムIDなので間違えない様に変数名で明示的に区別している
+        case videoId = "id"
+        case snippet
     }
+}
+
+struct Snippet: Decodable {
+    let publishedAt: String
+    let title: String
+    let description: String
+    let thumbnails: Thumbnails
 }
 
 struct Thumbnails: Decodable {

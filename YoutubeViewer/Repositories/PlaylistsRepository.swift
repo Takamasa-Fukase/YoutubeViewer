@@ -28,7 +28,7 @@ final class PlaylistsRepository {
         }
     }
     
-    func getPlaylistItems(playlistId: String) async throws -> VideosResponse {
+    func getPlaylistItems(playlistId: String) async throws -> PlaylistVideosResponse {
         let url = URL(string: APIConst.BASE_URL + APIConst.PLAYLIST_ITEMS)!
         let request = try URLRequest(url: url, method: .get, headers: APIHeader.applicationJson())
         let parameters: Parameters = [
@@ -39,7 +39,7 @@ final class PlaylistsRepository {
             "key": Env.googleApiKey
         ]
         let requestConvertible = try URLEncoding.default.encode(request, with: parameters)
-        let result = await AF.request(requestConvertible).serializingDecodable(VideosResponse.self).result
+        let result = await AF.request(requestConvertible).serializingDecodable(PlaylistVideosResponse.self).result
         switch result {
         case .success(let response):
             return response

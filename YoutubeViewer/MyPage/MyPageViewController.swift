@@ -10,7 +10,7 @@ import GoogleSignIn
 
 class MyPageViewController: UIViewController {
     var myChannel: Channel?
-    var myPlaylists: [(playlistTitle: String, videos: [Video])] = []
+    var myPlaylists: [(playlistTitle: String, videos: [PlaylistVideo])] = []
     
     private var signInView: MyPageSignInView!
 
@@ -90,14 +90,14 @@ class MyPageViewController: UIViewController {
                 self.myChannel = try await myChannel
                 let playlistInfos = try await myPlaylistInfos
                 
-                self.myPlaylists = try await withThrowingTaskGroup(of: (playlistTitle: String, videos: [Video]).self) { group in
+                self.myPlaylists = try await withThrowingTaskGroup(of: (playlistTitle: String, videos: [PlaylistVideo]).self) { group in
                     playlistInfos.forEach { playlistInfo in
                         group.addTask {
                             let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistInfo.id).items
                             return (playlistTitle: playlistInfo.snippet.title, videos: videos)
                         }
                     }
-                    var playlists: [(playlistTitle: String, videos: [Video])] = []
+                    var playlists: [(playlistTitle: String, videos: [PlaylistVideo])] = []
                     for try await playlist in group {
                         playlists.append(playlist)
                     }
@@ -144,7 +144,7 @@ extension MyPageViewController: UITabBarDelegate, UITableViewDataSource {
 }
 
 extension MyPageViewController: MyPageHorizontalListDelegate {
-    func itemSelected(video: Video) {
-        SceneDelegate.shared?.showVideoDetailWindow(video: video)
+    func itemSelected(video: PlaylistVideo) {
+        SceneDelegate.shared?.showVideoDetailWindow(video: video.convertedToVideo)
     }
 }

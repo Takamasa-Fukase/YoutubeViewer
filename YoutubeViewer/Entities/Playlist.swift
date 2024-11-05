@@ -14,11 +14,4 @@ struct PlaylistsResponse: Decodable {
 struct Playlist: Decodable {
     let id: String
     let snippet: Snippet
-    
-    struct Snippet: Decodable {
-        let publishedAt: String
-        let title: String
-        let description: String
-        let thumbnails: Thumbnails
-    }
 }

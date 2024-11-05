@@ -10,8 +10,16 @@ import GoogleSignIn
 import KeychainAccess
 
 class MyPageViewController: UIViewController {    
-    var profileModel: ProfileModel?
-    var playlistModels: [PlaylistModel] = []
+    var profileModel: ProfileModel? {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    var playlistModels: [PlaylistModel] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     private var signInView: MyPageSignInView!
 
     @IBOutlet weak var tableView: UITableView!
@@ -72,33 +80,54 @@ class MyPageViewController: UIViewController {
         }
     }
     
+    @MainActor private func showChannelAndReload(_ channel: Channel?) {
+        profileModel = .init(
+            thumbnailUrl: channel?.snippet.thumbnails.default?.url ?? "",
+            title: channel?.snippet.title ?? ""
+        )
+    }
+    
+    @MainActor private func showPlaylistsAndReload(_ playlists: [Playlist]) {
+        playlistModels = playlists.map({ playlists in
+            return .init(
+                id: playlists.id,
+                title: playlists.snippet.title,
+                videos: []
+            )
+        })
+    }
+        
+    private func getPlaylistItemsAndReload() async throws {
+        _ = try await withThrowingTaskGroup(of: Void.self) { group in
+            self.playlistModels.enumerated().forEach({ (index, playlistModel) in
+                group.addTask {
+                    let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistModel.id).items
+                    return await self.showPlaylistItemsAndReload(index: index, videos: videos)
+                }
+            })
+            for try await _ in group {}
+        }
+    }
+    
+    @MainActor private func showPlaylistItemsAndReload(index: Int, videos: [PlaylistVideo]) {
+        playlistModels[index].videos = videos
+    }
+    
     private func fetch() {
         Task {
             do {
-                async let fetchedMyChannel = ChannelsRepository().getMyChannels().items.first
-                async let fetchedMyPlaylistInfos = PlaylistsRepository().getMyPlaylists().items
-                let myChannel = try await fetchedMyChannel
-                let myPlaylistInfos = try await fetchedMyPlaylistInfos
-                
-                profileModel = .init(
-                    thumbnailUrl: myChannel?.snippet.thumbnails.default?.url ?? "",
-                    title: myChannel?.snippet.title ?? ""
-                )
-                tableView.reloadData()
-
-                playlistModels = myPlaylistInfos.map({ playlistInfo in
-                    return .init(
-                        id: playlistInfo.id,
-                        title: playlistInfo.snippet.title,
-                        videos: []
-                    )
-                })
-                tableView.reloadData()
-                
-                try await playlistModels.enumerated().concurrentThrowingForEach { [weak self] (index, playlistModel) in
-                    self?.playlistModels[index].videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistModel.id).items
+                _ = try await withThrowingTaskGroup(of: Void.self) { group in
+                    group.addTask {
+                        let channel = try await ChannelsRepository().getMyChannels().items.first
+                        await self.showChannelAndReload(channel)
+                    }
+                    group.addTask {
+                        let playlists = try await PlaylistsRepository().getMyPlaylists().items
+                        await self.showPlaylistsAndReload(playlists)
+                        try await self.getPlaylistItemsAndReload()
+                    }
+                    for try await _ in group {}
                 }
-                tableView.reloadData()
                 
             } catch {
                 print("MyPage fetch error: \(error)")

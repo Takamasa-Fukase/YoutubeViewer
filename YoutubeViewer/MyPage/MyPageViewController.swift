@@ -9,10 +9,9 @@ import UIKit
 import GoogleSignIn
 import KeychainAccess
 
-class MyPageViewController: UIViewController {
-    var myChannel: Channel?
-    var myPlaylists: [(playlistTitle: String, videos: [PlaylistVideo])] = []
-    
+class MyPageViewController: UIViewController {    
+    var profileModel: ProfileModel?
+    var playlistModels: [PlaylistModel] = []
     private var signInView: MyPageSignInView!
 
     @IBOutlet weak var tableView: UITableView!
@@ -76,14 +75,23 @@ class MyPageViewController: UIViewController {
     private func fetch() {
         Task {
             do {
-                async let myChannel = ChannelsRepository().getMyChannels().items.first
-                async let myPlaylistInfos = PlaylistsRepository().getMyPlaylists().items
-                self.myChannel = try await myChannel
-                let playlistInfos = try await myPlaylistInfos
+                async let fetchedMyChannel = ChannelsRepository().getMyChannels().items.first
+                async let fetchedMyPlaylistInfos = PlaylistsRepository().getMyPlaylists().items
+                let myChannel = try await fetchedMyChannel
+                let myPlaylistInfos = try await fetchedMyPlaylistInfos
                 
-                self.myPlaylists = try await playlistInfos.concurrentMap { playlistInfo in
+                profileModel = .init(
+                    thumbnailUrl: myChannel?.snippet.thumbnails.default?.url ?? "",
+                    title: myChannel?.snippet.title ?? ""
+                )
+
+                playlistModels = try await myPlaylistInfos.enumerated().concurrentMap { (index, playlistInfo) in
                     let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistInfo.id).items
-                    return (playlistTitle: playlistInfo.snippet.title, videos: videos)
+                    return .init(
+                        id: playlistInfo.id,
+                        title: playlistInfo.snippet.title,
+                        videos: videos
+                    )
                 }
                 
                 tableView.reloadData()
@@ -103,24 +111,24 @@ extension MyPageViewController: UITabBarDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard AppState.shared.isSignedIn else { return 0 }
         // プロフィールセル用の1（固定） + プレイリストの数（可変）
-        return 1 + myPlaylists.count
+        return 1 + playlistModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: MyPageProfileCell.className, for: indexPath) as! MyPageProfileCell
-            let url = URL(string: myChannel?.snippet.thumbnails.default?.url ?? "")
+            let url = URL(string: profileModel?.thumbnailUrl ?? "")
             cell.profileIconImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "person.fill"))
-            cell.nameLabel.text = myChannel?.snippet.title
+            cell.nameLabel.text = profileModel?.title ?? ""
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MyPageHorizontalListCell.className, for: indexPath) as! MyPageHorizontalListCell
-            // TODO: indexPath.rowと配列のindexが合致していないと実装ミスを誘発するので、セクション分けた方がいいかも
-            let playlist = myPlaylists[indexPath.row - 1]
-            cell.titleLabel.text = playlist.playlistTitle
+            let playlistModel = playlistModels[indexPath.row - 1]
+            cell.titleLabel.text = playlistModel.title
             cell.myPageHorizontalListDelegate = self
-            cell.videos = playlist.videos
+            cell.videos = playlistModel.videos
+            cell.collectionView.reloadData()
             return cell
         }
     }

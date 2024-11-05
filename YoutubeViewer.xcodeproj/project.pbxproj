@@ -54,6 +54,7 @@
 		BC5ACA012CD9B6BB00025518 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACA002CD9B6BB00025518 /* KeychainKey.swift */; };
 		BC5ACA032CD9B8EF00025518 /* NotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACA022CD9B8EF00025518 /* NotificationKey.swift */; };
 		BC5ACA052CD9BA3F00025518 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACA042CD9BA3F00025518 /* AppState.swift */; };
+		BC5ACA072CD9D35000025518 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACA062CD9D35000025518 /* MyPageModel.swift */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
 		BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */; };
@@ -129,6 +130,7 @@
 		BC5ACA002CD9B6BB00025518 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
 		BC5ACA022CD9B8EF00025518 /* NotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKey.swift; sourceTree = "<group>"; };
 		BC5ACA042CD9BA3F00025518 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		BC5ACA062CD9D35000025518 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInView.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 		BC5AC9F82CD8C96800025518 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BC5ACA062CD9D35000025518 /* MyPageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */,
 				BC25CC452CD0A8DC00951696 /* MyPageHorizontalListCell.swift in Sources */,
 				BC0558672CCDE27F0002ABDD /* NSObject+Extension.swift in Sources */,
+				BC5ACA072CD9D35000025518 /* MyPageModel.swift in Sources */,
 				BC5AC9EB2CD8493200025518 /* APIConst.swift in Sources */,
 				BC25CC582CD12A8600951696 /* UIView+Constraint.swift in Sources */,
 				BC2665002CD24E8700A489D6 /* VideoDetailDescriptionView.swift in Sources */,

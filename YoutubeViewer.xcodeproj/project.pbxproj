@@ -49,6 +49,7 @@
 		BC5AC9F52CD85B4400025518 /* ChannelsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F42CD85B4400025518 /* ChannelsRepository.swift */; };
 		BC5AC9F72CD85B4E00025518 /* PlaylistsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */; };
 		BC5AC9FA2CD9990500025518 /* PlaylistVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9F92CD9990500025518 /* PlaylistVideo.swift */; };
+		BC5AC9FC2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5AC9FB2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift */; };
 		BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */; };
 		BC61D8EB2CD1E60200A68212 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */; };
 		BC7B68BF2CD253D300D5A203 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = BC7B68BE2CD253D300D5A203 /* YoutubePlayer-in-WKWebView */; };
@@ -120,6 +121,7 @@
 		BC5AC9F42CD85B4400025518 /* ChannelsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsRepository.swift; sourceTree = "<group>"; };
 		BC5AC9F62CD85B4E00025518 /* PlaylistsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsRepository.swift; sourceTree = "<group>"; };
 		BC5AC9F92CD9990500025518 /* PlaylistVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVideo.swift; sourceTree = "<group>"; };
+		BC5AC9FB2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Asynchronous&Concurrency.swift"; sourceTree = "<group>"; };
 		BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+Extension.swift"; sourceTree = "<group>"; };
 		BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BC7B68C32CD3252E00D5A203 /* MyPageSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSignInView.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				BC61D8E82CD1E4A400A68212 /* SceneDelegate+Extension.swift */,
 				BC61D8EA2CD1E60200A68212 /* UIApplication+Extension.swift */,
 				BC06C1AD2CD33849000B8E61 /* UIColor+Extension.swift */,
+				BC5AC9FB2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				BC06C1AE2CD33849000B8E61 /* UIColor+Extension.swift in Sources */,
 				BC5AC9F72CD85B4E00025518 /* PlaylistsRepository.swift in Sources */,
 				BC05585F2CCDD8A50002ABDD /* HomeViewController.swift in Sources */,
+				BC5AC9FC2CD9A86F00025518 /* Sequence+Asynchronous&Concurrency.swift in Sources */,
 				BC61D8E92CD1E4A400A68212 /* SceneDelegate+Extension.swift in Sources */,
 				BC5AC9F32CD8596F00025518 /* Playlist.swift in Sources */,
 				BC0558632CCDD8D20002ABDD /* MyPageViewController.swift in Sources */,

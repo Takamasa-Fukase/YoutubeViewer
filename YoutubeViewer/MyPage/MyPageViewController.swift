@@ -90,19 +90,11 @@ class MyPageViewController: UIViewController {
                 self.myChannel = try await myChannel
                 let playlistInfos = try await myPlaylistInfos
                 
-                self.myPlaylists = try await withThrowingTaskGroup(of: (playlistTitle: String, videos: [PlaylistVideo]).self) { group in
-                    playlistInfos.forEach { playlistInfo in
-                        group.addTask {
-                            let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistInfo.id).items
-                            return (playlistTitle: playlistInfo.snippet.title, videos: videos)
-                        }
-                    }
-                    var playlists: [(playlistTitle: String, videos: [PlaylistVideo])] = []
-                    for try await playlist in group {
-                        playlists.append(playlist)
-                    }
-                    return playlists
+                self.myPlaylists = try await playlistInfos.concurrentMap { playlistInfo in
+                    let videos = try await PlaylistsRepository().getPlaylistItems(playlistId: playlistInfo.id).items
+                    return (playlistTitle: playlistInfo.snippet.title, videos: videos)
                 }
+                
                 tableView.reloadData()
                 
             } catch {

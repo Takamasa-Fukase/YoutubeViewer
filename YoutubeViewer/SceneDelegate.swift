@@ -39,8 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // ユニバーサルリンク経由でのアプリ起動のハンドリング
         if let userActivity = connectionOptions.userActivities.first(where: { $0.webpageURL != nil }),
            userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-           let url = userActivity.webpageURL,
-           let components = URLComponents(url: url, resolvingAgainstBaseURL: true) {
+           let url = userActivity.webpageURL {
             print("url: \(url)")
         }
     }
@@ -59,8 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         print("SceneDelegate scene continue")
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-           let url = userActivity.webpageURL,
-           let components = URLComponents(url: url, resolvingAgainstBaseURL: true) {
+           let url = userActivity.webpageURL {
             print("url: \(url)")
         }
     }

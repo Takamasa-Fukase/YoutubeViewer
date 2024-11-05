@@ -105,6 +105,7 @@ class MyPageViewController: UIViewController {
                     return await self.showPlaylistItemsAndReload(index: index, videos: videos)
                 }
             })
+            // エラーを呼び出し元に渡すためにtryする
             for try await _ in group {}
         }
     }
@@ -126,6 +127,7 @@ class MyPageViewController: UIViewController {
                         await self.showPlaylistsAndReload(playlists)
                         try await self.getPlaylistItemsAndReload()
                     }
+                    // エラーを呼び出し元に渡すためにtryする
                     for try await _ in group {}
                 }
                 
